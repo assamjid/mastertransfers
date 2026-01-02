@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterTripTransfers - Transport Touristique à Agadir</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:url('https://images.unsplash.com/photo-1617946959277-49883ecf96b5?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size:cover;
+  color:#111;
+}
+
+header{
+  background:rgba(0,31,63,0.9);
+  color:#fff;
+  padding:20px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+nav a{
+  color:#fff;
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:bold;
+}
+nav a:hover{color:#00aaff}
+
+section{
+  background:rgba(255,255,255,0.96);
+  max-width:800px;
+  margin:30px auto;
+  padding:50px 20px;
+  border-radius:18px;
+}
+
+h2{color:#001f3f;margin-bottom:30px}
+
+.service-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+.service-card{
+  background:#001f3f;
+  color:#fff;
+  width:200px;
+  padding:20px;
+  border-radius:14px;
+}
+.service-card h3{color:#00aaff}
+
+form{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+form input,
+form select,
+form textarea{
+  width:100%;
+  max-width:320px;
+  padding:14px;
+  border-radius:12px;
+  border:2px solid #dde3ea;
+  background:#f9fbfc;
+  font-size:15px;
+}
+
+textarea{height:100px}
+
+.phone-group{
+  display:flex;
+  width:100%;
+  max-width:320px;
+  gap:8px;
+}
+.phone-group select{
+  width:120px;
+  font-weight:600;
+  text-align:center;
+}
+.phone-group input{flex:1}
+
+button{
+  width:100%;
+  max-width:320px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{transform:translateY(-2px)}
+
+#intervillesFields,
+#circuitsFields,
+#transferFields{
+  display:none;
+  width:100%;
+  max-width:320px;
+  flex-direction:column;
+  gap:8px;
+}
+
+
+#bookingSubtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #001f3f;
+  margin-top: -15px;
+}
+
+
+
+.floating-field {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.floating-field input {
+  width: 100%;
+  padding: 22px 14px 10px; /* espace pour le texte en haut */
+  border-radius: 12px;
+  border: 2px solid #dde3ea;
+  background: #f9fbfc;
+  font-size: 15px;
+}
+
+.floating-field label {
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #001f3f;
+  pointer-events: none;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>MasterTripTransfers</h1>
+<nav>
+<a href="#services">Services</a>
+<a href="#booking">Réservation</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section id="services">
+<h2>Nos Services</h2>
+<div class="service-list">
+<div class="service-card"><h3>Transferts Privés</h3></div>
+<div class="service-card"><h3>Transport Intervilles</h3></div>
+<div class="service-card"><h3>Circuits & Excursions</h3></div>
+</div>
+</section>
+
+<section id="booking">
+
+
+<h2 id="bookingTitle">Réservation</h2>
+<h2 id="bookingSubtitle"></h2>
+
+
+<form id="bookingForm">
+
+<input id="nom" type="text" placeholder="Nom et Prénom" required>
+
+
+<div class="phone-group">
+<select id="countryCode">
+<option value="44">🇬🇧 +44</option>
+<option value="212">🇲🇦 +212</option>
+<option value="33">🇫🇷 +33</option>
+<option value="49">🇩🇪 +49</option>
+<option value="1">🇺🇸 +1</option>
+<option value="34">🇪🇸 +34</option>
+<option value="39">🇮🇹 +39</option>
+<option value="32">🇧🇪 +32</option>
+<option value="31">🇳🇱 +31</option>
+<option value="41">🇨🇭 +41</option>
+</select>
+<input id="tel" type="tel" inputmode="numeric" placeholder="Téléphone" required>
+</div>
+
+<input id="email" type="email" placeholder="Email" required>
+
+<select id="service" required>
+<option value="">Choisir un service</option>
+<option value="Transferts Privés">Transferts Privés</option>
+<option value="Transport Intervilles">Transport Intervilles</option>
+<option value="Circuits & Excursions">Circuits & Excursions</option>
+</select>
+
+
+<div id="transferFields">
+
+
+<select id="transferType">
+  <option value="">Choisir transfert</option>
+
+  <option value="Transfert Aéroport / Agadir City">
+    Aéroport d'Agadir vers Agadir ville
+  </option>
+
+  <option value="Transfert Agadir City / Aéroport">
+    Agadir ville vers Aéroport d'Agadir
+  </option>
+
+  <option value="Transfert Aéroport / Taghazout Bay">
+     Aéroport d'Agadir vers Taghazout Bay
+  </option>
+
+  <option value="Transfert Taghazout Bay / Aéroport">
+    Taghazout Bay vers Aéroport d'Agadir
+  </option>
+
+  <option value="Transfert Privé">
+    Transfert Privé
+  </option>
+</select>
+
+
+<div class="floating-field">
+  <input id="depart" type="text" placeholder="adresse, aéroport, hotel ..." required>
+  <label for="depart">Départ de :</label>
+</div>
+
+  <div class="floating-field">
+  <input id="arrivee" type="text" placeholder="adresse, aéroport, hotel ..." required>
+  <label for="arrivee">Arrivée à :</label>
+</div>
+
+  
+
+ 
+  <select id="transferPlaces" >
+    <option value="">Nombre de places</option>
+    <option value="4">4 et moins</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+   <option value="9">9</option>
+    <option value="10">10</option>
+   <option value="11">11</option>
+    <option value="12">12</option>
+   <option value="13">13</option>
+   <option value="14">14</option>
+    <option value="15">15</option>
+
+
+  </select>
+
+<input id="transferPrix" placeholder="Prix (€)" readonly>
+
+  <input id="flightNumber" placeholder="Numéro de vol (optionnel)">
+</div>
+
+
+
+
+
+
+
+<div id="intervillesFields">
+<select id="trajet">
+<option value="">Choisir Trajet</option>
+<option>Agadir / Taghazout vers Marrakech</option>
+<option>Agadir / Taghazout vers Essaouira</option>
+<option>Agadir / Taghazout vers Taroudant</option>
+<option>Agadir / Taghazout vers Casablanca</option>
+<option>Agadir / Taghazout vers Rabat</option>
+<option>Agadir / Taghazout vers Fès</option>
+<option>Agadir / Taghazout vers Tanger</option>
+<option>Marrakech vers Agadir / Taghazout</option>
+<option>Essaouira vers Agadir / Taghazout</option>
+<option>Taroudant vers Agadir / Taghazout</option>
+<option>Casablanca vers Agadir / Taghazout</option>
+<option>Rabat vers Agadir / Taghazout</option>
+<option>Fès vers Agadir / Taghazout</option>
+<option>Tanger vers Agadir / Taghazout</option>
+</select>
+
+<select id="places">
+<option value="">Nombre de places</option>
+<option value="5">5 et moins</option>
+<option value="6">6</option><option value="7">7</option>
+<option value="8">8</option><option value="9">9</option>
+<option value="10">10</option><option value="11">11</option>
+<option value="12">12</option><option value="13">13</option>
+<option value="14">14</option><option value="15">15</option>
+</select>
+
+<input id="prix" placeholder="Prix (€)" readonly>
+</div>
+
+<div id="circuitsFields">
+<select id="circuit">
+<option value="">Choisir Excursion</option>
+<option>Paradise Valley</option>
+<option>Tour de ville d'Agadir</option>
+<option>Aller / Retour Souk Al Had Agadir</option>
+<option>Aller / Retour CrocoParc</option>
+<option>Aller / Retour Télésiège Kasbah d'Agadir</option>
+<option>Timlaline</option>
+</select>
+
+<select id="circuitPlaces">
+<option value="">Nombre de places</option>
+<option value="5">5 et moins</option>
+<option value="6">6</option><option value="7">7</option>
+<option value="8">8</option><option value="9">9</option>
+<option value="10">10</option><option value="11">11</option>
+<option value="12">12</option><option value="13">13</option>
+<option value="14">14</option><option value="15">15</option>
+</select>
+
+<input id="circuitPrix" placeholder="Prix (€)" readonly>
+</div>
+
+<input type="date" id="date" required>
+<input type="time" id="heure" required>
+
+<textarea id="message" placeholder="Message (optionnel)"></textarea>
+
+<button type="submit">Envoyer</button>
+
+</form>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Téléphone : 00212691059759</p>
+<p>Email : mastertrip2030@gmail.com</p>
+</section>
+
+<footer style="text-align:center;color:#fff;padding:20px">
+© 2025 MasterTripTransfers – Agadir
+</footer>
+
+
+
+<script>
+/* =======================
+   RÉFÉRENCES DOM
+======================= */
+const bookingForm = document.getElementById("bookingForm");
+
+const nom = document.getElementById("nom");
+const tel = document.getElementById("tel");
+const email = document.getElementById("email");
+const countryCode = document.getElementById("countryCode");
+
+const service = document.getElementById("service");
+const bookingSubtitle = document.getElementById("bookingSubtitle");
+
+const transferFields = document.getElementById("transferFields");
+const intervillesFields = document.getElementById("intervillesFields");
+const circuitsFields = document.getElementById("circuitsFields");
+
+const transferType = document.getElementById("transferType");
+const depart = document.getElementById("depart");
+const arrivee = document.getElementById("arrivee");
+const transferPlaces = document.getElementById("transferPlaces");
+const transferPrix = document.getElementById("transferPrix");
+const flightNumber = document.getElementById("flightNumber");
+
+const trajet = document.getElementById("trajet");
+const places = document.getElementById("places");
+const prix = document.getElementById("prix");
+
+const circuit = document.getElementById("circuit");
+const circuitPlaces = document.getElementById("circuitPlaces");
+const circuitPrix = document.getElementById("circuitPrix");
+
+const date = document.getElementById("date");
+const heure = document.getElementById("heure");
+const message = document.getElementById("message");
+
+/* =======================
+   DATE + TÉLÉPHONE
+======================= */
+const today = new Date().toISOString().split("T")[0];
+date.value = today;
+date.min = today;
+heure.value = "07:00";
+
+tel.addEventListener("input", () => {
+  tel.value = tel.value.replace(/\D/g, "");
+});
+
+/* =======================
+   RESET GLOBAL (SERVICE)
+======================= */
+function resetAll() {
+
+  transferFields.style.display = "none";
+  intervillesFields.style.display = "none";
+  circuitsFields.style.display = "none";
+
+  bookingSubtitle.textContent = "";
+
+  [
+    transferType,
+    depart,
+    arrivee,
+    transferPlaces,
+    flightNumber,
+    trajet,
+    places,
+    circuit,
+    circuitPlaces
+  ].forEach(el => {
+    el.value = "";
+    el.disabled = true;
+    el.required = false;
+  });
+
+  transferPrix.value = "";
+  prix.value = "";
+  circuitPrix.value = "";
+
+  depart.readOnly = false;
+  arrivee.readOnly = false;
+}
+
+/* =======================
+   CHANGEMENT SERVICE
+======================= */
+service.addEventListener("change", () => {
+  resetAll();
+
+  if (service.value === "Transferts Privés") {
+    bookingSubtitle.textContent = "Détails de votre transfert";
+    transferFields.style.display = "flex";
+
+    transferType.disabled = false;
+    transferType.required = true;
+
+    depart.disabled = false;
+    arrivee.disabled = false;
+    depart.required = true;
+    arrivee.required = true;
+
+    transferPlaces.disabled = false;
+    transferPlaces.required = true;
+
+    flightNumber.disabled = false;
+  }
+
+  if (service.value === "Transport Intervilles") {
+    bookingSubtitle.textContent = "Détails de votre transport interville";
+    intervillesFields.style.display = "flex";
+
+    trajet.disabled = false;
+    places.disabled = false;
+    trajet.required = true;
+    places.required = true;
+  }
+
+  if (service.value === "Circuits & Excursions") {
+    bookingSubtitle.textContent = "Détails de votre circuit / excursion";
+    circuitsFields.style.display = "flex";
+
+    circuit.disabled = false;
+    circuitPlaces.disabled = false;
+    circuit.required = true;
+    circuitPlaces.required = true;
+  }
+});
+
+/* =======================
+   TYPE DE TRANSFERT
+======================= */
+transferType.addEventListener("change", () => {
+
+  depart.value = "";
+  arrivee.value = "";
+  transferPrix.value = "";
+
+  depart.readOnly = false;
+  arrivee.readOnly = false;
+
+  transferPlaces.disabled = false;
+  transferPlaces.required = true;
+
+  if (transferType.value === "Transfert Privé") {
+    transferPrix.value = "Sur devis";
+    return;
+  }
+
+  if (
+    transferType.value === "Transfert Aéroport / Agadir City" ||
+    transferType.value === "Transfert Aéroport / Taghazout Bay"
+  ) {
+    depart.value = "Aéroport Agadir Al Massira";
+    depart.readOnly = true;
+  }
+
+  if (
+    transferType.value === "Transfert Agadir City / Aéroport" ||
+    transferType.value === "Transfert Taghazout Bay / Aéroport"
+  ) {
+    arrivee.value = "Aéroport Agadir Al Massira";
+    arrivee.readOnly = true;
+  }
+
+  if (transferPlaces.value) calculPrixTransfert();
+});
+
+/* =======================
+   PRIX TRANSFERTS
+======================= */
+function calculPrixTransfert() {
+
+  if (!transferType.value || transferType.value === "Transfert Privé") {
+    transferPrix.value = transferType.value === "Transfert Privé" ? "Sur devis" : "";
+    return;
+  }
+
+  if (!transferPlaces.value) {
+    transferPrix.value = "";
+    return;
+  }
+
+  const nb = parseInt(transferPlaces.value, 10);
+  let base = 0;
+  let extra = 0;
+
+  if (
+    transferType.value === "Transfert Aéroport / Agadir City" ||
+    transferType.value === "Transfert Agadir City / Aéroport"
+  ) {
+    base = 30;
+    extra = 2;
+  }
+
+  if (
+    transferType.value === "Transfert Aéroport / Taghazout Bay" ||
+    transferType.value === "Transfert Taghazout Bay / Aéroport"
+  ) {
+    base = 40;
+    extra = 2.5;
+  }
+
+  let total = base;
+  if (nb > 4) total += (nb - 4) * extra;
+
+  transferPrix.value = total + " €";
+}
+
+transferPlaces.addEventListener("change", calculPrixTransfert);
+
+/* =======================
+   PRIX INTERVILLES
+======================= */
+const basePrices = {
+  "Agadir / Taghazout vers Marrakech": { base: 125, extra: 25 },
+  "Marrakech vers Agadir / Taghazout": { base: 125, extra: 25 },
+  "Agadir / Taghazout vers Essaouira": { base: 110, extra: 18 },
+  "Essaouira vers Agadir / Taghazout": { base: 110, extra: 18 },
+  "Agadir / Taghazout vers Taroudant": { base: 90, extra: 15 },
+  "Taroudant vers Agadir / Taghazout": { base: 90, extra: 15 }
+};
+
+function calculPrixIntervilles() {
+  if (!trajet.value || !places.value) {
+    prix.value = "";
+    return;
+  }
+
+  const p = basePrices[trajet.value];
+  if (!p) return;
+
+  const nb = parseInt(places.value, 10);
+  const extra = nb > 5 ? (nb - 5) * p.extra : 0;
+
+  prix.value = (p.base + extra) + " €";
+}
+
+trajet.addEventListener("change", calculPrixIntervilles);
+places.addEventListener("change", calculPrixIntervilles);
+
+/* =======================
+   PRIX CIRCUITS
+======================= */
+const circuitPrices = {
+  "Paradise Valley": { base: 70, extra: 5 },
+  "Tour de ville d'Agadir": { base: 50, extra: 5 },
+  "Timlaline": { base: 70, extra: 5 }
+};
+
+function calculPrixCircuit() {
+  if (!circuit.value || !circuitPlaces.value) {
+    circuitPrix.value = "";
+    return;
+  }
+
+  const p = circuitPrices[circuit.value];
+  if (!p) return;
+
+  const nb = parseInt(circuitPlaces.value, 10);
+  const extra = nb > 5 ? (nb - 5) * p.extra : 0;
+
+  circuitPrix.value = (p.base + extra) + " €";
+}
+
+circuit.addEventListener("change", calculPrixCircuit);
+circuitPlaces.addEventListener("change", calculPrixCircuit);
+
+/* =======================
+   ENVOI WHATSAPP
+======================= */
+bookingForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  if (!bookingForm.checkValidity()) {
+    bookingForm.reportValidity();
+    return;
+  }
+
+  let text = `Nouvelle réservation – MasterTripTransfers\n\n`;
+  text += `Nom : ${nom.value}\n`;
+  text += `Téléphone : +${countryCode.value} ${tel.value}\n`;
+  text += `Email : ${email.value}\n`;
+  text += `Service : ${service.value}\n\n`;
+
+  if (service.value === "Transferts Privés") {
+    text += `Type : ${transferType.value}\n`;
+    text += `Départ : ${depart.value}\n`;
+    text += `Arrivée : ${arrivee.value}\n`;
+    text += `Places : ${transferPlaces.value}\n`;
+    text += `Prix : ${transferPrix.value}\n`;
+    if (flightNumber.value) text += `Vol : ${flightNumber.value}\n`;
+  }
+
+  if (service.value === "Transport Intervilles") {
+    text += `Trajet : ${trajet.value}\n`;
+    text += `Places : ${places.value}\n`;
+    text += `Prix : ${prix.value}\n`;
+  }
+
+  if (service.value === "Circuits & Excursions") {
+    text += `Circuit : ${circuit.value}\n`;
+    text += `Places : ${circuitPlaces.value}\n`;
+    text += `Prix : ${circuitPrix.value}\n`;
+  }
+
+  text += `\nDate : ${date.value}\nHeure : ${heure.value}`;
+  if (message.value) text += `\nMessage : ${message.value}`;
+
+  window.open(
+    "https://api.whatsapp.com/send?phone=212691059759&text=" +
+    encodeURIComponent(text),
+    "_blank"
+  );
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
