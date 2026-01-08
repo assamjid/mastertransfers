@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterTripTransfers - Transport Touristique à Agadir</title>
+<meta name="description" content="MasterTripTransfers – Transport touristique à Agadir : transferts aéroport, transport inter-villes, excursions et circuits privés avec chauffeur professionnel.">
+
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:url('https://images.unsplash.com/photo-1617946959277-49883ecf96b5?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size:cover;
+  color:#111;
+}
+
+header{
+  background:rgba(0,31,63,0.9);
+  color:#fff;
+  padding:20px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+nav a{
+  color:#fff;
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:bold;
+}
+nav a:hover{color:#00aaff}
+
+section{
+  background:rgba(255,255,255,0.96);
+  max-width:800px;
+  margin:15px auto;     /* 🔼 presque collé */
+  padding:30px 20px;   /* 🔼 plus compact */
+  border-radius:18px;
+}
+
+
+
+
+
+
+h2{color:#001f3f;margin-bottom:30px}
+
+.service-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+.service-card{
+  background:#001f3f;
+  color:#fff;
+  width:200px;
+  padding:20px;
+  border-radius:14px;
+}
+.service-card h3{color:#00aaff}
+
+form{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+form input,
+form select,
+form textarea{
+  width:100%;
+  max-width:320px;
+height: 60px;   
+  padding:14px;
+  border-radius:12px;
+  border:2px solid #dde3ea;
+  background:#f9fbfc;
+  font-size:16px;
+}
+
+
+.phone-group{
+  display:flex;
+  width:100%;
+  max-width:320px;
+  gap:8px;
+}
+.phone-group select{
+  width:120px;
+  font-weight:600;
+  text-align:center;
+}
+.phone-group input{flex:1}
+
+button{
+  width:100%;
+  max-width:320px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{transform:translateY(-2px)}
+
+#intervillesFields,
+#circuitsFields,
+#transferFields{
+  display:none;
+  width:100%;
+  max-width:320px;
+  flex-direction:column;
+  gap:8px;
+}
+
+
+
+#bookingTitle {
+  text-align:center;
+  font-size: 25px;
+  font-weight: 800;
+  color: #001f3f;
+  margin-top: 0px;
+margin-bottom:25px;
+}
+
+
+
+
+#bookingSubtitle {
+  text-align:center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #001f3f;
+  margin-top: -15px;
+margin-bottom:8px;
+}
+
+
+
+.floating-field {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.floating-field input {
+  padding: 22px 14px 10px;
+}
+
+
+.floating-field label {
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #001f3f;
+  pointer-events: none;
+}
+
+
+
+
+.floating-field textarea {
+  padding: 28px 14px 10px;
+  resize: none;
+}
+  
+
+
+.floating-field input[type="date"],
+.floating-field input[type="time"] {
+  padding: 26px 14px 10px;
+}
+
+#resumeBox h3 {
+  margin-bottom: 15px;
+  color: #001f3f;
+}
+
+#resumeContent p {
+  margin: 6px 0;
+}
+
+#resumeBox button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#resumeCancel {
+  background: #ccc;
+}
+
+#resumeConfirm {
+  background: linear-gradient(135deg,#25D366,#1ebe57);
+  color: white;
+}
+
+/* OVERLAY */
+#resumeOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+#resumeOverlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* BOX */
+#resumeBox {
+  background: #fff;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 16px;
+  font-size: 14px;
+
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+#resumeOverlay.active #resumeBox {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* SELECT avec texte en bas */
+.floating-field select {
+  width: 100%;
+  padding: 26px 14px 8px;   /* ⬅️ plus d’espace en haut */
+  border-radius: 12px;
+  border: 2px solid #dde3ea;
+  background: #f9fbfc;
+  font-size: 16px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  
+}
+
+
+
+/* FORCER la taille du texte dans les SELECT 
+form select {
+  font-size: 16px !important;
+  line-height: 1.4;
+}
+*/
+/* Compatibilité mobile */
+form select option {
+  font-size: 17px;
+}
+
+.excursions-section{
+  text-align:center;
+}
+.exc-sub{margin-bottom:30px;color:#444}
+
+.exc-grid{
+  justify-items: center;
+   display:grid;
+  grid-template-columns:repeat(2, 1fr);   /* 2 cartes par ligne */
+  gap:25px;
+}
+
+@media (max-width: 700px){
+  .exc-grid{
+    grid-template-columns:1fr;   /* 1 carte sur mobile */
+  }
+}
+
+.exc-card{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.18);
+  max-width:360px;
+  min-height:100px;
+  display:flex;
+  flex-direction:column;
+}
+
+
+.exc-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+
+.exc-card h3{margin:12px 0;color:#001f3f}
+.exc-card ul{list-style:none;padding:0;font-size:14px}
+.exc-card li{margin:4px 0}
+.exc-card a{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 18px;
+  background:#f39c12;
+  color:#fff;
+  border-radius:10px;
+  font-weight:600;
+  text-decoration:none;
+}
+.exc-card a:hover{background:#e08e0b}
+
+.exc-card p{
+  font-size:15px;
+  line-height:1.6;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-top:25px;
+}
+
+.service-pro{
+  background:linear-gradient(160deg,#001f3f,#003b6f);
+  color:white;
+  padding:28px;
+  border-radius:22px;
+  text-align:center;
+  transition:0.35s;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.service-pro:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 25px 60px rgba(0,0,0,0.35);
+}
+
+.service-pro h3{
+  margin:12px 0;
+  color:#00c3ff;
+  font-size:20px;
+}
+
+.service-pro p{
+  font-size:15px;
+  opacity:0.95;
+  margin-bottom:15px;
+}
+
+.service-pro a{
+  color:#f1c40f;
+  font-weight:700;
+  text-decoration:none;
+  font-size:15px;
+}
+
+.service-icon{
+  font-size:48px;
+}
+
+#services h2,
+#excursions h2{
+  text-align:center;
+  font-size:32px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.service-pro{
+  padding:18px 20px;     /* ⬅️ moins haut */
+}
+
+.service-pro p{
+  margin-bottom:10px;    /* ⬅️ espace réduit */
+}
+
+.service-pro h3{
+  margin:8px 0;          /* ⬅️ titre plus serré */
+}
+
+.service-pro:nth-child(3){
+  grid-column:1 / -1;
+  justify-self:center;
+}
+
+
+/* ==== FORMULAIRE PREMIUM ==== */
+#booking form{
+  background:linear-gradient(180deg,#ffffff,#f4f8fb);
+  padding:25px 15px;
+  border-radius:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.floating-field input,
+.floating-field select,
+.floating-field textarea{
+  border:2px solid #cfd9e2;
+  background:white;
+  transition:0.3s;
+}
+
+.floating-field input:focus,
+.floating-field select:focus,
+.floating-field textarea:focus{
+  border-color:#f39c12;
+  box-shadow:0 0 0 3px rgba(243,156,18,0.2);
+  outline:none;
+}
+
+button[type="submit"]{
+  background:linear-gradient(135deg,#ffb400,#ff8f00);
+  box-shadow:0 12px 30px rgba(255,143,0,0.4);
+  font-size:18px;
+}
+
+button[type="submit"]:hover{
+  transform:scale(1.04);
+}
+
+
+
+
+/* ============================= */
+/* SLIDER – CADRES IDENTIQUES    */
+/* ============================= */
+.exc-slider.auto {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+}
+
+.exc-slider.auto img {
+  min-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+
+
+@media (max-width: 600px) {
+  .exc-slider.auto,
+  .exc-slider.auto img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+
+
+#message {
+  height: 60px;
+  line-height: 1;
+  resize: vertical;
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="mainHeader">
+<h1>MasterTripTransfers</h1>
+
+
+<nav>
+<a href="#services">Services</a>
+<a href="javascript:void(0)" onclick="fixBookingScroll()">Réservation</a>
+
+<a href="#contact">Contact</a>
+</nav>
+
+
+</header>
+
+
+<section id="services">
+<h2>Nos Services</h2>
+
+<div class="service-grid">
+
+  <div class="service-pro" onclick="openService('Transferts Aéroport & Privés')" style="cursor:pointer;">
+
+  <h3>Transferts Privés & Aéroport</h3>
+  <p>Transferts confortables depuis/vers l’aéroport, hôtels, riads et adresses privées avec chauffeur professionnel.</p>
+  <a href="javascript:void(0)" onclick="openService('Transferts Aéroport & Privés')">Réserver →</a>
+</div>
+  
+<div class="service-pro" onclick="openService('Transferts Inter-Villes Maroc')" style="cursor:pointer;">
+
+   <h3>Transport Intervilles</h3>
+  <p>Voyagez entre les villes marocaines en toute sécurité avec des véhicules climatisés et spacieux.</p>
+<a href="javascript:void(0)" onclick="openService('Transferts Inter-Villes Maroc')">Réserver →</a>
+</div>
+
+<div class="service-pro" onclick="goExcursions()" style="cursor:pointer;">
+  <h3>Excursions & Circuits</h3>
+  <p>Découvrez les merveilles d’Agadir et ses environs avec nos excursions organisées et guidées.</p>
+  <a href="javascript:void(0)">Voir les excursions →</a>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="booking">
+
+<h2 id="bookingTitle">Réservation</h2>
+<p id="bookingSubtitle"></p>
+
+
+
+<form id="bookingForm"
+      action="https://formsubmit.co/mastertrip2030@gmail.com"
+      method="POST">
+
+
+<div class="floating-field">
+
+
+<select id="service" name="Service" required>
+  <option value="">Choisir service</option>
+  <option value="Transferts Aéroport & Privés">   Transferts Aéroport & Privés</option>
+  <option value="Transferts Inter-Villes Maroc">   Transferts Inter-Villes Maroc</option>
+  <option value="Excursions & Circuits Touristiques">   Excursions & Circuits Touristiques</option>
+</select>
+
+  <label for="service">Nos services</label>
+</div>
+
+
+<div id="transferFields">   
+
+<div class="floating-field">
+
+<select id="transferType" name="Type" required>
+  <option value="">Choisir transfert</option>
+  <option value="Transfert Privé Personnalisé">Transfert Privé Personnalisé</option>
+  <option value="Aéroport d'Agadir vers Agadir ville">Aéroport d'Agadir vers Agadir ville</option>
+  <option value="Agadir ville vers Aéroport d'Agadir">Agadir ville vers Aéroport Agadir</option>
+  <option value="Aéroport d'Agadir vers Taghazout Bay">Aéroport d'Agadir vers Taghazout Bay</option>
+  <option value="Taghazout Bay vers Aéroport d'Agadir">Taghazout Bay vers Aéroport d'Agadir </option>
+
+</select>
+
+  <label for="transferType">Transferts</label>
+</div>
+
+<div class="floating-field">
+  <input id="depart" type="text" placeholder="adresse, aéroport, hotel ..." >
+  <label for="depart">Lieu de prise en charge :</label>
+</div>
+
+  <div class="floating-field">
+  <input id="arrivee" type="text" placeholder="adresse, aéroport, hotel ..." >
+  <label for="arrivee">Destination :</label>
+</div>
+
+  
+<div class="floating-field">
+<select id="transferPlaces" name="Places_Transfert" required>
+    <option value="">Nombre de places</option>
+    <option value="4">4 et moins</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+   <option value="9">9</option>
+    <option value="10">10</option>
+   <option value="11">11</option>
+    <option value="12">12</option>
+   <option value="13">13</option>
+   <option value="14">14</option>
+    <option value="15">15</option>
+
+  </select>
+  <label for="transferPlaces">Places</label>
+</div>
+ 
+<div class="floating-field">
+<input type="text" id="transferPrix" name="Prix_Transfert" placeholder="0,00€" readonly>
+ <label>Prix (€)</label>
+</div>
+
+<div class="floating-field" id="flightField">
+<input id="flightNumber" name="Vol" placeholder="Ex: FR456">
+  
+  <label>Numéro de vol</label>
+</div>
+
+  
+</div>
+
+
+
+<div id="intervillesFields">
+
+<div class="floating-field">
+  
+<select id="trajet" name="Trajet" required>
+<option value="">Choisir Trajet</option>
+<option>Agadir / Taghazout vers Marrakech</option>
+<option>Marrakech vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Essaouira</option>
+<option>Essaouira vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Imsouane</option>
+<option>Imsouane vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Taroudant</option>
+<option>Taroudant vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Casablanca</option>
+<option>Casablanca vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Rabat</option>
+<option>Rabat vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Fès</option>
+<option>Fès vers Agadir / Taghazout</option>
+<option>Agadir / Taghazout vers Tanger</option>
+<option>Tanger vers Agadir / Taghazout</option>
+
+    
+</select>
+  <label for="trajet">Intervilles</label>
+</div>
+
+<div class="floating-field">
+
+<select id="places" name="Places_Interville" required>
+<option value="">Nombre de places</option>
+<option value="5">5 et moins</option>
+<option value="6">6</option><option value="7">7</option>
+<option value="8">8</option><option value="9">9</option>
+<option value="10">10</option><option value="11">11</option>
+<option value="12">12</option><option value="13">13</option>
+<option value="14">14</option><option value="15">15</option>
+    
+  </select>
+  <label for="places">Places</label>
+</div>
+
+<div class="floating-field">
+<input type="text" id="prix" name="Prix_Interville" placeholder="0,00€" readonly>
+<label>Prix (€)</label>
+</div>
+
+</div>
+
+<div id="circuitsFields"> 
+
+<div class="floating-field">
+<select id="circuit" name="Excursion" required>
+<option value="">Choisir Excursion</option>
+<option>Tour de la ville d’Agadir</option>
+<option>Souk El Had – Circuit Shopping</option>
+<option>Excursion Paradise Valley</option>
+<option>Dunes de Timlaline – Expérience Désert</option>
+<option>Visite du Crocoparc</option>
+<option>Téléphérique et visite de la Kasbah</option>
+<option value="Safari Quad / Buggy">Safari en Quad / Buggy</option>
+<option value="Chameau">Promenade à dos de chameau</option>
+
+  </select>
+  <label for="circuit">Excursions</label>
+</div>
+
+<div class="floating-field" id="quadTypeField" style="display:none;">
+  <select id="quadType">
+    <option value="">Type de véhicule</option>
+    <option value="Quad simple">Quad simple</option>
+    <option value="Buggy">Buggy</option>
+  </select>
+  <label for="quadType">Quad / Buggy</label>
+</div>
+
+<div class="floating-field" id="camelTypeField" style="display:none;">
+  <select id="camelType">
+    <option value="">Type de promenade</option>
+    <option value="Promenade seule">Promenade seule</option>
+    <option value="Promenade + dîner">Promenade + dîner</option>
+  </select>
+  <label for="camelType">Chameau</label>
+</div>
+
+
+
+
+<div class="floating-field">
+<select id="circuitPlaces" name="Places_Circuit" required>
+<option value="">Nombre de places</option>
+<option value="5">5 et moins</option>
+<option value="6">6</option><option value="7">7</option>
+<option value="8">8</option><option value="9">9</option>
+<option value="10">10</option><option value="11">11</option>
+<option value="12">12</option><option value="13">13</option>
+<option value="14">14</option><option value="15">15</option>
+    
+  </select>
+  <label for="circuitPlaces">Places</label>
+</div>
+
+
+
+<div class="floating-field">
+<input type="text" id="circuitPrix" name="Prix_Circuit" placeholder="0,00€" readonly>
+  <label>Prix (€)</label>
+</div>
+
+</div>
+
+
+<div class="floating-field">
+<input type="date" id="date" name="Date" required>
+  
+  <label for="date">Date </label>
+</div>
+
+
+
+<div class="floating-field" id="heureField">
+  <input type="time" id="heure" name="Heure" required>
+  <label for="heure">Heure de prise en charge</label>
+</div>
+
+
+<div class="floating-field" id="fixedTimeField" style="display:none;">
+  <select id="fixedTime">
+    <option value="">Choisir l’horaire</option>
+  </select>
+  <label for="fixedTime">Horaire</label>
+</div>
+
+<div class="floating-field">
+<textarea id="message" name="Message" placeholder="Baggages, Siège bébé ..."></textarea>
+  <label for="message">Demandes spéciales</label>
+</div>
+<div class="floating-field">
+<input id="nom" name="Nom" type="text" required>
+  <label for="nom">Nom et Prénom</label>
+</div>
+
+
+
+<div class="phone-group">
+<select id="countryCode" name="Indicatif">
+<option value="44">🇬🇧 +44</option>
+<option value="212">🇲🇦 +212</option>
+<option value="33">🇫🇷 +33</option>
+<option value="49">🇩🇪 +49</option>
+<option value="1">🇺🇸 +1</option>
+<option value="34">🇪🇸 +34</option>
+<option value="39">🇮🇹 +39</option>
+<option value="32">🇧🇪 +32</option>
+<option value="31">🇳🇱 +31</option>
+<option value="41">🇨🇭 +41</option>
+</select>
+<input id="tel" name="Téléphone" type="tel" inputmode="numeric" placeholder="Téléphone" required>
+
+</div>
+
+
+<div class="floating-field">
+<input id="email" name="Email" type="email" required>
+  <label for="email">Email</label>
+</div>
+
+
+<input type="hidden" name="_subject" value="Nouvelle réservation MasterTripTransfers">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_autoresponse" value="Merci pour votre réservation chez MasterTripTransfers. Nous vous contacterons rapidement pour confirmation.">
+<input type="hidden" id="finalPrice" name="Prix">
+<input type="hidden" id="emailMessage" name="Message_Complet">
+
+
+<button type="submit">Envoyer</button>
+
+
+
+
+
+
+</form>
+</section>
+
+<section id="excursions">
+<h2>Nos Excursions</h2>
+
+
+<div class="exc-grid">
+  <div class="exc-card">
+    
+  <div class="exc-slider auto">
+    <img src="./images/excursions/agadir/Agadir1.jpg" alt="Kasbah Oufella Agadir">
+    <img src="./images/excursions/agadir/Agadir2.jpg" alt="Architecture traditionnelle Agadir">
+    <img src="./images/excursions/agadir/Agadir3.jpg" alt="Mosquée Agadir">
+    <img src="./images/excursions/agadir/Agadir4.jpg" alt="Kasbah Agadir">
+    <img src="./images/excursions/agadir/Agadir5.jpg" alt="Artisanat marocain">
+    <img src="./images/excursions/agadir/Agadir6.jpg" alt="Kasbah Agadir vue nuit">
+    <img src="./images/excursions/agadir/Agadir7.jpg" alt="Panorama Agadir">
+    <img src="./images/excursions/agadir/Agadir8.jpg" alt="Plage d’Agadir">
+    <img src="./images/excursions/agadir/Agadir9.jpg" alt="Marina Agadir">
+    <img src="./images/excursions/agadir/Agadir10.jpg" alt="Kasbah Oufella Agadir">
+  </div>
+
+  <h3>Tour de la ville d’Agadir</h3>
+
+  <p>
+    Visite guidée des sites emblématiques d’Agadir :
+    Kasbah Oufella, Marina, Mosquée, Souk traditionnel,
+    panorama et plage.
+  </p>
+
+  <ul>
+     <li>⏱ 3–4 heures</li>
+    <li>🚐 Transport climatisé</li>
+    <li>📸 Arrêts photos</li>
+  </ul>
+
+  <span class="price">À partir de 15€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Tour de la ville d’Agadir')">
+   Réserver maintenant
+</a>
+
+  
+
+</div>
+
+<div class="exc-card">
+
+  <div class="exc-slider auto">
+<img src="./images/excursions/souk/Souk1.jpg" alt="Souk El Had Agadir">
+<img src="./images/excursions/souk/Souk2.jpg" alt="Entrée principale du Souk El Had Agadir">
+<img src="./images/excursions/souk/Souk3.jpg" alt="Épices marocaines au Souk El Had">
+<img src="./images/excursions/souk/Souk4.jpg" alt="Artisanat traditionnel marocain Souk El Had">
+<img src="./images/excursions/souk/Souk5.jpg" alt="Boutiques du Souk El Had Agadir">
+<img src="./images/excursions/souk/Souk6.jpg" alt="Produits locaux et souvenirs Souk El Had">
+<img src="./images/excursions/souk/Souk7.jpg" alt="Allées animées du Souk El Had Agadir">
+<img src="./images/excursions/souk/Souk8.jpg" alt="Marchands du Souk El Had Agadir">
+<img src="./images/excursions/souk/Souk9.jpg" alt="Étalages colorés du Souk El Had">
+<img src="./images/excursions/souk/Souk10.jpg" alt="Ambiance traditionnelle Souk El Had Agadir">
+  </div>
+
+  <h3>Souk El Had – Shopping Tour</h3>
+  <p>
+    Découvrez le plus grand marché traditionnel d’Agadir :
+    épices, artisanat, cuir, poterie, bijoux, souvenirs et produits locaux.
+  </p>
+  <ul>
+    <li>⏱ 2 heures</li>
+    <li>🛍️ Temps libre / Plus de 3000 boutiques</li>
+    <li>🚐 Transport inclus</li>
+  </ul>
+
+  <span class="price">À partir de 10€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Souk El Had – Circuit Shopping')">
+   Réserver maintenant
+</a>
+
+
+
+
+</div>
+
+
+<div class="exc-card">
+
+<div class="exc-slider auto">
+  <img src="./images/excursions/paradise/Paradise1.jpg" alt="Bassin naturel Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise2.jpg" alt="Gorge rocheuse Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise3.jpg" alt="Rivière et canyon Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise4.jpg" alt="Piscine naturelle Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise5.jpg" alt="Baignade dans les gorges de Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise6.jpg" alt="Falaises et eau turquoise Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise7.jpg" alt="Plongeon dans Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise8.jpg" alt="Vue panoramique Paradise Valley">
+  <img src="./images/excursions/paradise/Paradise9.jpg" alt="Nature et palmiers Paradise Valley">
+</div>
+  
+
+  <h3>Paradise Valley</h3>
+
+  <p>
+    Découvrez Paradise Valley : canyons sculptés, dunes dorées,
+    paysages naturels uniques et vues spectaculaires sur l’océan.
+  </p>
+
+  <ul>
+    <li>⏱ Excursion journée</li>
+    <li>🏜️ Canyons & dunes</li>
+    <li>📸 Paysages exceptionnels</li>
+  </ul>
+
+  <span class="price">À partir de 25€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Excursion Paradise Valley')">
+   Réserver maintenant
+</a>
+
+</div>
+
+<div class="exc-card">
+
+<div class="exc-slider auto">
+  <img src="./images/excursions/timlaline/Timlaline1.jpg" alt="Dunes de Timlaline face à l’océan">
+  <img src="./images/excursions/timlaline/Timlaline2.jpg" alt="Falaises et plage de Timlaline">
+  <img src="./images/excursions/timlaline/Timlaline3.jpg" alt="Canyon naturel de Timlaline">
+  <img src="./images/excursions/timlaline/Timlaline4.jpg" alt="Vue panoramique dunes et mer Timlaline">
+  <img src="./images/excursions/timlaline/Timlaline5.jpg" alt="Formation rocheuse naturelle Timlaline">
+  <img src="./images/excursions/timlaline/Timlaline6.jpg" alt="Coucher de soleil sur les dunes de Timlaline">
+  <img src="./images/excursions/timlaline/Timlaline7.jpg" alt="Sandboarding dans les dunes de Timlaline">
+  <img src="./images/excursions/timlaline/Timlaline8.jpg" alt="Sandboard face à l’océan Atlantique">
+  <img src="./images/excursions/timlaline/Timlaline9.jpg" alt="Aventure sandboarding Timlaline">
+</div>
+
+  <h3>Timlaline</h3>
+
+  <p>
+    Explorez Timlaline, un site spectaculaire où les dunes du désert
+    rencontrent l’océan Atlantique. Paysages uniques et sensations garanties.
+  </p>
+
+  <ul>
+    <li>⏱ Demi-journée ou journée</li>
+    <li>🏜️ Dunes & canyon</li>
+    <li>🌊 Vue sur l’océan</li>
+  </ul>
+
+  <span class="price">À partir de 30€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Dunes de Timlaline – Expérience Désert')">
+   Réserver maintenant
+</a>
+
+</div>
+
+
+<div class="exc-card">
+
+  <div class="exc-slider auto">
+    <img src="./images/excursions/crocopark/Croco1.jpg" alt="Crocoparc Agadir crocodiles">
+    <img src="./images/excursions/crocopark/Croco2.jpg" alt="Entrée Crocoparc Agadir">
+    <img src="./images/excursions/crocopark/Croco3.jpg" alt="Serpent Crocoparc">
+    <img src="./images/excursions/crocopark/Croco4.jpg" alt="Iguanes Crocoparc">
+    <img src="./images/excursions/crocopark/Croco5.jpg" alt="Crocodiles Crocoparc">
+     <img src="./images/excursions/crocopark/Croco6.jpg" alt="Crocoparc Agadir crocodiles bassin"> 
+     <img src="./images/excursions/crocopark/Croco7.jpg" alt="Crocoparc Agadir crocodile alimentation">
+    <img src="./images/excursions/crocopark/Croco8.jpg" alt="Crocoparc Agadir crocodiles eau verte">
+     <img src="./images/excursions/crocopark/Croco9.jpg" alt="Crocoparc Agadir grand crocodile">
+  </div>
+
+  <h3>Crocoparc Agadir</h3>
+
+  <p>
+    Découvrez Crocoparc Agadir, un parc zoologique unique abritant
+    des centaines de crocodiles du Nil, reptiles rares et jardins exotiques.
+  </p>
+
+  <ul>
+    <li>⏱ Demi-journée</li>
+    <li>🐊 Crocodiles & reptiles</li>
+    <li>🌿 Jardin botanique</li>
+     <li>🎟️ Billet d’entrée au Crocoparc non inclus</li>
+  </ul>
+
+  <span class="price">À partir de 25€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Visite du Crocoparc')">
+   Réserver maintenant
+</a>
+
+</div>
+
+
+<div class="exc-card">
+
+<div class="exc-slider auto">
+  <img src="./images/excursions/telesiege/Tele1.jpg" alt="Vue panoramique baie d’Agadir depuis le télésiège">
+  <img src="./images/excursions/telesiege/Tele2.jpg" alt="Kasbah Agadir vue du télésiège">
+  <img src="./images/excursions/telesiege/Tele3.jpg" alt="Télésiège Agadir de nuit vue sur la ville">
+  <img src="./images/excursions/telesiege/Tele4.jpg" alt="Télésiège Agadir au-dessus des jardins">
+  <img src="./images/excursions/telesiege/Tele5.jpg" alt="Kasbah Agadir et chameaux">
+  <img src="./images/excursions/telesiege/Tele6.jpg" alt="Téléphérique Agadir vue nocturne">
+  <img src="./images/excursions/telesiege/Tele7.jpg" alt="Cabine télésiège Agadir en journée">
+  <img src="./images/excursions/telesiege/Tele8.jpg" alt="Vue mer et ville depuis le télésiège">
+  <img src="./images/excursions/telesiege/Tele9.jpg" alt="Téléphérique Agadir panorama complet">
+</div>
+
+  
+  <h3>Télésiège d’Agadir</h3>
+
+  <p>
+    Profitez d’une expérience unique en télésiège avec une vue panoramique
+    exceptionnelle sur la baie d’Agadir, la marina et l’océan Atlantique.
+  </p>
+
+  <ul>
+    <li>⏱ Environ 30 minutes</li>
+    <li>🌊 Vue mer & ville</li>
+    <li>📸 Idéal photos & détente</li>
+     <li>🎟️ Billet du télésiège non inclus</li>
+  </ul>
+
+  <span class="price">À partir de 10€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Téléphérique et visite de la Kasbah')">
+   Réserver maintenant
+</a>
+
+</div>
+
+<div class="exc-card">
+
+  <div class="exc-slider auto">
+    <img src="./images/excursions/quad/Quad1.jpg" alt="Buggy Premium Agadir">
+    <img src="./images/excursions/quad/Quad2.jpg" alt="Safari Buggy dunes Agadir">
+    <img src="./images/excursions/quad/Quad3.jpg" alt="Pause désert buggy Agadir">
+    <img src="./images/excursions/quad/Quad4.jpg" alt="Quad coucher de soleil Agadir">
+    <img src="./images/excursions/quad/Quad5.jpg" alt="Groupe buggy désert Agadir">
+  </div>
+
+  <h3>Safari en Quad / Buggy</h3>
+
+  <p>
+    Partez à l’aventure en Quad ou Buggy à travers les dunes,
+    pistes désertiques et paysages sauvages autour d’Agadir.
+  </p>
+
+  <ul>
+    <li>⏱ 2 heures</li>
+    <li>🏜️ Dunes & désert</li>
+    <li>🪖 Casque & guide inclus</li>
+  </ul>
+
+  <span class="price">À partir de 35€</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Safari Quad / Buggy')">
+   Réserver maintenant
+</a>
+
+
+</div>
+
+<div class="exc-card">
+
+  <div class="exc-slider auto">
+    <img src="./images/excursions/chameau/Camel1.jpg" alt="Promenade chameau coucher de soleil">
+    <img src="./images/excursions/chameau/Camel2.jpg" alt="Chameaux dunes désert Agadir">
+    <img src="./images/excursions/chameau/Camel3.jpg" alt="Promenade chameau plage Agadir">
+    <img src="./images/excursions/chameau/Camel4.jpg" alt="Caravane chameaux désert">
+    <img src="./images/excursions/chameau/Camel5.jpg" alt="Vue depuis chameau désert">
+    <img src="./images/excursions/chameau/Camel6.jpg" alt="Chameau désert Maroc">
+    <img src="./images/excursions/chameau/Camel7.jpg" alt="Balade chameau coucher soleil plage">
+    <img src="./images/excursions/chameau/Camel8.jpg" alt="Promenade chameaux dunes sunset">
+  </div>
+
+  <h3>Promenade à dos de chameau</h3>
+
+  <p>
+    Vivez une expérience authentique à dos de chameau,
+    entre dunes dorées et plage, au rythme du désert marocain.
+  </p>
+
+  <ul>
+    <li>⏱ 1 heure / </li>
+    <li>🐪 Chameau avec guide</li>
+    <li>🌅 Option diner et coucher de soleil</li>
+  </ul>
+
+  <span class="price">18€ / Personne ou 30€ avec dîner</span>
+<a href="javascript:void(0)" class="btn"
+   onclick="openExcursion('Chameau')">
+   Réserver maintenant
+</a>
+
+</div>
+
+</div>
+</section>
+
+
+
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Téléphone : 00212691059759</p>
+<p>Email : mastertrip2030@gmail.com</p>
+</section>
+
+<footer style="text-align:center;color:#fff;padding:20px">
+© 2025 MasterTripTransfers – Agadir
+</footer>
+
+
+<div id="resumeOverlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="resumeTitle">
+  <div id="resumeBox">
+    <h3 id="resumeTitle">📋 Récapitulatif de votre réservation</h3>
+
+    <div id="resumeContent"></div>
+
+    <div style="margin-top:20px;display:flex;gap:10px;">
+      <button type="button" id="resumeCancel" aria-label="Modifier la réservation">✏️ Modifier</button>
+      <button type="button" id="resumeConfirm" aria-label="Confirmer la réservation et ouvrir WhatsApp">📲 Confirmer & WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+/* =====================================================
+   VARIABLES GLOBALES
+===================================================== */
+let whatsappMessage = "";
+
+/* =====================================================
+   RÉFÉRENCES DOM
+===================================================== */
+const bookingForm = document.getElementById("bookingForm");
+
+const service = document.getElementById("service");
+const bookingSubtitle = document.getElementById("bookingSubtitle");
+
+const transferFields = document.getElementById("transferFields");
+const intervillesFields = document.getElementById("intervillesFields");
+const circuitsFields = document.getElementById("circuitsFields");
+
+const transferType = document.getElementById("transferType");
+const depart = document.getElementById("depart");
+const arrivee = document.getElementById("arrivee");
+const transferPlaces = document.getElementById("transferPlaces");
+const transferPrix = document.getElementById("transferPrix");
+const flightNumber = document.getElementById("flightNumber");
+const flightField = document.getElementById("flightField");
+flightField.style.display = "none";   // caché par défaut
+
+const trajet = document.getElementById("trajet");
+const places = document.getElementById("places");
+const prix = document.getElementById("prix");
+
+const circuit = document.getElementById("circuit");
+const circuitPlaces = document.getElementById("circuitPlaces");
+const circuitPrix = document.getElementById("circuitPrix");
+
+const nom = document.getElementById("nom");
+const tel = document.getElementById("tel");
+const email = document.getElementById("email");
+const countryCode = document.getElementById("countryCode");
+
+const date = document.getElementById("date");
+const heure = document.getElementById("heure");
+const message = document.getElementById("message");
+
+const quadTypeField = document.getElementById("quadTypeField");
+const quadType = document.getElementById("quadType");
+
+const camelTypeField = document.getElementById("camelTypeField");
+const camelType = document.getElementById("camelType");
+
+const fixedTimeField = document.getElementById("fixedTimeField");
+const fixedTime = document.getElementById("fixedTime");
+
+const heureField = document.getElementById("heureField");
+const btnCancel = document.getElementById("resumeCancel");
+const btnConfirm = document.getElementById("resumeConfirm");
+if (btnCancel) {
+  btnCancel.addEventListener("click", closeResume);
+}
+
+
+function disableUnusedFields() {
+
+  // Tout désactiver par défaut
+  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
+    el.disabled = true;
+  });
+
+  // Toujours actifs (infos client)
+  [
+    service, date, heure, fixedTime,
+    nom, tel, email, countryCode,
+    message,
+    document.getElementById("finalPrice"),
+    document.getElementById("emailMessage")
+  ].forEach(el => el && (el.disabled = false));
+
+  // Selon service
+  if (service.value === "Transferts Aéroport & Privés") {
+    [
+      transferType, depart, arrivee,
+      transferPlaces, transferPrix,
+      flightNumber
+    ].forEach(el => el && (el.disabled = false));
+  }
+
+  if (service.value === "Transferts Inter-Villes Maroc") {
+    [
+      trajet, places, prix
+    ].forEach(el => el && (el.disabled = false));
+  }
+
+  if (service.value === "Excursions & Circuits Touristiques") {
+    [
+      circuit, circuitPlaces, circuitPrix
+    ].forEach(el => el && (el.disabled = false));
+
+    if (circuit.value === "Chameau") camelType.disabled = false;
+    if (circuit.value === "Safari Quad / Buggy") quadType.disabled = false;
+  }
+}
+
+/* =====================================================
+   DATE & TÉLÉPHONE
+===================================================== */
+const today = new Date().toISOString().split("T")[0];
+date.value = today;
+date.min = today;
+heure.value = "07:00";
+
+tel.addEventListener("input", () => {
+  tel.value = tel.value
+    .replace(/\D/g, "")
+    .slice(0, 15);
+});
+
+/* =====================================================
+   RESET GLOBAL
+===================================================== */
+function resetAll() {
+  transferFields.style.display = "none";
+  intervillesFields.style.display = "none";
+  circuitsFields.style.display = "none";
+
+  bookingSubtitle.textContent = "";
+
+  [
+    transferType, depart, arrivee, transferPlaces,
+    trajet, places, circuit, circuitPlaces
+  ].forEach(el => {
+    el.value = "";
+    el.required = false;
+    el.disabled = false;   // ⬅️ IMPORTANT
+  });
+
+  flightNumber.value = "";
+  flightNumber.required = false;
+  flightNumber.disabled = false;
+
+  transferPrix.value = "";
+  prix.value = "";
+  circuitPrix.value = "";
+
+  quadType.value = "";
+  camelType.value = "";
+  quadTypeField.style.display = "none";
+  camelTypeField.style.display = "none";
+
+  depart.readOnly = false;
+  arrivee.readOnly = false;
+
+  setHeureMode("hidden");
+}
+
+
+
+
+
+/* =====================================================
+   CHOIX SERVICE
+===================================================== */
+service.addEventListener("change", () => {
+  resetAll();
+
+   if (service.value === "Transferts Aéroport & Privés"){
+    bookingSubtitle.textContent = "Détails de votre transfert";
+    transferFields.style.display = "flex";
+
+    transferType.disabled = false;
+    transferType.required = true;
+
+    depart.disabled = false;
+    arrivee.disabled = false;
+    depart.required = true;
+    arrivee.required = true;
+
+    transferPlaces.disabled = false;
+    transferPlaces.required = true;
+    flightNumber.disabled = false;
+
+    
+  }
+
+   if (service.value === "Transferts Inter-Villes Maroc") {
+    bookingSubtitle.textContent = "Détails du transport interville";
+    intervillesFields.style.display = "flex";
+
+    trajet.disabled = false;
+    places.disabled = false;
+    trajet.required = true;
+    places.required = true;
+  }
+
+  if (service.value === "Excursions & Circuits Touristiques"){
+    bookingSubtitle.textContent = "Détails du circuit / excursion";
+    circuitsFields.style.display = "flex";
+
+    circuit.disabled = false;
+    circuitPlaces.disabled = false;
+    circuit.required = true;
+    circuitPlaces.required = true;
+  }
+
+updateExcursionTimes();
+});
+
+/* =====================================================
+   TRANSFERT – LOGIQUE
+===================================================== */
+
+
+
+
+transferType.addEventListener("change", () => {
+
+  depart.value = "";
+  arrivee.value = "";
+  transferPrix.value = "";
+  flightNumber.value = "";
+
+  depart.readOnly = false;
+  arrivee.readOnly = false;
+
+  // CACHÉ PAR DÉFAUT
+  flightField.style.display = "none";
+  flightNumber.required = false;
+
+  // TRANSFERT PRIVÉ (pas de numéro de vol)
+  if (transferType.value === "Transfert Privé Personnalisé") {
+    transferPrix.value = "Sur devis";
+    return;
+  }
+
+  // TRANSFERTS AÉROPORT → numéro de vol OBLIGATOIRE
+
+
+  if (transferType.value.includes("Aéroport")) {
+    flightField.style.display = "block";
+    flightNumber.required = true;
+  }
+
+
+// AUTO-REMPLISSAGE OFFICIEL AÉROPORT (INTELLIGENT)
+const v = transferType.value.toLowerCase();
+
+if (v.startsWith("aéroport d'agadir")) {
+  depart.value = "Aéroport Agadir Al Massira";
+  depart.readOnly = true;
+}
+
+if (v.endsWith("aéroport d'agadir")) {
+  arrivee.value = "Aéroport Agadir Al Massira";
+  arrivee.readOnly = true;
+}
+
+
+
+  if (transferPlaces.value) calculPrixTransfert();
+});
+
+
+
+
+/* =====================================================
+   PRIX TRANSFERT
+===================================================== */
+
+function calculPrixTransfert() {
+  if (!transferPlaces.value || transferType.value === "Transfert Privé Personnalisé") return;
+
+  const nb = parseInt(transferPlaces.value, 10);
+  let base = 0, extra = 0;
+
+  if (transferType.value.includes("Agadir ville")) {
+    base = 30; extra = 2;
+  }
+
+  if (transferType.value.includes("Taghazout Bay")) {
+    base = 40; extra = 2.5;
+  }
+
+  transferPrix.value = (base + Math.max(0, nb - 4) * extra) + " €";
+}
+transferPlaces.addEventListener("change", calculPrixTransfert);
+
+
+
+/* =====================================================
+   PRIX INTERVILLES
+===================================================== */
+const intervillesPrices = {
+  "Agadir / Taghazout vers Marrakech": { base: 125, extra: 25 },
+  "Marrakech vers Agadir / Taghazout": { base: 125, extra: 25 },
+
+  "Agadir / Taghazout vers Essaouira": { base: 110, extra: 18 },
+  "Essaouira vers Agadir / Taghazout": { base: 110, extra: 18 },
+
+  "Agadir / Taghazout vers Taroudant": { base: 90, extra: 15 },
+  "Taroudant vers Agadir / Taghazout": { base: 90, extra: 15 },
+
+  "Agadir / Taghazout vers Casablanca": { base: 350, extra: 30 },
+  "Casablanca vers Agadir / Taghazout": { base: 350, extra: 30 },
+
+  "Agadir / Taghazout vers Rabat": { base: 400, extra: 28 },
+  "Rabat vers Agadir / Taghazout": { base: 400, extra: 28 },
+
+  "Agadir / Taghazout vers Fès": { base: 650, extra: 35 },
+  "Fès vers Agadir / Taghazout": { base: 650, extra: 35 },
+
+  "Agadir / Taghazout vers Tanger": { base: 750, extra: 40 },
+  "Tanger vers Agadir / Taghazout": { base: 750, extra: 40 },
+
+  "Agadir / Taghazout vers Imsouane": { base: 70, extra: 10 },
+  "Imsouane vers Agadir / Taghazout": { base: 70, extra: 10 }
+};
+
+function calculPrixIntervilles() {
+  if (!trajet.value || !places.value) {
+    prix.value = "";
+    return;
+  }
+
+  const data = intervillesPrices[trajet.value];
+  if (!data) {
+    prix.value = "";
+    return;
+  }
+
+  const nb = parseInt(places.value, 10);
+  prix.value = (data.base + Math.max(0, nb - 5) * data.extra) + " €";
+}
+
+
+trajet.addEventListener("change", calculPrixIntervilles);
+places.addEventListener("change", calculPrixIntervilles);
+
+
+
+/* =====================================================
+   PRIX CIRCUITS
+===================================================== */
+const circuitPrices = {
+  "Excursion Paradise Valley": { base: 70, extra: 5 },
+  "Tour de la ville d’Agadir": { base: 50, extra: 5 },
+  "Souk El Had – Circuit Shopping": { base: 40, extra: 4 },
+  "Visite du Crocoparc": { base: 60, extra: 5 },
+  "Téléphérique et visite de la Kasbah": { base: 45, extra: 4 },
+  "Dunes de Timlaline – Expérience Désert": { base: 70, extra: 5 }
+};
+
+/* =====================================================
+   PRIX PAR PERSONNE
+===================================================== */
+
+const PERSON_PRICE = {
+  "Quad simple": 25,
+  "Buggy": 60,
+  "Promenade seule": 15,
+  "Promenade + dîner": 25
+};
+
+
+/* =====================================================
+   CALCUL PRIX CIRCUIT
+===================================================== */
+function calculPrixCircuit() {
+
+  if (!circuit.value || !circuitPlaces.value) {
+    circuitPrix.value = "";
+    return;
+  }
+
+  const nb = parseInt(circuitPlaces.value, 10);
+
+  // 🏜️ Quad / Buggy
+  if (circuit.value === "Safari Quad / Buggy") {
+
+    if (!quadType.value) {
+      circuitPrix.value = "";
+      return;
+    }
+
+    const pricePerPerson = PERSON_PRICE[quadType.value];
+    const total = pricePerPerson * nb;
+
+    circuitPrix.value = `${total} €`;
+    return;
+  }
+
+    // 🐪 Chameau
+   if (circuit.value === "Chameau") {
+
+  if (!camelType.value) {
+    circuitPrix.value = "";
+    return;
+  }
+
+  const pricePerPerson = PERSON_PRICE[camelType.value];
+  const total = pricePerPerson * nb;
+
+  circuitPrix.value = `${total} €`;
+  return;
+}
+
+
+  // 🌴 Autres excursions (prix groupe)
+  const data = circuitPrices[circuit.value];
+  if (!data) return;
+
+  circuitPrix.value =
+    (data.base + Math.max(0, nb - 5) * data.extra) + " €";
+}
+
+function updateCircuitPlaces() {
+  circuitPlaces.innerHTML = '<option value="">Nombre de places</option>';
+
+  let min = 5;
+
+  // 👉 Quad & Chameau : 1 à 15
+  if (
+    circuit.value === "Safari Quad / Buggy" ||
+    circuit.value === "Chameau"
+  ) {
+    min = 1;
+  }
+
+  for (let i = min; i <= 15; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = i;
+    circuitPlaces.appendChild(opt);
+  }
+}
+
+
+
+
+function updateExcursionTimes() {
+
+  /* =====================================
+     1️⃣ PAS EXCURSIONS → HEURE LIBRE
+  ===================================== */
+  if (service.value !== "Excursions & Circuits Touristiques") {
+    setHeureMode("free");
+    return;
+  }
+
+  /* =====================================
+     2️⃣ EXCURSIONS MAIS AUCUN CIRCUIT CHOISI
+        → HEURE PAR DÉFAUT VISIBLE
+  ===================================== */
+  if (!circuit.value) {
+    setHeureMode("free", "08:00");
+    return;
+  }
+
+  /* =====================================
+     3️⃣ RESET DES HORAIRES FIXES
+  ===================================== */
+  fixedTime.innerHTML = '<option value="">Choisir l’horaire</option>';
+
+  /* =====================================
+     4️⃣ CHAMEAU & QUAD → HORAIRES FIXES
+  ===================================== */
+  if (
+    circuit.value === "Chameau" ||
+    circuit.value === "Safari Quad / Buggy"
+  ) {
+
+    setHeureMode("fixed");
+
+    /* =====================================
+       5️⃣ HORAIRES CHAMEAU
+    ===================================== */
+    if (circuit.value === "Chameau") {
+
+      if (camelType.value === "Promenade seule") {
+        ["10:00", "15:00", "17:00"].forEach(h =>
+          fixedTime.add(new Option(h, h))
+        );
+      }
+
+      if (camelType.value === "Promenade + dîner") {
+        fixedTime.add(new Option("17:00", "17:00"));
+      }
+    }
+
+    /* =====================================
+       6️⃣ HORAIRES QUAD / BUGGY
+    ===================================== */
+    if (circuit.value === "Safari Quad / Buggy") {
+      ["09:00", "12:00", "14:00", "17:30"].forEach(h =>
+        fixedTime.add(new Option(h, h))
+      );
+    }
+
+    return;
+  }
+
+  /* =====================================
+     7️⃣ AUTRES EXCURSIONS → HEURE LIBRE
+  ===================================== */
+  setHeureMode("free");
+}
+
+
+
+circuit.addEventListener("change", () => {
+
+// Reset
+quadTypeField.style.display = "none";
+camelTypeField.style.display = "none";
+quadType.value = "";
+camelType.value = "";
+
+// Quad / Buggy
+if (circuit.value === "Safari Quad / Buggy") {
+  quadTypeField.style.display = "block";
+}
+
+// Chameau
+if (circuit.value === "Chameau") {
+  camelTypeField.style.display = "block";
+}
+
+
+
+  updateCircuitPlaces();
+  calculPrixCircuit();
+});
+quadType.addEventListener("change", calculPrixCircuit);
+circuitPlaces.addEventListener("change", calculPrixCircuit);
+camelType.addEventListener("change", calculPrixCircuit);
+circuit.addEventListener("change", updateExcursionTimes);
+camelType.addEventListener("change", updateExcursionTimes);
+quadType.addEventListener("change", updateExcursionTimes);
+
+
+
+
+
+
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/* =====================================================
+   SOUMISSION – RÉSUMÉ & WHATSAPP
+===================================================== */
+
+btnConfirm.addEventListener("click", () => {
+
+  btnConfirm.disabled = true;
+
+  // 🔑 ESSENTIEL
+  disableUnusedFields();
+
+  window.open(
+    "https://wa.me/212691059759?text=" + encodeURIComponent(whatsappMessage),
+    "_blank"
+  );
+
+  bookingForm.submit();
+
+  setTimeout(() => location.reload(), 1200);
+  closeResume();
+});
+
+
+
+
+
+
+bookingForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  if (!bookingForm.checkValidity()) {
+    bookingForm.reportValidity();
+    return;
+  }
+
+// Validation Quad
+if (circuit.value === "Safari Quad / Buggy" && !quadType.value) {
+  alert("Veuillez choisir le type de véhicule (Quad ou Buggy).");
+  return;
+}
+
+// Validation Chameau
+if (circuit.value === "Chameau" && !camelType.value) {
+  alert("Veuillez choisir le type de promenade à dos de chameau.");
+  return;
+}
+
+  /* =============================
+     GESTION PRIX UNIQUE EMAIL
+  ============================= */
+  let priceToSend = "";
+
+  if (service.value === "Transferts Aéroport & Privés") {
+    priceToSend = transferPrix.value;
+  }
+
+  if (service.value === "Transferts Inter-Villes Maroc") {
+    priceToSend = prix.value;
+  }
+
+  if (service.value === "Excursions & Circuits Touristiques") {
+    priceToSend = circuitPrix.value;
+  }
+
+
+
+  document.getElementById("finalPrice").value = priceToSend || "Sur devis";
+
+  // On vide les autres prix pour l’email
+  transferPrix.name = "";
+  prix.name = "";
+  circuitPrix.name = "";
+
+  /* =============================
+     RÉCAP & WHATSAPP (TON CODE)
+  ============================= */
+
+let html = "";
+let text = `📩 *Nouvelle demande de réservation MasterTripTransfers*\n\n`;
+
+/* =============================
+   IDENTITÉ CLIENT
+============================= */
+if (nom.value) {
+  html += `<p><b>Nom :</b> ${escapeHTML(nom.value)}</p>`;
+  text += `👤 Nom : ${nom.value}\n`;
+}
+
+if (tel.value) {
+  html += `<p><b>Téléphone :</b> +${escapeHTML(countryCode.value)} ${escapeHTML(tel.value)}</p>`;
+  text += `📞 Téléphone : +${countryCode.value} ${tel.value}\n`;
+}
+
+if (email.value) {
+  html += `<p><b>Email :</b> ${escapeHTML(email.value)}</p>`;
+  text += `📧 Email : ${email.value}\n`;
+}
+
+/* =============================
+   DATE & HEURE
+============================= */
+if (date.value) {
+  html += `<p><b>Date :</b> ${escapeHTML(date.value)}</p>`;
+  text += `📅 Date : ${date.value}\n`;
+}
+
+if (fixedTime.value) {
+  heure.value = fixedTime.value;
+}
+
+if (heure.value) {
+  html += `<p><b>Heure :</b> ${escapeHTML(heure.value)}</p>`;
+  text += `⏰ Heure : ${heure.value}\n`;
+}
+
+/* =============================
+   MESSAGE CLIENT
+============================= */
+if (message.value) {
+  html += `<p><b>Message :</b> ${escapeHTML(message.value)}</p>`;
+  text += `📝 Message : ${message.value}\n`;
+}
+
+/* =============================
+   SERVICE
+============================= */
+if (service.value) {
+  html += `<hr><p><b>Service :</b> ${escapeHTML(service.value)}</p>`;
+  text += `\n🛎️ Service : ${service.value}\n`;
+}
+
+/* =============================
+   TRANSFERT AÉROPORT & PRIVÉ
+============================= */
+if (service.value === "Transferts Aéroport & Privés") {
+
+  if (transferType.value) {
+    html += `<p><b>Type :</b> ${escapeHTML(transferType.value)}</p>`;
+    text += `🔁 Type : ${transferType.value}\n`;
+  }
+
+  if (depart.value) {
+    html += `<p><b>Départ :</b> ${escapeHTML(depart.value)}</p>`;
+    text += `📍 Départ : ${depart.value}\n`;
+  }
+
+  if (arrivee.value) {
+    html += `<p><b>Destination :</b> ${escapeHTML(arrivee.value)}</p>`;
+    text += `📍 Destination : ${arrivee.value}\n`;
+  }
+
+  if (transferPlaces.value) {
+    html += `<p><b>Places :</b> ${escapeHTML(transferPlaces.value)}</p>`;
+    text += `👥 Places : ${transferPlaces.value}\n`;
+  }
+
+  if (transferPrix.value) {
+    html += `<p><b>Prix :</b> ${escapeHTML(transferPrix.value)}</p>`;
+    text += `💰 Prix : ${transferPrix.value}\n`;
+  }
+
+  if (flightNumber.value) {
+    html += `<p><b>Vol :</b> ${escapeHTML(flightNumber.value)}</p>`;
+    text += `✈️ Vol : ${flightNumber.value}\n`;
+  }
+}
+
+/* =============================
+   INTERVILLES
+============================= */
+if (service.value === "Transferts Inter-Villes Maroc") {
+
+  if (trajet.value) {
+    html += `<p><b>Trajet :</b> ${escapeHTML(trajet.value)}</p>`;
+    text += `🚌 Trajet : ${trajet.value}\n`;
+  }
+
+  if (places.value) {
+    html += `<p><b>Places :</b> ${escapeHTML(places.value)}</p>`;
+    text += `👥 Places : ${places.value}\n`;
+  }
+
+  if (prix.value) {
+    html += `<p><b>Prix :</b> ${escapeHTML(prix.value)}</p>`;
+    text += `💰 Prix : ${prix.value}\n`;
+  }
+}
+
+/* =============================
+   EXCURSIONS & CIRCUITS
+============================= */
+if (service.value === "Excursions & Circuits Touristiques") {
+
+  if (circuit.value) {
+    html += `<p><b>Excursion :</b> ${escapeHTML(circuit.value)}</p>`;
+    text += `🏞️ Excursion : ${circuit.value}\n`;
+  }
+
+  if (circuitPlaces.value) {
+    html += `<p><b>Places :</b> ${escapeHTML(circuitPlaces.value)}</p>`;
+    text += `👥 Places : ${circuitPlaces.value}\n`;
+  }
+
+  if (circuitPrix.value) {
+    html += `<p><b>Prix :</b> ${escapeHTML(circuitPrix.value)}</p>`;
+    text += `💰 Prix : ${circuitPrix.value}\n`;
+  }
+
+  if (circuit.value === "Chameau" && camelType.value) {
+    html += `<p><b>Type :</b> ${escapeHTML(camelType.value)}</p>`;
+    text += `🐪 Type : ${camelType.value}\n`;
+  }
+
+  if (circuit.value === "Safari Quad / Buggy" && quadType.value) {
+    html += `<p><b>Véhicule :</b> ${escapeHTML(quadType.value)}</p>`;
+    text += `🏜️ Véhicule : ${quadType.value}\n`;
+  }
+}
+
+
+
+document.getElementById("emailMessage").value = text;
+
+
+
+  openResume(html, text);
+});
+
+
+  
+
+
+/* =====================================================
+   OVERLAY ANIMÉ
+===================================================== */
+function openResume(html, text) {
+  whatsappMessage = text;
+  const overlay = document.getElementById("resumeOverlay");
+  document.getElementById("resumeContent").innerHTML = html;
+  overlay.style.display = "flex";
+  overlay.offsetHeight;
+  overlay.classList.add("active");
+}
+
+function closeResume() {
+  const overlay = document.getElementById("resumeOverlay");
+  overlay.classList.remove("active");
+  setTimeout(() => overlay.style.display = "none", 250);
+}
+
+
+
+
+
+
+/* =====================================================
+   FERMETURE OVERLAY AU CLIC EXTÉRIEUR
+===================================================== */
+
+const resumeOverlay = document.getElementById("resumeOverlay");
+
+if (resumeOverlay) {
+  resumeOverlay.addEventListener("click", e => {
+    if (e.target === resumeOverlay) {
+      closeResume();
+    }
+  });
+}
+
+document.querySelectorAll(".exc-slider.auto").forEach(slider=>{
+  let i = 0;
+  setInterval(()=>{
+    i++;
+    if(i >= slider.children.length) i = 0;
+    slider.scrollTo({ left: slider.clientWidth * i, behavior:"smooth" });
+  }, 3500);
+});
+
+function fixBookingScroll(){
+  const header = document.getElementById("mainHeader");
+  const section = document.getElementById("booking");
+
+  const y = section.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight + 5;
+
+  window.scrollTo({ top: y, behavior:"smooth" });
+}
+
+
+
+
+function openService(serviceName){
+
+  // Scroll parfait
+  fixBookingScroll();
+
+  // Attendre que le DOM soit bien prêt (GitHub Pages)
+  setTimeout(() => {
+    const serviceSelect = document.getElementById("service");
+    if(serviceSelect){
+      serviceSelect.value = serviceName;
+      serviceSelect.dispatchEvent(new Event("change"));
+    }
+  }, 200);
+}
+
+function openExcursion(excursionName){
+
+  // Descend sous le header
+  fixBookingScroll();
+
+  // Force le service excursions
+  service.value = "Excursions & Circuits Touristiques";
+  service.dispatchEvent(new Event("change"));
+
+  // Attendre l’ouverture des champs
+  setTimeout(() => {
+    const circuitSelect = document.getElementById("circuit");
+    if(circuitSelect){
+      circuitSelect.value = excursionName;
+      circuitSelect.dispatchEvent(new Event("change"));
+    }
+  }, 250);
+}
+
+
+function goExcursions(){
+  const header = document.getElementById("mainHeader");
+  const exc = document.getElementById("excursions");
+  const y = exc.offsetTop - header.offsetHeight - 15;
+
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
+
+
+
+function setHeureMode(mode, defaultValue = "") {
+  if (mode === "free") {
+    heureField.style.display = "block";
+    heure.required = true;
+    if (defaultValue) heure.value = defaultValue;
+
+    fixedTimeField.style.display = "none";
+    fixedTime.required = false;
+    fixedTime.value = "";
+  }
+
+  if (mode === "fixed") {
+    heureField.style.display = "none";
+    heure.required = false;
+
+    fixedTimeField.style.display = "block";
+    fixedTime.required = true;
+  }
+
+  if (mode === "hidden") {
+    heureField.style.display = "none";
+    heure.required = false;
+
+    fixedTimeField.style.display = "none";
+    fixedTime.required = false;
+    fixedTime.value = "";
+  }
+}
+
+
+
+</script>
+
+<a href="https://wa.me/212691059759?text=Bonjour%20je%20souhaite%20réserver%20un%20transfert%20ou%20une%20excursion%20avec%20MasterTripTransfers"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Contact WhatsApp">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+     alt="WhatsApp"
+     style="width:34px;height:34px;">
+   
+</a>
+
+<style>
+.whatsapp-float{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:62px;
+  height:62px;
+  background:#25D366;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 12px 30px rgba(37,211,102,0.45);
+  animation:pulse 1.6s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
+}
+
+
+
+</style>
+
+
+
+</body>
+</html>
