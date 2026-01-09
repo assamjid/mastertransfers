@@ -774,29 +774,23 @@ header{
   filter:brightness(1.1) saturate(1.2);
 }
 
-@media (max-width: 600px){
-  #mainHeader nav{
-    width:100%;
-    justify-content:space-between;
-    padding:0 24px;   /* ⬅️ espace gauche / droite */
-  }
+@media (max-width:600px){
 
-  #mainHeader nav a{
-    padding:8px 14px;
-  }
-}
-
-  @@media (max-width:600px){
   #mainHeader{
-    padding:10px 12px 14px;
+    padding:12px 12px 16px;
+  }
+
+  #mainHeader h1{
+    font-size:24px;
+    margin-bottom:10px;
   }
 
   #mainHeader nav{
     width:100%;
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    padding:0 10px;
+    grid-template-columns:repeat(3,1fr);   /* 3 boutons */
+    gap:12px;
+    padding:0 12px;
   }
 
   #mainHeader nav a{
@@ -804,13 +798,11 @@ header{
     padding:12px 0;
     border-radius:16px;
     background:linear-gradient(135deg,#0b2d4d,#003b6f);
-    font-size:14px;
+    font-size:13px;
+    letter-spacing:1px;
   }
-
-  #mainHeader h1{
-    font-size:24px;
-  }
-  }
+}
+  
 </style>
 </head>
 
