@@ -850,6 +850,11 @@ header{
   }
   }
   
+.exc-slider{
+  cursor:pointer;
+}
+
+  
 </style>
 </head>
 
@@ -1394,8 +1399,8 @@ Services
 
 <div class="exc-grid">
   <div class="exc-card">
-    
-  <div class="exc-slider auto fast">
+
+    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Tour de la ville d’Agadir')">
     <img src="./images/excursions/agadir/Agadir1.jpg" alt="Kasbah Oufella Agadir">
     <img src="./images/excursions/agadir/Agadir2.jpg" alt="Architecture traditionnelle Agadir">
     <img src="./images/excursions/agadir/Agadir3.jpg" alt="Mosquée Agadir">
@@ -1434,7 +1439,7 @@ Services
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast">
+  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Souk El Had – Circuit Shopping')">
 <img src="./images/excursions/souk/Souk1.jpg" alt="Souk El Had Agadir">
 <img src="./images/excursions/souk/Souk2.jpg" alt="Entrée principale du Souk El Had Agadir">
 <img src="./images/excursions/souk/Souk3.jpg" alt="Épices marocaines au Souk El Had">
@@ -1472,7 +1477,7 @@ Services
 
 <div class="exc-card">
 
-<div class="exc-slider auto fast">
+  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Excursion Paradise Valley')">
   <img src="./images/excursions/paradise/Paradise1.jpg" alt="Bassin naturel Paradise Valley">
   <img src="./images/excursions/paradise/Paradise2.jpg" alt="Gorge rocheuse Paradise Valley">
   <img src="./images/excursions/paradise/Paradise3.jpg" alt="Rivière et canyon Paradise Valley">
@@ -1508,7 +1513,7 @@ Services
 
 <div class="exc-card">
 
-<div class="exc-slider auto fast">
+  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Dunes de Timlaline – Expérience Désert')">
   <img src="./images/excursions/timlaline/Timlaline1.jpg" alt="Dunes de Timlaline face à l’océan">
   <img src="./images/excursions/timlaline/Timlaline2.jpg" alt="Falaises et plage de Timlaline">
   <img src="./images/excursions/timlaline/Timlaline3.jpg" alt="Canyon naturel de Timlaline">
@@ -1544,7 +1549,7 @@ Services
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast">
+    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Visite du Crocoparc')">
     <img src="./images/excursions/crocopark/Croco1.jpg" alt="Crocoparc Agadir crocodiles">
     <img src="./images/excursions/crocopark/Croco2.jpg" alt="Entrée Crocoparc Agadir">
     <img src="./images/excursions/crocopark/Croco3.jpg" alt="Serpent Crocoparc">
@@ -1581,7 +1586,7 @@ Services
 
 <div class="exc-card">
 
-<div class="exc-slider auto fast">
+  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Téléphérique et visite de la Kasbah')">
   <img src="./images/excursions/telesiege/Tele1.jpg" alt="Vue panoramique baie d’Agadir depuis le télésiège">
   <img src="./images/excursions/telesiege/Tele2.jpg" alt="Kasbah Agadir vue du télésiège">
   <img src="./images/excursions/telesiege/Tele3.jpg" alt="Télésiège Agadir de nuit vue sur la ville">
@@ -1618,7 +1623,7 @@ Services
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast">
+    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Safari Quad / Buggy')">
     <img src="./images/excursions/quad/Quad1.jpg" alt="Buggy Premium Agadir">
     <img src="./images/excursions/quad/Quad2.jpg" alt="Safari Buggy dunes Agadir">
     <img src="./images/excursions/quad/Quad3.jpg" alt="Pause désert buggy Agadir">
@@ -1650,7 +1655,7 @@ Services
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast">
+    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Chameau')">
     <img src="./images/excursions/chameau/Camel1.jpg" alt="Promenade chameau coucher de soleil">
     <img src="./images/excursions/chameau/Camel2.jpg" alt="Chameaux dunes désert Agadir">
     <img src="./images/excursions/chameau/Camel3.jpg" alt="Promenade chameau plage Agadir">
@@ -2896,6 +2901,20 @@ function openInterville(trajetName){
       trajet.dispatchEvent(new Event("change"));
     },200);
   },200);
+}
+
+  
+function scrollToExcursionDetail(name){
+  const details = document.querySelectorAll("#excursionDetails .exc-detail");
+  for(const d of details){
+    const h = d.querySelector("h3");
+    if(h && h.textContent.trim() === name){
+      const header = document.getElementById("mainHeader");
+      const y = d.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
+      window.scrollTo({top:y,behavior:"smooth"});
+      break;
+    }
+  }
 }
 
 
