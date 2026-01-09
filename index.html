@@ -786,25 +786,31 @@ header{
   }
 }
 
-  @media (max-width:600px){
+  @@media (max-width:600px){
   #mainHeader{
-    padding:0 14px;   /* marge globale du header */
+    padding:10px 12px 14px;
   }
 
   #mainHeader nav{
-    padding:0;
-    margin-top:6px;
-    gap:18px;
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    padding:0 10px;
   }
 
   #mainHeader nav a{
-    padding:10px 16px;
-    border-radius:14px;
-    background:rgba(255,255,255,0.12);
-  }
+    text-align:center;
+    padding:12px 0;
+    border-radius:16px;
+    background:linear-gradient(135deg,#0b2d4d,#003b6f);
+    font-size:14px;
   }
 
-
+  #mainHeader h1{
+    font-size:24px;
+  }
+  }
 </style>
 </head>
 
