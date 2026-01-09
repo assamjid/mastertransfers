@@ -2904,19 +2904,19 @@ function openInterville(trajetName){
   },200);
 }
 
-  
-function scrollToExcursionDetail(name){
+ function scrollToExcursionDetail(name){
   const details = document.querySelectorAll("#excursionDetails .exc-detail");
+
   for(const d of details){
     const h = d.querySelector("h3");
-    if(h && h.textContent.trim() === name){
+    if(h && h.textContent.toLowerCase().includes(name.toLowerCase().split(" ")[0])){
       const header = document.getElementById("mainHeader");
       const y = d.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
       window.scrollTo({top:y,behavior:"smooth"});
       break;
     }
   }
-}
+ } 
 
 
 </script>
