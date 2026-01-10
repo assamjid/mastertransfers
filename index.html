@@ -1287,7 +1287,7 @@ Services
 </div>
 
 <div class="floating-field">
-<textarea id="message" name="Note client" placeholder="Baggages, Siège bébé ..."></textarea>
+<textarea id="message" name="client_note" placeholder="Baggages, Siège bébé ..."></textarea>
   <label for="message">Demandes spéciales</label>
 </div>
         
@@ -3219,7 +3219,10 @@ function setLang(lang){
   100%{transform:scale(1)}
 }
 
-
+window.onload = ()=>{
+  setLang("FR");
+};
+  
 
 </style>
 
