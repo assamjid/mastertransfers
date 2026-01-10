@@ -1375,7 +1375,7 @@ Services
 <input type="hidden" name="_format" value="plain">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" id="finalPrice" name="Prix">
-<input type="hidden" id="emailMessage" name="Message final">
+<input type="hidden" id="emailMessage" name="final_message">
 <input type="hidden" name="_template" value="table">
 <button type="submit" id="btnReserve">Book Now</button>
 <button type="button" id="btnPay" onclick="payByCard()">💳 Pay by Card</button>
@@ -3155,6 +3155,10 @@ function setLang(lang){
   document.querySelector("nav a:nth-child(3)").innerText = L.menu_contact;
 
   document.getElementById("bookingTitle").innerText = L.booking_title;
+  bookingSubtitle.innerText =
+     service.value==="Transferts Aéroport & Privés" ? L.booking_sub_transfer :
+     service.value==="Transferts Inter-Villes Maroc" ? L.booking_sub_intercity :
+     service.value==="Excursions & Circuits Touristiques" ? L.booking_sub_excursion : "";
   document.getElementById("btnReserve").innerText = L.btn_reserve;
   document.getElementById("btnPay").innerText = "💳 "+L.btn_pay;
 
