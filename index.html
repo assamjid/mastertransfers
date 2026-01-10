@@ -988,6 +988,18 @@ header{
   opacity:.9;
 }
 
+  .lang-flags img{
+  width:28px;
+  height:20px;
+  cursor:pointer;
+  border-radius:4px;
+  margin:0 6px;
+  box-shadow:0 0 4px rgba(0,0,0,.4);
+  transition:.2s;
+}
+.lang-flags img:hover{
+  transform:scale(1.2);
+}
 
   
 </style>
@@ -1023,6 +1035,16 @@ Services
 Réservation
 </a>
 
+    <span class="lang-flags">
+
+  <img src="https://flagcdn.com/w40/fr.png" alt="Français"
+       onclick="setLang('FR')" title="Français">
+
+  <img src="https://flagcdn.com/w40/gb.png" alt="English"
+       onclick="setLang('EN')" title="English">
+
+    </span>
+    
 <a href="#siteFooter"
    data-fr="Contact"
    data-en="Contact">
@@ -1031,11 +1053,6 @@ Contact
 
   </nav>
   
-<div id="langSwitch">
-  <button aria-label="Changer la langue en français" onclick="setLang('FR')">FR</button>
-  <button aria-label="Switch language to English" onclick="setLang('EN')">EN</button>
-  </div>
-
 </header>
   
 <div class="trust-top"
