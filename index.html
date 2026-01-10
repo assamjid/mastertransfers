@@ -3334,10 +3334,10 @@ function setLang(lang){
   localStorage.setItem("lang", lang);
   document.documentElement.lang = lang === "EN" ? "en" : "fr";
 
-  // Textes simples (h2, p, span, etc.)
+  // Textes simples
   translateTexts(lang);
 
-  // Selects & options
+  // Selects
   translateSelects(lang);
 
   // Boutons
@@ -3361,7 +3361,7 @@ function setLang(lang){
   document.querySelectorAll("input[readonly] + label").forEach(label=>{
     label.textContent = lang === "EN" ? "Price (€)" : "Prix (€)";
   });
-
+}
  
   
 document.addEventListener("DOMContentLoaded", ()=>{
