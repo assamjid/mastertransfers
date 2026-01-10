@@ -3313,6 +3313,20 @@ EN:{
   });
 }
 
+  function translateSelects(lang){
+  document.querySelectorAll("select").forEach(select=>{
+    select.querySelectorAll("option").forEach(option=>{
+      if(lang === "EN" && option.dataset.en){
+        option.textContent = option.dataset.en;
+      }
+      if(lang === "FR" && option.dataset.fr){
+        option.textContent = option.dataset.fr;
+      }
+    });
+  });
+  }
+  
+
 /* =====================================================
    APPLIQUER LANGUE
 ===================================================== */
@@ -3348,19 +3362,7 @@ function setLang(lang){
     label.textContent = lang === "EN" ? "Price (€)" : "Prix (€)";
   });
 
-
-    function translateSelects(lang){
-  document.querySelectorAll("select").forEach(select=>{
-    select.querySelectorAll("option").forEach(option=>{
-      if(lang === "EN" && option.dataset.en){
-        option.textContent = option.dataset.en;
-      }
-      if(lang === "FR" && option.dataset.fr){
-        option.textContent = option.dataset.fr;
-      }
-    });
-  });
-  }
+ 
   
 document.addEventListener("DOMContentLoaded", ()=>{
   const lang = localStorage.getItem("lang") || "FR";
