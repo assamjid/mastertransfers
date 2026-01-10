@@ -2685,22 +2685,11 @@ btnConfirm.addEventListener("click", () => {
   disableUnusedFields();
 
 
-window.open(
-  "https://wa.me/212691059759?text=" + encodeURIComponent(whatsappMessage),
-  "_blank"
-);
-
-
-  bookingForm.submit();
-
-  setTimeout(() => location.reload(), 1200);
-  closeResume();
+bookingForm.submit();
+setTimeout(()=>{
+ window.open("https://wa.me/212691059759?text="+encodeURIComponent(whatsappMessage),"_blank");
+},600);
 });
-
-
-
-
-
 
 bookingForm.addEventListener("submit", e => {
   e.preventDefault();
@@ -2908,7 +2897,7 @@ document.getElementById("emailMessage").value =
 👥 Personnes : ${circuitPlaces.value || transferPlaces.value || places.value}
 
 📅 Date : ${date.value}
-⏰ Heure : ${heure.value || fixedTime.value}
+⏰ Heure : ${fixedTime.value || heure.value}
 
 💰 Prix : ${priceToSend}
 `;
