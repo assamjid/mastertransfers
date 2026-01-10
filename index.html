@@ -1078,7 +1078,11 @@ Services
 
 
   <select id="service" name="" required>
-  <option value="">Choisir service</option>
+  <option value=""
+  data-fr="Choisir service"
+  data-en="Choose service">
+  Choisir service
+  </option>
 
   <option value="Transferts Aéroport & Privés"
           data-fr="Transferts Aéroport & Privés"
@@ -2657,12 +2661,7 @@ function updateCircuitPlaces() {
   circuitPlaces.innerHTML = '<option value="">Nombre de places</option>';
 
   let min = 5;
-
-  // 👉 Quad & Chameau : 1 à 15
-  if (
-    circuit.value === "Safari Quad / Buggy" ||
-    circuit.value === "Chameau"
-  ) {
+  if (circuit.value === "Safari Quad / Buggy" || circuit.value === "Chameau") {
     min = 1;
   }
 
@@ -2674,8 +2673,10 @@ function updateCircuitPlaces() {
     opt.dataset.en = i <= 5 ? "Up to 5" : i;
     circuitPlaces.appendChild(opt);
   }
-}
 
+  const lang = localStorage.getItem("lang") || "FR";
+  translateSelects(lang);
+      }
 
 
 
@@ -3275,11 +3276,9 @@ EN:{
    APPLIQUER LANGUE
 ===================================================== */
 function translateSelects(lang){
-  document.querySelectorAll("select option").forEach(opt=>{
-    const key = lang.toLowerCase();
-    if(opt.dataset[key]){
-      opt.textContent = opt.dataset[key];
-    }
+  const key = lang.toLowerCase();
+  document.querySelectorAll("select option[data-fr][data-en]").forEach(opt=>{
+    opt.textContent = opt.dataset[key];
   });
 }
   
