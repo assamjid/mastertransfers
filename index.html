@@ -3322,11 +3322,14 @@ priceLabels.forEach(l=>{
   translateSelects(lang);
 }
   
-
-  window.onload = ()=>{
-  setLang("FR");
-  updateCircuitPlaces(); // sécurité
+window.onload = ()=>{
+  const saved = localStorage.getItem("lang") || "FR";
+  setLang(saved);
+  updateCircuitPlaces();
 };
+
+
+  
 
   
 
