@@ -2701,7 +2701,14 @@ function updateExcursionTimes() {
   /* =====================================
      3️⃣ RESET DES HORAIRES FIXES
   ===================================== */
-  fixedTime.innerHTML = '<option value="">Choisir l’horaire</option>';
+  const lang = localStorage.getItem("lang") || "FR";
+
+fixedTime.innerHTML = `
+<option value=""
+  data-fr="Choisir l’horaire"
+  data-en="Select time">
+  ${LANG[lang].fixedtime}
+</option>`;
 
   /* =====================================
      4️⃣ CHAMEAU & QUAD → HORAIRES FIXES
