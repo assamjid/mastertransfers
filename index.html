@@ -795,25 +795,14 @@ header{
     margin-bottom:10px;
   }
 
-    #mainHeader nav a{
-    text-align:center;
-    padding:12px 0;
-    border-radius:16px;
-    background:linear-gradient(135deg,#0b2d4d,#003b6f);
-    font-size:13px;
-    letter-spacing:1px;
-  }
+    
 }
   @media (max-width:600px){
   #mainHeader{
     padding:8px 10px 14px;
   }
 
-  #mainHeader nav a{
-    font-size:12px;
-    padding:10px 0;
-  }
-  }
+
 
   /* Boutons excursions – largeur réduite */
 .exc-card .btn{
@@ -853,9 +842,7 @@ header{
 }
 
   /* Couleur du menu comme le footer */
-#mainHeader nav a{
-  color:#f1c40f !important;   /* même or que le footer */
-}
+
 
 #mainHeader nav a:hover{
   color:white !important;
@@ -863,9 +850,7 @@ header{
 
   /* TITRE + MENU EN OR PREMIUM */
 #mainHeader h1,
-#mainHeader nav a{
-  color:#f1c40f !important;
-}
+
 
 #mainHeader nav a:hover{
   color:white !important;
@@ -899,21 +884,6 @@ header{
   color:#001f3f;
 }
 .review-card b{display:block;margin-top:10px;color:#f39c12}
-
-#langSwitch{
-  position:absolute;
-  top:16px;
-  right:20px;
-}
-#langSwitch button{
-  background:#f1c40f;
-  border:none;
-  border-radius:8px;
-  padding:6px 10px;
-  margin-left:6px;
-  font-weight:700;
-  cursor:pointer;
-}
 
 .trust-top{
   background:linear-gradient(135deg,#f39c12,#f1c40f);
@@ -989,26 +959,6 @@ header{
 }
 
 
-    .main-nav{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-  flex-wrap:nowrap;
-}
-
-.main-nav a{
-  background:#072e57;
-  color:#f1c40f;
-  padding:10px 18px;
-  border-radius:30px;
-  font-weight:bold;
-  font-size:14px;
-  text-decoration:none;
-  white-space:nowrap;
-}
-
 .lang-flag-single img{
   width:26px;
   height:18px;
@@ -1017,45 +967,61 @@ header{
   box-shadow:0 0 4px rgba(0,0,0,.4);
 }
 
-  /* MENU MOBILE PREMIUM – 4 ÉLÉMENTS SUR UNE LIGNE */
-@media (max-width:600px){
+  /* ================= MENU FINAL PRO ================= */
 
-  #mainHeader nav{
-    display:flex !important;
-    flex-wrap:nowrap;
-    justify-content:center;
-    gap:10px;
-    width:100%;
-    padding:0 8px;
-  }
+#mainHeader nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  flex-wrap:nowrap;
+  margin-top:10px;
+}
 
-
-  #mainHeader nav a{
+#mainHeader nav a{
   background:#072e57;
   color:#f1c40f;
   padding:10px 18px;
   border-radius:30px;
-  font-weight:bold;
-  font-size:18px;   /* ⬅️ ICI tu agrandis le texte */
+  font-weight:900;
+  font-size:18px;
+  letter-spacing:1.4px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:.25s;
+}
+
+#mainHeader nav a:hover{
+  background:#0a3a6d;
+  color:white;
+}
+
+/* Drapeau unique */
+.lang-flag-single img{
+  width:32px;
+  height:22px;
+  border-radius:6px;
+  cursor:pointer;
+  box-shadow:0 0 6px rgba(0,0,0,.45);
+  transition:.25s;
+}
+.lang-flag-single img:hover{ transform:scale(1.15); }
+
+/* Mobile */
+@media(max-width:600px){
+  #mainHeader nav{ gap:4px; }
+
+  #mainHeader nav a{
+    font-size:15px;
+    padding:10px 12px;
+    letter-spacing:1px;
   }
 
   .lang-flag-single img{
-    width:24px;
-    height:16px;
+    width:26px;
+    height:18px;
   }
 }
-  @media (max-width:600px){
-  #mainHeader nav a{
-    font-size:17px;
-    letter-spacing:1px;
-    padding:12px 14px;
-  }
-  }
-  @media (max-width:600px){
-  #mainHeader nav{ gap:0px; }
-  .lang-flag-single{ margin:0 2px; }
-  }
-  
   .lang-flag-single{
   margin:0 2px;   /* ⬅️ réduit l’espace autour du drapeau */
   }
