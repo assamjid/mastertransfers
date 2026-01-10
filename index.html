@@ -3315,6 +3315,12 @@ function translateSelects(lang){
     opt.textContent = opt.dataset[key];
   });
 }
+  function translateTexts(lang){
+  const key = lang.toLowerCase();
+  document.querySelectorAll("[data-fr][data-en]").forEach(el=>{
+    el.textContent = el.dataset[key];
+  });
+  }
   
   function setLang(lang){
   localStorage.setItem("lang", lang); // ✅ AJOUT OBLIGATOIRE
@@ -3365,7 +3371,8 @@ priceLabels.forEach(l=>{
   if(service.value === "Excursions & Circuits Touristiques")
     bookingSubtitle.textContent = L.subtitle_excursion;
 
-  translateSelects(lang);
+    translateSelects(lang);
+    translateTexts(lang);
 }
   
 window.onload = ()=>{
