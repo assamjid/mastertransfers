@@ -914,14 +914,100 @@ header{
   font-weight:700;
   cursor:pointer;
 }
+
+.trust-top{
+  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  color:#001f3f;
+  text-align:center;
+  font-weight:700;
+  padding:10px;
+  font-size:14px;
+}
+.wa-label{
+  position:fixed;
+  bottom:90px;
+  right:22px;
+  background:#25D366;
+  color:white;
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.hero-h1{
+  margin-top:6px;
+  font-size:16px;
+  font-weight:600;
+  color:#f1c40f;
+  opacity:0.95;
+  text-align:center;
+  letter-spacing:0.5px;
+}
+@media(max-width:600px){
+  .hero-h1{
+    font-size:14px;
+  }
+}
+
+  .local-badge{
+  margin-top:4px;
+  font-size:13px;
+  font-weight:700;
+  color:#25D366;
+  background:rgba(37,211,102,0.12);
+  padding:4px 12px;
+  border-radius:30px;
+  display:inline-block;
+  letter-spacing:0.3px;
+}
+@media(max-width:600px){
+  .local-badge{font-size:12px;}
+}
+
+  #btnPay{
+  width:100%;
+  max-width:320px;
+  margin-top:10px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#1abc9c,#16a085);
+  color:white;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(22,160,133,.4);
+}
+
+#btnPay:hover{transform:scale(1.05)}
+
+  button[type="submit"]::after{
+  content:" • Paiement plus tard ou par WhatsApp";
+  font-size:13px;
+  opacity:.9;
+}
+
+  #btnReserve::after{
+  content:" • Pay later or via WhatsApp";
+  font-size:13px;
+  opacity:.9;
+  }
+
   
 </style>
 </head>
 
 <body>
 
-<header id="mainHeader">
+<header id="mainHeader"><header id="mainHeader">
 <h1>MasterTripTransfers</h1>
+<p class="hero-h1">Transferts & Excursions à Agadir – MasterTripTransfers</p>
+
+  <div class="local-badge">📍 Basé à Agadir – Service local officiel</div>
+  <div class="trust-top">
+  🔥 3 clients ont réservé aujourd’hui • ⭐ 4.9/5 • WhatsApp 7j/7
+</div>
 
 
 <nav>
@@ -944,7 +1030,10 @@ Services
 </div>
 
 </header>
-
+  
+<div class="trust-top">
+  ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
+</div>
 
 <section id="services">
 <h2>Nos Services</h2>
@@ -976,7 +1065,15 @@ Services
 
 </section>
 
-
+<section>
+<h2>Pourquoi choisir MasterTripTransfers ?</h2>
+<div class="reviews-grid">
+  <div class="review-card">🚐 Véhicules récents climatisés</div>
+  <div class="review-card">👨‍✈️ Chauffeurs locaux certifiés</div>
+  <div class="review-card">⏱ Ponctualité garantie</div>
+  <div class="review-card">💬 Support WhatsApp 7j/7</div>
+</div>
+</section>
 
   
 <section id="booking">
@@ -1290,7 +1387,8 @@ Services
 <input type="hidden" id="finalPrice" name="Prix">
 <input type="hidden" id="emailMessage" name="message">
 
-<button type="submit">Envoyer</button>
+<button type="submit" id="btnReserve">Book Now</button>
+<button type="button" id="btnPay" onclick="payByCard()">💳 Pay by Card</button>
 
 </form>
 
@@ -1303,6 +1401,29 @@ Services
 </div>
   
 </section>
+
+<section style="text-align:center">
+  <h2>Ils nous font confiance</h2>
+
+  <div class="reviews-grid" style="max-width:900px;margin:0 auto">
+    <div class="review-card">
+      <b style="font-size:26px;color:#f39c12">+2 000</b><br>
+      Transferts réalisés
+    </div>
+
+    <div class="review-card">
+      <b style="font-size:26px;color:#f39c12">+850</b><br>
+      Excursions organisées
+    </div>
+
+    <div class="review-card">
+      <b style="font-size:26px;color:#f39c12">98%</b><br>
+      Clients satisfaits
+    </div>
+  </div>
+</section>
+  
+  
   
 <section id="popularDestinations">
   <h2 class="dest-title">Nos destinations interville</h2>
@@ -2989,9 +3110,56 @@ function openInterville(trajetName){
   window.scrollTo({top:y,behavior:"smooth"});
   }
 
+  function payByCard(){
+  window.open("https://buy.stripe.com/xxxxxxxxx","_blank");
+  }
 
+  const EN = {
+
+menu_services: "Services",
+menu_booking: "Booking",
+menu_contact: "Contact",
+
+booking_title: "Book Your Transfer or Excursion",
+booking_sub_transfer: "Transfer details",
+booking_sub_intercity: "Intercity transport details",
+booking_sub_excursion: "Excursion details",
+
+btn_reserve: "Book Now",
+btn_pay: "Pay by Card",
+
+service_choose: "Choose a service",
+service_transfer: "Airport & Private Transfers",
+service_intercity: "Intercity Transfers",
+service_excursion: "Excursions & Tours",
+
+trust: `
+⭐⭐⭐⭐⭐ 4.9/5 rated by 120+ satisfied clients<br>
+🚐 New air-conditioned vehicles<br>
+👨‍✈️ Professional drivers<br>
+⏱ Punctuality guaranteed<br>
+🔒 No credit card required to book
+`
+};
+
+function setLang(lang){
+
+if(lang==="en"){
+  document.querySelector("nav a:nth-child(1)").innerText = EN.menu_services;
+  document.querySelector("nav a:nth-child(2)").innerText = EN.menu_booking;
+  document.querySelector("nav a:nth-child(3)").innerText = EN.menu_contact;
+
+  document.getElementById("bookingTitle").innerText = EN.booking_title;
+  document.getElementById("btnReserve").innerText = EN.btn_reserve;
+  document.getElementById("btnPay").innerText = "💳 " + EN.btn_pay;
+  document.querySelector(".trust-box").innerHTML = EN.trust;
+}
+else location.reload();
+}
+  
 </script>
 
+  <div class="wa-label">Besoin d’aide ?</div>
 <a href="https://wa.me/212691059759?text=Bonjour%20je%20souhaite%20réserver%20un%20transfert%20ou%20une%20excursion%20avec%20MasterTripTransfers"
    class="whatsapp-float"
    target="_blank"
