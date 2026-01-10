@@ -29,13 +29,31 @@ header{
 
 nav a{
   color:#fff;
-  margin:0 5px;   /* ⬅️ avant c’était 15px */
+  margin:0 8px;   /* ⬅️ avant c’était 15px */
   text-decoration:none;
   font-weight:bold;
   font-size:15px;
 }
 nav a:hover{color:#00aaff}
+  
+<span class="lang-flag-single">
+  <img id="langFlagBtn"
+       src="https://flagcdn.com/w40/gb.png"
+       onclick="toggleLang()"
+       title="Switch language">
+</span>
 
+  .lang-flag-single img{
+  width:24px;
+  height:18px;
+  cursor:pointer;
+  border-radius:4px;
+  margin:0 4px;
+  box-shadow:0 0 4px rgba(0,0,0,.4);
+  transition:.2s;
+}
+.lang-flag-single img:hover{ transform:scale(1.15); }
+  
 section{
   background:rgba(255,255,255,0.96);
   max-width:800px;
@@ -3813,6 +3831,29 @@ document.addEventListener("DOMContentLoaded", ()=>{
   const lang = localStorage.getItem("lang") || "FR";
   setLang(lang);
 });
+
+  function toggleLang(){
+  const current = localStorage.getItem("lang") || "FR";
+  setLang(current === "FR" ? "EN" : "FR");
+  updateLangFlag();
+}
+
+function updateLangFlag(){
+  const current = localStorage.getItem("lang") || "FR";
+  const flag = document.getElementById("langFlagBtn");
+
+  if(current === "FR"){
+    flag.src = "https://flagcdn.com/w40/gb.png";
+    flag.title = "English";
+  } else {
+    flag.src = "https://flagcdn.com/w40/fr.png";
+    flag.title = "Français";
+  }
+}
+
+/* Lance au chargement */
+document.addEventListener("DOMContentLoaded", updateLangFlag);
+  
 
 </script>
 
