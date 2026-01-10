@@ -1014,8 +1014,8 @@ Services
 
 </nav>
 <div id="langSwitch">
-  <button onclick="setLang('FR')">FR</button>
-  <button onclick="setLang('EN')">EN</button>
+  <button aria-label="Changer la langue en français" onclick="setLang('FR')">FR</button>
+  <button aria-label="Switch language to English" onclick="setLang('EN')">EN</button>
   </div>
 
 </header>
@@ -1394,7 +1394,11 @@ Services
 
 <div class="floating-field" id="fixedTimeField" style="display:none;">
   <select id="fixedTime">
-    <option value="">Choisir l’horaire</option>
+    <option value=""
+        data-fr="Choisir l’horaire"
+        data-en="Select time">
+  Choisir l’horaire
+    </option>
   </select>
   <label for="fixedTime">Horaire</label>
 </div>
