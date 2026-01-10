@@ -1285,12 +1285,11 @@ Services
   </select>
   <label for="fixedTime">Horaire</label>
 </div>
-        
+
 <div class="floating-field">
 <textarea id="message" name="Note client" placeholder="Baggages, Siège bébé ..."></textarea>
   <label for="message">Demandes spéciales</label>
-  </div>
-
+</div>
         
 <div class="floating-field">
 <input id="nom" name="" type="text" required>
@@ -1376,7 +1375,7 @@ Services
 <input type="hidden" name="_format" value="plain">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" id="finalPrice" name="Prix">
-<input type="hidden" id="emailMessage" name="message">
+<input type="hidden" id="emailMessage" name="Message final">
 <input type="hidden" name="_template" value="table">
 <button type="submit" id="btnReserve">Book Now</button>
 <button type="button" id="btnPay" onclick="payByCard()">💳 Pay by Card</button>
@@ -2769,10 +2768,6 @@ if (email.value) {
 if (date.value) {
   html += `<p><b>Date :</b> ${escapeHTML(date.value)}</p>`;
   text += `📅 Date : ${date.value}\n`;
-}
-
-if (fixedTime.value) {
-  heure.value = fixedTime.value;
 }
 
 if (heure.value) {
