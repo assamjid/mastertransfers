@@ -1077,12 +1077,28 @@ Services
 <div class="floating-field">
 
 
-<select id="service" name="" required>
+  <select id="service" name="" required>
   <option value="">Choisir service</option>
-  <option value="Transferts Aéroport & Privés">   Transferts Aéroport & Privés</option>
-  <option value="Transferts Inter-Villes Maroc">   Transferts Inter-Villes Maroc</option>
-  <option value="Excursions & Circuits Touristiques">   Excursions & Circuits Touristiques</option>
-</select>
+
+  <option value="Transferts Aéroport & Privés"
+          data-fr="Transferts Aéroport & Privés"
+          data-en="Airport & Private Transfers">
+    Transferts Aéroport & Privés
+  </option>
+
+  <option value="Transferts Inter-Villes Maroc"
+          data-fr="Transferts Inter-Villes Maroc"
+          data-en="Intercity Transfers Morocco">
+    Transferts Inter-Villes Maroc
+  </option>
+
+  <option value="Excursions & Circuits Touristiques"
+          data-fr="Excursions & Circuits Touristiques"
+          data-en="Excursions & Tours">
+    Excursions & Circuits Touristiques
+  </option>
+  </select>
+
 
   <label for="service">Nos services</label>
 </div>
@@ -1092,16 +1108,41 @@ Services
 
 <div class="floating-field">
 
+  
 <select id="transferType" name="" required>
-  <option value="">Choisir transfert</option>
-  <option value="Transfert Privé Personnalisé">Transfert Privé Personnalisé</option>
-  <option value="Aéroport d'Agadir vers Agadir ville">Aéroport d'Agadir vers Agadir ville</option>
-  <option value="Agadir ville vers Aéroport d'Agadir">Agadir ville vers Aéroport Agadir</option>
-  <option value="Aéroport d'Agadir vers Taghazout Bay">Aéroport d'Agadir vers Taghazout Bay</option>
-  <option value="Taghazout Bay vers Aéroport d'Agadir">Taghazout Bay vers Aéroport d'Agadir </option>
+    <option value="">Choisir transfert</option>
 
-</select>
+  <option value="Transfert Privé Personnalisé"
+          data-fr="Transfert Privé Personnalisé"
+          data-en="Custom Private Transfer">
+    Transfert Privé Personnalisé
+  </option>
 
+  <option value="Aéroport d'Agadir vers Agadir ville"
+          data-fr="Aéroport d'Agadir vers Agadir ville"
+          data-en="Agadir Airport to Agadir City">
+    Aéroport d'Agadir vers Agadir ville
+  </option>
+
+  <option value="Agadir ville vers Aéroport d'Agadir"
+          data-fr="Agadir ville vers Aéroport d'Agadir"
+          data-en="Agadir City to Agadir Airport">
+    Agadir ville vers Aéroport d'Agadir
+  </option>
+
+  <option value="Aéroport d'Agadir vers Taghazout Bay"
+          data-fr="Aéroport d'Agadir vers Taghazout Bay"
+          data-en="Agadir Airport to Taghazout Bay">
+    Aéroport d'Agadir vers Taghazout Bay
+  </option>
+
+  <option value="Taghazout Bay vers Aéroport d'Agadir"
+          data-fr="Taghazout Bay vers Aéroport d'Agadir"
+          data-en="Taghazout Bay to Agadir Airport">
+    Taghazout Bay vers Aéroport d'Agadir
+  </option>
+  </select>
+  
   <label for="transferType">Transferts</label>
 </div>
 
@@ -1117,28 +1158,27 @@ Services
 
   
 <div class="floating-field">
-<select id="transferPlaces" name="" required>
-    <option value="">Nombre de places</option>
-    <option value="4">4 et moins</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-   <option value="9">9</option>
-    <option value="10">10</option>
-   <option value="11">11</option>
-    <option value="12">12</option>
-   <option value="13">13</option>
-   <option value="14">14</option>
-    <option value="15">15</option>
-
+  <select id="transferPlaces" name="" required>
+  <option value="">Nombre de places</option>
+  <option value="5" data-fr="5 et moins" data-en="Up to 5">5 et moins</option>
+  <option value="6" data-fr="6" data-en="6">6</option>
+  <option value="7" data-fr="7" data-en="7">7</option>
+  <option value="8" data-fr="8" data-en="8">8</option>
+  <option value="9" data-fr="9" data-en="9">9</option>
+  <option value="10" data-fr="10" data-en="10">10</option>
+  <option value="11" data-fr="11" data-en="11">11</option>
+  <option value="12" data-fr="12" data-en="12">12</option>
+  <option value="13" data-fr="13" data-en="13">13</option>
+  <option value="14" data-fr="14" data-en="14">14</option>
+  <option value="15" data-fr="15" data-en="15">15</option>
   </select>
+    
   <label for="transferPlaces">Places</label>
 </div>
  
 <div class="floating-field">
 <input type="text" id="transferPrix" name="" placeholder="0,00€" readonly>
- <label>Prix (€)</label>
+<label for="transferPrix">Price (€)</label>
 </div>
 
 <div class="floating-field" id="flightField">
@@ -1149,48 +1189,70 @@ Services
   
 </div>
 
-
-
 <div id="intervillesFields">
-
 <div class="floating-field">
   
 <select id="trajet" name="" required>
-<option value="">Choisir Trajet</option>
-<option>Agadir / Taghazout vers Marrakech</option>
-<option>Marrakech vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Essaouira</option>
-<option>Essaouira vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Imsouane</option>
-<option>Imsouane vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Taroudant</option>
-<option>Taroudant vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Casablanca</option>
-<option>Casablanca vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Rabat</option>
-<option>Rabat vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Fès</option>
-<option>Fès vers Agadir / Taghazout</option>
-<option>Agadir / Taghazout vers Tanger</option>
-<option>Tanger vers Agadir / Taghazout</option>
+  <option value="">Choisir Trajet</option>
 
-    
-</select>
+  <option value="Agadir / Taghazout vers Marrakech"
+          data-fr="Agadir / Taghazout vers Marrakech"
+          data-en="Agadir / Taghazout to Marrakech">
+    Agadir / Taghazout vers Marrakech
+  </option>
+
+  <option value="Marrakech vers Agadir / Taghazout"
+          data-fr="Marrakech vers Agadir / Taghazout"
+          data-en="Marrakech to Agadir / Taghazout">
+    Marrakech vers Agadir / Taghazout
+  </option>
+
+  <option value="Agadir / Taghazout vers Essaouira"
+          data-fr="Agadir / Taghazout vers Essaouira"
+          data-en="Agadir / Taghazout to Essaouira">
+    Agadir / Taghazout vers Essaouira
+  </option>
+
+  <option value="Essaouira vers Agadir / Taghazout"
+          data-fr="Essaouira vers Agadir / Taghazout"
+          data-en="Essaouira to Agadir / Taghazout">
+    Essaouira vers Agadir / Taghazout
+  </option>
+
+  <option value="Agadir / Taghazout vers Imsouane"
+          data-fr="Agadir / Taghazout vers Imsouane"
+          data-en="Agadir / Taghazout to Imsouane">
+    Agadir / Taghazout vers Imsouane
+  </option>
+
+  <option value="Imsouane vers Agadir / Taghazout"
+          data-fr="Imsouane vers Agadir / Taghazout"
+          data-en="Imsouane to Agadir / Taghazout">
+    Imsouane vers Agadir / Taghazout
+  </option>
+  </select>
+
+  
   <label for="trajet">Intervilles</label>
 </div>
 
 <div class="floating-field">
 
 <select id="places" name="" required>
-<option value="">Nombre de places</option>
-<option value="5">5 et moins</option>
-<option value="6">6</option><option value="7">7</option>
-<option value="8">8</option><option value="9">9</option>
-<option value="10">10</option><option value="11">11</option>
-<option value="12">12</option><option value="13">13</option>
-<option value="14">14</option><option value="15">15</option>
-    
+  <option value="">Nombre de places</option>
+  <option value="5" data-fr="5 et moins" data-en="Up to 5">5 et moins</option>
+  <option value="6" data-fr="6" data-en="6">6</option>
+  <option value="7" data-fr="7" data-en="7">7</option>
+  <option value="8" data-fr="8" data-en="8">8</option>
+  <option value="9" data-fr="9" data-en="9">9</option>
+  <option value="10" data-fr="10" data-en="10">10</option>
+  <option value="11" data-fr="11" data-en="11">11</option>
+  <option value="12" data-fr="12" data-en="12">12</option>
+  <option value="13" data-fr="13" data-en="13">13</option>
+  <option value="14" data-fr="14" data-en="14">14</option>
+  <option value="15" data-fr="15" data-en="15">15</option>
   </select>
+
   <label for="places">Places</label>
 </div>
 
@@ -1200,40 +1262,102 @@ Services
 </div>
 
 </div>
-
 <div id="circuitsFields"> 
-
 <div class="floating-field">
+  
 <select id="circuit" name="" required>
-<option value="">Choisir Excursion</option>
-<option>Tour de la ville d’Agadir</option>
-<option>Souk El Had – Circuit Shopping</option>
-<option>Excursion Paradise Valley</option>
-<option>Dunes de Timlaline – Expérience Désert</option>
-<option>Visite du Crocoparc</option>
-<option>Téléphérique et visite de la Kasbah</option>
-<option value="Safari Quad / Buggy">Safari en Quad / Buggy</option>
-<option value="Chameau">Promenade à dos de chameau</option>
+    <option value="">Choisir Excursion</option>
 
+  <option value="Tour de la ville d’Agadir"
+          data-fr="Tour de la ville d’Agadir"
+          data-en="Agadir City Tour">
+    Tour de la ville d’Agadir
+  </option>
+
+  <option value="Souk El Had – Circuit Shopping"
+          data-fr="Souk El Had – Circuit Shopping"
+          data-en="Souk El Had Shopping Tour">
+    Souk El Had – Circuit Shopping
+  </option>
+
+  <option value="Excursion Paradise Valley"
+          data-fr="Excursion Paradise Valley"
+          data-en="Paradise Valley Excursion">
+    Excursion Paradise Valley
+  </option>
+
+  <option value="Dunes de Timlaline – Expérience Désert"
+          data-fr="Dunes de Timlaline – Expérience Désert"
+          data-en="Timlaline Sand Dunes Experience">
+    Dunes de Timlaline – Expérience Désert
+  </option>
+
+  <option value="Visite du Crocoparc"
+          data-fr="Visite du Crocoparc"
+          data-en="Crocoparc Visit">
+    Visite du Crocoparc
+  </option>
+
+  <option value="Téléphérique et visite de la Kasbah"
+          data-fr="Téléphérique et visite de la Kasbah"
+          data-en="Cable Car & Kasbah Visit">
+    Téléphérique et visite de la Kasbah
+  </option>
+
+  <option value="Safari Quad / Buggy"
+          data-fr="Safari Quad / Buggy"
+          data-en="Quad / Buggy Safari">
+    Safari Quad / Buggy
+  </option>
+
+  <option value="Chameau"
+          data-fr="Promenade à dos de chameau"
+          data-en="Camel Ride">
+    Promenade à dos de chameau
+  </option>
   </select>
+
   <label for="circuit">Excursions</label>
 </div>
 
 <div class="floating-field" id="quadTypeField" style="display:none;">
-  <select id="quadType">
-    <option value="">Type de véhicule</option>
-    <option value="Quad simple">Quad simple</option>
-    <option value="Buggy">Buggy</option>
-  </select>
+  <select id="quadType" name="" required>
+    <select id="quadType">
+  <option value="">Type de véhicule</option>
+
+  <option value="Quad simple"
+          data-fr="Quad simple"
+          data-en="Single Quad">
+    Quad simple
+  </option>
+
+  <option value="Buggy"
+          data-fr="Buggy"
+          data-en="Buggy">
+    Buggy
+  </option>
+    </select>
+    
   <label for="quadType">Quad / Buggy</label>
 </div>
 
 <div class="floating-field" id="camelTypeField" style="display:none;">
-  <select id="camelType">
-    <option value="">Type de promenade</option>
-    <option value="Promenade seule">Promenade seule</option>
-    <option value="Promenade + dîner">Promenade + dîner</option>
+  <select id="camelType" name="" required>
+  <option value="">Type de promenade</option>
+
+  <option value="Promenade seule"
+          data-fr="Promenade seule"
+          data-en="Ride Only">
+    Promenade seule
+  </option>
+
+  <option value="Promenade + dîner"
+          data-fr="Promenade + dîner"
+          data-en="Ride + Dinner">
+    Promenade + dîner
+  </option>
   </select>
+  
   <label for="camelType">Chameau</label>
 </div>
 
@@ -2551,7 +2675,9 @@ function updateCircuitPlaces() {
   for (let i = min; i <= 15; i++) {
     const opt = document.createElement("option");
     opt.value = i;
-    opt.textContent = i;
+    opt.textContent = i <= 5 ? "5 et moins" : i;
+    opt.dataset.fr = i <= 5 ? "5 et moins" : i;
+    opt.dataset.en = i <= 5 ? "Up to 5" : i;
     circuitPlaces.appendChild(opt);
   }
 }
@@ -3166,7 +3292,9 @@ function setLang(lang){
     fixedTime: L.fixedtime,
     nom: L.name,
     email: L.email,
-    message: L.note
+    message: L.note,
+    tel: L.phone,
+    transferPrix.previousElementSibling.innerText = lang==="EN"?"Price (€)":"Prix (€)";
   };
 
   Object.keys(map).forEach(id=>{
@@ -3186,11 +3314,21 @@ function setLang(lang){
   if(service.value === "Excursions & Circuits Touristiques")
     bookingSubtitle.textContent = L.subtitle_excursion;
 }
+  translateSelects(lang);
 
   window.onload = ()=>{
   setLang("FR");
 };
 
+  
+function translateSelects(lang){
+  document.querySelectorAll("select option").forEach(opt=>{
+    const key = lang.toLowerCase();
+    if(opt.dataset[key]){
+      opt.textContent = opt.dataset[key];
+    }
+  });
+}
 
 </script>
 
