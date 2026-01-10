@@ -3277,6 +3277,8 @@ function translateSelects(lang){
 }
   
   function setLang(lang){
+  localStorage.setItem("lang", lang); // ✅ AJOUT OBLIGATOIRE
+  document.documentElement.lang = lang === "EN" ? "en" : "fr"; // bonus SEO
   const L = LANG[lang];
 
   if(service) service.options[0].textContent = L.service_choose;
