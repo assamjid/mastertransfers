@@ -1004,19 +1004,33 @@ header{
 </p>
 
   <nav>
-<a href="javascript:void(0)" onclick="
+
+<a href="javascript:void(0)"
+   onclick="
 const header=document.getElementById('mainHeader');
 const s=document.getElementById('services');
 window.scrollTo({top:s.offsetTop-header.offsetHeight-10,behavior:'smooth'});
-">
+"
+data-fr="Services"
+data-en="Services">
 Services
 </a>
 
-<a href="javascript:void(0)" onclick="fixBookingScroll()">Réservation</a>
+<a href="javascript:void(0)"
+   onclick="fixBookingScroll()"
+   data-fr="Réservation"
+   data-en="Booking">
+Réservation
+</a>
 
-<a href="#siteFooter">Contact</a>
+<a href="#siteFooter"
+   data-fr="Contact"
+   data-en="Contact">
+Contact
+</a>
 
-</nav>
+  </nav>
+  
 <div id="langSwitch">
   <button aria-label="Changer la langue en français" onclick="setLang('FR')">FR</button>
   <button aria-label="Switch language to English" onclick="setLang('EN')">EN</button>
@@ -1134,48 +1148,56 @@ data-en="🚐 Modern air-conditioned vehicles">
   
 <section id="booking">
 
-<h2 id="bookingTitle">Réservation</h2>
-<p id="bookingSubtitle"></p>
+<h2 id="bookingTitle"
+data-fr="Réservation"
+data-en="Booking">
+Réservation
+</h2>
 
-      <form id="bookingForm"
-      action="https://formsubmit.co/mastertrip2030@gmail.com"
-      method="POST">
+<p id="bookingSubtitle"
+data-fr=""
+data-en="">
+</p>
+
+<form id="bookingForm"
+action="https://formsubmit.co/mastertrip2030@gmail.com"
+method="POST">
 
 <div class="floating-field">
 
+<select id="service" required>
 
-  <select id="service" name="" required>
-  <option value=""
-  data-fr="Choisir service"
-  data-en="Choose service">
-  Choisir service
-  </option>
+<option value=""
+data-fr="Choisir un service"
+data-en="Choose a service">
+Choisir un service
+</option>
 
-  <option value="Transferts Aéroport & Privés"
-          data-fr="Transferts Aéroport & Privés"
-          data-en="Airport & Private Transfers">
-    Transferts Aéroport & Privés
-  </option>
+<option value="Transferts Aéroport & Privés"
+data-fr="Transferts Aéroport & Privés"
+data-en="Airport & Private Transfers">
+Transferts Aéroport & Privés
+</option>
 
-  <option value="Transferts Inter-Villes Maroc"
-          data-fr="Transferts Inter-Villes Maroc"
-          data-en="Intercity Transfers Morocco">
-    Transferts Inter-Villes Maroc
-  </option>
+<option value="Transferts Inter-Villes Maroc"
+data-fr="Transferts Inter-Villes Maroc"
+data-en="Intercity Transfers Morocco">
+Transferts Inter-Villes Maroc
+</option>
 
-  <option value="Excursions & Circuits Touristiques"
-          data-fr="Excursions & Circuits Touristiques"
-          data-en="Excursions & Tours">
-    Excursions & Circuits Touristiques
-  </option>
-  </select>
+<option value="Excursions & Circuits Touristiques"
+data-fr="Excursions & Circuits Touristiques"
+data-en="Excursions & Tours">
+Excursions & Circuits Touristiques
+</option>
 
+</select>
 
-  <label for="service"
-  data-fr="Nos services"
-  data-en="Our services">
-  Nos services
-  </label>
+<label for="service"
+data-fr="Nos services"
+data-en="Our services">
+Nos services
+</label>
 </div>
 
 
@@ -1679,185 +1701,229 @@ data-en="🚐 Modern air-conditioned vehicles">
 </form>
 
   <div class="trust-box">
-  <div>⭐⭐⭐⭐⭐ <b>4.9/5</b> basé sur <b>120+ clients satisfaits</b></div>
-  <div>🚐 Véhicules récents climatisés</div>
-  <div>👨‍✈️ Chauffeurs professionnels & courtois</div>
-  <div>⏱ Ponctualité garantie</div>
-  <div>🔒 Aucune carte bancaire demandée</div>
-</div>
+
+  <div
+  data-fr="⭐⭐⭐⭐⭐ 4.9/5 basé sur 120+ clients satisfaits"
+  data-en="⭐⭐⭐⭐⭐ 4.9/5 based on 120+ satisfied customers">
+  ⭐⭐⭐⭐⭐ 4.9/5 basé sur 120+ clients satisfaits
+  </div>
+
+  <div
+  data-fr="🚐 Véhicules récents climatisés"
+  data-en="🚐 Modern air-conditioned vehicles">
+  🚐 Véhicules récents climatisés
+  </div>
+
+  <div
+  data-fr="👨‍✈️ Chauffeurs professionnels & courtois"
+  data-en="👨‍✈️ Professional & courteous drivers">
+  👨‍✈️ Chauffeurs professionnels & courtois
+  </div>
+
+  <div
+  data-fr="⏱ Ponctualité garantie"
+  data-en="⏱ Guaranteed punctuality">
+  ⏱ Ponctualité garantie
+  </div>
+
+  <div
+  data-fr="🔒 Aucune carte bancaire demandée"
+  data-en="🔒 No credit card required">
+  🔒 Aucune carte bancaire demandée
+  </div>
+
+  </div>
   
 </section>
 
 <section style="text-align:center">
-  <h2>Ils nous font confiance</h2>
 
-  <div class="reviews-grid" style="max-width:900px;margin:0 auto">
-    <div class="review-card">
-      <b style="font-size:26px;color:#f39c12">+2 000</b><br>
-      Transferts réalisés
-    </div>
+<h2 data-fr="Ils nous font confiance" data-en="They trust us">
+Ils nous font confiance
+</h2>
 
-    <div class="review-card">
-      <b style="font-size:26px;color:#f39c12">+850</b><br>
-      Excursions organisées
-    </div>
+<div class="reviews-grid" style="max-width:900px;margin:0 auto">
 
-    <div class="review-card">
-      <b style="font-size:26px;color:#f39c12">98%</b><br>
-      Clients satisfaits
-    </div>
+  <div class="review-card">
+    <b style="font-size:26px;color:#f39c12">+2 000</b><br>
+    <span
+    data-fr="Transferts réalisés"
+    data-en="Transfers completed">
+    Transferts réalisés
+    </span>
   </div>
+
+  <div class="review-card">
+    <b style="font-size:26px;color:#f39c12">+850</b><br>
+    <span
+    data-fr="Excursions organisées"
+    data-en="Organized excursions">
+    Excursions organisées
+    </span>
+  </div>
+
+  <div class="review-card">
+    <b style="font-size:26px;color:#f39c12">98%</b><br>
+    <span
+    data-fr="Clients satisfaits"
+    data-en="Satisfied customers">
+    Clients satisfaits
+    </span>
+  </div>
+
+</div>
 </section>
   
   
   
 <section id="popularDestinations">
-  <h2 class="dest-title">Nos destinations interville</h2>
-  <p class="dest-sub">
-    Les itinéraires inter-villes les plus demandés au départ d’Agadir et Taghazout.
-    Sélectionnez votre destination et réservez instantanément votre transfert privé.
-  </p>
 
-  <div class="dest-grid">
+<h2 class="dest-title"
+data-fr="Nos destinations interville"
+data-en="Intercity Destinations">
+Nos destinations interville
+</h2>
+
+<p class="dest-sub"
+data-fr="Les itinéraires inter-villes les plus demandés au départ d’Agadir et Taghazout. Sélectionnez votre destination et réservez instantanément votre transfert privé."
+data-en="Most requested intercity routes from Agadir and Taghazout. Select your destination and instantly book your private transfer.">
+Les itinéraires inter-villes les plus demandés au départ d’Agadir et Taghazout.
+Sélectionnez votre destination et réservez instantanément votre transfert privé.
+</p>
+
+<div class="dest-grid">
+  
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Marrakech')"
-   class="dest-card" style="background-image:url('./images/interville/Marrakech.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Marrakech</span>
-    <b>À partir de 125€</b>
-  </div>
+<a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Marrakech')"
+class="dest-card" style="background-image:url('./images/interville/Marrakech.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Marrakech" data-en="Agadir → Marrakech">Agadir → Marrakech</span>
+  <b data-fr="À partir de 125€" data-en="From 125€">À partir de 125€</b>
+</div>
 </a>
 
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Essaouira')"
-   class="dest-card" style="background-image:url('./images/interville/Essaouira.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Essaouira</span>
-    <b>À partir de 110€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Essaouira.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Essaouira" data-en="Agadir → Essaouira">Agadir → Essaouira</span>
+  <b data-fr="À partir de 110€" data-en="From 110€">À partir de 110€</b>
+</div>
 </a>
 
-
-   <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Taroudant')"
-   class="dest-card" style="background-image:url('./images/interville/Taroudant.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Taroudant</span>
-    <b>À partir de 90€</b>
-  </div>
+<a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Taroudant')"
+class="dest-card" style="background-image:url('./images/interville/Taroudant.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Taroudant" data-en="Agadir → Taroudant">Agadir → Taroudant</span>
+  <b data-fr="À partir de 90€" data-en="From 90€">À partir de 90€</b>
+</div>
 </a>
-
 
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Imsouane')"
-   class="dest-card" style="background-image:url('./images/interville/Imsouane.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Imsouane</span>
-    <b>À partir de 70€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Imsouane.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Imsouane" data-en="Agadir → Imsouane">Agadir → Imsouane</span>
+  <b data-fr="À partir de 70€" data-en="From 70€">À partir de 70€</b>
+</div>
 </a>
 
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Casablanca')"
-   class="dest-card" style="background-image:url('./images/interville/Casa.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Casablanca</span>
-    <b>À partir de 350€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Casa.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Casablanca" data-en="Agadir → Casablanca">Agadir → Casablanca</span>
+  <b data-fr="À partir de 350€" data-en="From 350€">À partir de 350€</b>
+</div>
 </a>
-
-
 
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Rabat')"
-   class="dest-card" style="background-image:url('./images/interville/Rabat.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Rabat</span>
-    <b>À partir de 400€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Rabat.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Rabat" data-en="Agadir → Rabat">Agadir → Rabat</span>
+  <b data-fr="À partir de 400€" data-en="From 400€">À partir de 400€</b>
+</div>
 </a>
 
-
-
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Fès')"
-   class="dest-card" style="background-image:url('./images/interville/Fes.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Fès</span>
-    <b>À partir de 650€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Fes.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Fès" data-en="Agadir → Fes">Agadir → Fès</span>
+  <b data-fr="À partir de 650€" data-en="From 650€">À partir de 650€</b>
+</div>
 </a>
 
 <a href="javascript:void(0)" onclick="openInterville('Agadir / Taghazout vers Tanger')"
-   class="dest-card" style="background-image:url('./images/interville/Tanger.jpg')">
-  <div class="dest-overlay">
-    <span>Agadir → Tanger</span>
-    <b>À partir de 750€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Tanger.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Agadir → Tanger" data-en="Agadir → Tangier">Agadir → Tanger</span>
+  <b data-fr="À partir de 750€" data-en="From 750€">À partir de 750€</b>
+</div>
 </a>
     
 <a href="javascript:void(0)" onclick="openInterville('Marrakech vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Marrakech.jpg')">
-  <div class="dest-overlay">
-    <span>Marrakech → Agadir</span>
-    <b>À partir de 125€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Marrakech.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Marrakech → Agadir" data-en="Marrakech → Agadir">Marrakech → Agadir</span>
+  <b data-fr="À partir de 125€" data-en="From 125€">À partir de 125€</b>
+</div>
 </a>
 
-    <a href="javascript:void(0)" onclick="openInterville('Essaouira vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Essaouira.jpg')">
-  <div class="dest-overlay">
-    <span>Essaouira → Agadir</span>
-    <b>À partir de 110€</b>
-  </div>
-    </a>
-    
-    <a href="javascript:void(0)" onclick="openInterville('Taroudant vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Taroudant.jpg')">
-  <div class="dest-overlay">
-    <span>Taroudant → Agadir</span>
-    <b>À partir de 90€</b>
-  </div>
-    </a>
+<a href="javascript:void(0)" onclick="openInterville('Essaouira vers Agadir / Taghazout')"
+class="dest-card" style="background-image:url('./images/interville/Essaouira.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Essaouira → Agadir" data-en="Essaouira → Agadir">Essaouira → Agadir</span>
+  <b data-fr="À partir de 110€" data-en="From 110€">À partir de 110€</b>
+</div>
+</a>
 
-    <a href="javascript:void(0)" onclick="openInterville('Imsouane vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Imsouane.jpg')">
-  <div class="dest-overlay">
-    <span>Imsouane → Agadir</span>
-    <b>À partir de 70€</b>
-  </div>
-    </a>
+<a href="javascript:void(0)" onclick="openInterville('Taroudant vers Agadir / Taghazout')"
+class="dest-card" style="background-image:url('./images/interville/Taroudant.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Taroudant → Agadir" data-en="Taroudant → Agadir">Taroudant → Agadir</span>
+  <b data-fr="À partir de 90€" data-en="From 90€">À partir de 90€</b>
+</div>
+</a>
+
+<a href="javascript:void(0)" onclick="openInterville('Imsouane vers Agadir / Taghazout')"
+class="dest-card" style="background-image:url('./images/interville/Imsouane.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Imsouane → Agadir" data-en="Imsouane → Agadir">Imsouane → Agadir</span>
+  <b data-fr="À partir de 70€" data-en="From 70€">À partir de 70€</b>
+</div>
+</a>
 
     <a href="javascript:void(0)" onclick="openInterville('Casablanca vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Casa.jpg')">
-  <div class="dest-overlay">
-    <span>Casablanca → Agadir</span>
-    <b>À partir de 350€</b>
-  </div>
-    </a>
+class="dest-card" style="background-image:url('./images/interville/Casa.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Casablanca → Agadir" data-en="Casablanca → Agadir">Casablanca → Agadir</span>
+  <b data-fr="À partir de 350€" data-en="From 350€">À partir de 350€</b>
+</div>
+</a>
 
-    <a href="javascript:void(0)" onclick="openInterville('Rabat vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Rabat.jpg')">
-  <div class="dest-overlay">
-    <span>Rabat → Agadir</span>
-    <b>À partir de 400€</b>
-  </div>
-    </a>
+<a href="javascript:void(0)" onclick="openInterville('Rabat vers Agadir / Taghazout')"
+class="dest-card" style="background-image:url('./images/interville/Rabat.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Rabat → Agadir" data-en="Rabat → Agadir">Rabat → Agadir</span>
+  <b data-fr="À partir de 400€" data-en="From 400€">À partir de 400€</b>
+</div>
+</a>
 
-    <a href="javascript:void(0)" onclick="openInterville('Fès vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Fes.jpg')">
-  <div class="dest-overlay">
-    <span>Fès → Agadir</span>
-    <b>À partir de 650€</b>
-  </div>
-    </a>
+<a href="javascript:void(0)" onclick="openInterville('Fès vers Agadir / Taghazout')"
+class="dest-card" style="background-image:url('./images/interville/Fes.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Fès → Agadir" data-en="Fes → Agadir">Fès → Agadir</span>
+  <b data-fr="À partir de 650€" data-en="From 650€">À partir de 650€</b>
+</div>
+</a>
 
 <a href="javascript:void(0)" onclick="openInterville('Tanger vers Agadir / Taghazout')"
-   class="dest-card" style="background-image:url('./images/interville/Tanger.jpg')">
-  <div class="dest-overlay">
-    <span>Tanger → Agadir</span>
-    <b>À partir de 750€</b>
-  </div>
+class="dest-card" style="background-image:url('./images/interville/Tanger.jpg')">
+<div class="dest-overlay">
+  <span data-fr="Tanger → Agadir" data-en="Tangier → Agadir">Tanger → Agadir</span>
+  <b data-fr="À partir de 750€" data-en="From 750€">À partir de 750€</b>
+</div>
 </a>
 
   </div>
 </section>
-
-
-
 
 
 <section id="excursions">
@@ -1869,7 +1935,10 @@ data-en="🚐 Modern air-conditioned vehicles">
 <div class="exc-grid">
   <div class="exc-card">
 
-    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Tour de la ville d’Agadir')">
+    <div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Agadir City Tour' : 'Tour de la ville d’Agadir')
+)">
     <img src="./images/excursions/agadir/Agadir1.jpg" alt="Kasbah Oufella Agadir">
     <img src="./images/excursions/agadir/Agadir2.jpg" alt="Architecture traditionnelle Agadir">
     <img src="./images/excursions/agadir/Agadir3.jpg" alt="Mosquée Agadir">
@@ -1882,33 +1951,48 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/agadir/Agadir10.jpg" alt="Kasbah Oufella Agadir">
   </div>
 
-  <h3>Tour de la ville d’Agadir</h3>
+  <h3 data-fr="Tour de la ville d’Agadir" data-en="Agadir City Tour">
+Tour de la ville d’Agadir
+  </h3>
 
-  <p>
-    Visite guidée des sites emblématiques d’Agadir :
-    Kasbah Oufella, Marina, Mosquée, Souk traditionnel,
-    panorama et plage.
-  </p>
+  <p
+data-fr="Visite guidée des sites emblématiques d’Agadir : Kasbah Oufella, Marina, Mosquée, Souk traditionnel, panorama et plage."
+data-en="Guided tour of Agadir’s iconic sites: Kasbah Oufella, Marina, Mosque, traditional Souk, panorama and beach.">
+Visite guidée des sites emblématiques d’Agadir :
+Kasbah Oufella, Marina, Mosquée, Souk traditionnel,
+panorama et plage.
+</p>
 
-  <ul>
-     <li>⏱ 3–4 heures</li>
-    <li>🚐 Transport climatisé</li>
-    <li>📸 Arrêts photos</li>
-  </ul>
+<ul>
+  <li data-fr="⏱ 3–4 heures" data-en="⏱ 3–4 hours">⏱ 3–4 heures</li>
+  <li data-fr="🚐 Transport climatisé" data-en="🚐 Air-conditioned transport">🚐 Transport climatisé</li>
+  <li data-fr="📸 Arrêts photos" data-en="📸 Photo stops">📸 Arrêts photos</li>
+</ul>
 
-  <span class="price">À partir de 13€</span>
+<span class="price"
+data-fr="À partir de 13€"
+data-en="From 13€">
+À partir de 13€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Tour de la ville d’Agadir')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Agadir City Tour' : 'Tour de la ville d’Agadir')
+)">
+Réserver maintenant
 </a>
-
   
 
 </div>
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Souk El Had – Circuit Shopping')">
+  <div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Souk El Had Shopping Tour' : 'Souk El Had – Circuit Shopping')
+)">
 <img src="./images/excursions/souk/Souk1.jpg" alt="Souk El Had Agadir">
 <img src="./images/excursions/souk/Souk2.jpg" alt="Entrée principale du Souk El Had Agadir">
 <img src="./images/excursions/souk/Souk3.jpg" alt="Épices marocaines au Souk El Had">
@@ -1921,32 +2005,47 @@ data-en="🚐 Modern air-conditioned vehicles">
 <img src="./images/excursions/souk/Souk10.jpg" alt="Ambiance traditionnelle Souk El Had Agadir">
   </div>
 
-  <h3>Souk El Had – Shopping Tour</h3>
-  <p>
-    Découvrez le plus grand marché traditionnel d’Agadir :
-    épices, artisanat, cuir, poterie, bijoux, souvenirs et produits locaux.
-  </p>
-  <ul>
-    <li>⏱ 2 heures</li>
-    <li>🛍️ Temps libre / Plus de 3000 boutiques</li>
-    <li>🚐 Transport inclus</li>
-  </ul>
+  <h3 data-fr="Souk El Had – Shopping Tour" data-en="Souk El Had Shopping Tour">
+Souk El Had – Shopping Tour
+</h3>
 
-  <span class="price">À partir de 12€</span>
+<p
+data-fr="Découvrez le plus grand marché traditionnel d’Agadir : épices, artisanat, cuir, poterie, bijoux, souvenirs et produits locaux."
+data-en="Discover Agadir’s largest traditional market: spices, handicrafts, leather, pottery, jewelry, souvenirs and local products.">
+Découvrez le plus grand marché traditionnel d’Agadir :
+épices, artisanat, cuir, poterie, bijoux, souvenirs et produits locaux.
+</p>
+
+<ul>
+  <li data-fr="⏱ 2 heures" data-en="⏱ 2 hours">⏱ 2 heures</li>
+  <li data-fr="🛍️ Temps libre / Plus de 3000 boutiques" data-en="🛍️ Free time / Over 3000 shops">🛍️ Temps libre / Plus de 3000 boutiques</li>
+  <li data-fr="🚐 Transport inclus" data-en="🚐 Transport included">🚐 Transport inclus</li>
+</ul>
+
+<span class="price"
+data-fr="À partir de 12€"
+data-en="From 12€">
+À partir de 12€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Souk El Had – Circuit Shopping')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Souk El Had Shopping Tour' : 'Souk El Had – Circuit Shopping')
+)">
+Réserver maintenant
 </a>
-
-
-
 
 </div>
 
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Excursion Paradise Valley')">
+<div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Paradise Valley Excursion' : 'Excursion Paradise Valley')
+)">
   <img src="./images/excursions/paradise/Paradise1.jpg" alt="Bassin naturel Paradise Valley">
   <img src="./images/excursions/paradise/Paradise2.jpg" alt="Gorge rocheuse Paradise Valley">
   <img src="./images/excursions/paradise/Paradise3.jpg" alt="Rivière et canyon Paradise Valley">
@@ -1958,31 +2057,45 @@ data-en="🚐 Modern air-conditioned vehicles">
   <img src="./images/excursions/paradise/Paradise9.jpg" alt="Nature et palmiers Paradise Valley">
 </div>
   
+<h3 data-fr="Paradise Valley" data-en="Paradise Valley Excursion">
+Paradise Valley
+</h3>
 
-  <h3>Paradise Valley</h3>
+<p
+data-fr="Découvrez Paradise Valley : canyons sculptés, dunes dorées, paysages naturels uniques et vues spectaculaires sur l’océan."
+data-en="Discover Paradise Valley: sculpted canyons, golden dunes, unique natural landscapes and spectacular ocean views.">
+Découvrez Paradise Valley : canyons sculptés, dunes dorées,
+paysages naturels uniques et vues spectaculaires sur l’océan.
+</p>
 
-  <p>
-    Découvrez Paradise Valley : canyons sculptés, dunes dorées,
-    paysages naturels uniques et vues spectaculaires sur l’océan.
-  </p>
+<ul>
+  <li data-fr="⏱ Excursion journée" data-en="⏱ Full-day excursion">⏱ Excursion journée</li>
+  <li data-fr="🏜️ Canyons & dunes" data-en="🏜️ Canyons & dunes">🏜️ Canyons & dunes</li>
+  <li data-fr="📸 Paysages exceptionnels" data-en="📸 Exceptional landscapes">📸 Paysages exceptionnels</li>
+</ul>
 
-  <ul>
-    <li>⏱ Excursion journée</li>
-    <li>🏜️ Canyons & dunes</li>
-    <li>📸 Paysages exceptionnels</li>
-  </ul>
+<span class="price"
+data-fr="À partir de 15€"
+data-en="From 15€">
+À partir de 15€
+</span>
 
-  <span class="price">À partir de 15€</span>
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Excursion Paradise Valley')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Paradise Valley Excursion' : 'Excursion Paradise Valley')
+)">
+Réserver maintenant
 </a>
-
+  
 </div>
 
 <div class="exc-card">
-
-  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Dunes de Timlaline – Expérience Désert')">
+<div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Timlaline Sand Dunes Experience' : 'Dunes de Timlaline – Expérience Désert')
+)">
   <img src="./images/excursions/timlaline/Timlaline1.jpg" alt="Dunes de Timlaline face à l’océan">
   <img src="./images/excursions/timlaline/Timlaline2.jpg" alt="Falaises et plage de Timlaline">
   <img src="./images/excursions/timlaline/Timlaline3.jpg" alt="Canyon naturel de Timlaline">
@@ -1994,23 +2107,36 @@ data-en="🚐 Modern air-conditioned vehicles">
   <img src="./images/excursions/timlaline/Timlaline9.jpg" alt="Aventure sandboarding Timlaline">
 </div>
 
-  <h3>Timlaline</h3>
+  <h3 data-fr="Timlaline" data-en="Timlaline Sand Dunes">
+Timlaline
+</h3>
 
-  <p>
-    Explorez Timlaline, un site spectaculaire où les dunes du désert
-    rencontrent l’océan Atlantique. Paysages uniques et sensations garanties.
-  </p>
+<p
+data-fr="Explorez Timlaline, un site spectaculaire où les dunes du désert rencontrent l’océan Atlantique. Paysages uniques et sensations garanties."
+data-en="Explore Timlaline, a spectacular site where desert dunes meet the Atlantic Ocean. Unique landscapes and guaranteed thrills.">
+Explorez Timlaline, un site spectaculaire où les dunes du désert
+rencontrent l’océan Atlantique. Paysages uniques et sensations garanties.
+</p>
 
-  <ul>
-    <li>⏱ Demi-journée ou journée</li>
-    <li>🏜️ Dunes & canyon</li>
-    <li>🌊 Vue sur l’océan</li>
-  </ul>
+<ul>
+  <li data-fr="⏱ Demi-journée ou journée" data-en="⏱ Half-day or full-day">⏱ Demi-journée ou journée</li>
+  <li data-fr="🏜️ Dunes & canyon" data-en="🏜️ Dunes & canyon">🏜️ Dunes & canyon</li>
+  <li data-fr="🌊 Vue sur l’océan" data-en="🌊 Ocean view">🌊 Vue sur l’océan</li>
+</ul>
 
-  <span class="price">À partir de 15€</span>
+<span class="price"
+data-fr="À partir de 15€"
+data-en="From 15€">
+À partir de 15€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Dunes de Timlaline – Expérience Désert')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Timlaline Sand Dunes Experience' : 'Dunes de Timlaline – Expérience Désert')
+)">
+Réserver maintenant
 </a>
 
 </div>
@@ -2018,7 +2144,10 @@ data-en="🚐 Modern air-conditioned vehicles">
 
 <div class="exc-card">
 
-    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Visite du Crocoparc')">
+    <div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Crocoparc Visit' : 'Visite du Crocoparc')
+)">
     <img src="./images/excursions/crocopark/Croco1.jpg" alt="Crocoparc Agadir crocodiles">
     <img src="./images/excursions/crocopark/Croco2.jpg" alt="Entrée Crocoparc Agadir">
     <img src="./images/excursions/crocopark/Croco3.jpg" alt="Serpent Crocoparc">
@@ -2030,24 +2159,37 @@ data-en="🚐 Modern air-conditioned vehicles">
      <img src="./images/excursions/crocopark/Croco9.jpg" alt="Crocoparc Agadir grand crocodile">
   </div>
 
-  <h3>Crocoparc Agadir</h3>
+<h3 data-fr="Crocoparc Agadir" data-en="Crocoparc Agadir Visit">
+Crocoparc Agadir
+</h3>
 
-  <p>
-    Découvrez Crocoparc Agadir, un parc zoologique unique abritant
-    des centaines de crocodiles du Nil, reptiles rares et jardins exotiques.
-  </p>
+<p
+data-fr="Découvrez Crocoparc Agadir, un parc zoologique unique abritant des centaines de crocodiles du Nil, reptiles rares et jardins exotiques."
+data-en="Discover Crocoparc Agadir, a unique zoological park home to hundreds of Nile crocodiles, rare reptiles and exotic gardens.">
+Découvrez Crocoparc Agadir, un parc zoologique unique abritant
+des centaines de crocodiles du Nil, reptiles rares et jardins exotiques.
+</p>
 
-  <ul>
-    <li>⏱ Demi-journée</li>
-    <li>🐊 Crocodiles & reptiles</li>
-    <li>🌿 Jardin botanique</li>
-     <li>🎟️ Billet d’entrée au Crocoparc non inclus</li>
-  </ul>
+<ul>
+  <li data-fr="⏱ Demi-journée" data-en="⏱ Half-day">⏱ Demi-journée</li>
+  <li data-fr="🐊 Crocodiles & reptiles" data-en="🐊 Crocodiles & reptiles">🐊 Crocodiles & reptiles</li>
+  <li data-fr="🌿 Jardin botanique" data-en="🌿 Botanical garden">🌿 Jardin botanique</li>
+  <li data-fr="🎟️ Billet d’entrée au Crocoparc non inclus" data-en="🎟️ Crocoparc entrance ticket not included">🎟️ Billet d’entrée au Crocoparc non inclus</li>
+</ul>
 
-  <span class="price">À partir de 12€</span>
+<span class="price"
+data-fr="À partir de 12€"
+data-en="From 12€">
+À partir de 12€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Visite du Crocoparc')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Crocoparc Visit' : 'Visite du Crocoparc')
+)">
+Réserver maintenant
 </a>
 
 </div>
@@ -2055,7 +2197,10 @@ data-en="🚐 Modern air-conditioned vehicles">
 
 <div class="exc-card">
 
-  <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Téléphérique et visite de la Kasbah')">
+  <div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Cable Car & Kasbah Visit' : 'Téléphérique et visite de la Kasbah')
+)">
   <img src="./images/excursions/telesiege/Tele1.jpg" alt="Vue panoramique baie d’Agadir depuis le télésiège">
   <img src="./images/excursions/telesiege/Tele2.jpg" alt="Kasbah Agadir vue du télésiège">
   <img src="./images/excursions/telesiege/Tele3.jpg" alt="Télésiège Agadir de nuit vue sur la ville">
@@ -2068,31 +2213,47 @@ data-en="🚐 Modern air-conditioned vehicles">
 </div>
 
   
-  <h3>Télésiège d’Agadir</h3>
+  <h3 data-fr="Télésiège d’Agadir" data-en="Agadir Cable Car">
+Télésiège d’Agadir
+</h3>
 
-  <p>
-    Profitez d’une expérience unique en télésiège avec une vue panoramique
-    exceptionnelle sur la baie d’Agadir, la marina et l’océan Atlantique.
-  </p>
+<p
+data-fr="Profitez d’une expérience unique en télésiège avec une vue panoramique exceptionnelle sur la baie d’Agadir, la marina et l’océan Atlantique."
+data-en="Enjoy a unique cable car experience with exceptional panoramic views over Agadir Bay, the marina and the Atlantic Ocean.">
+Profitez d’une expérience unique en télésiège avec une vue panoramique
+exceptionnelle sur la baie d’Agadir, la marina et l’océan Atlantique.
+</p>
 
-  <ul>
-    <li>⏱ Environ 30 minutes</li>
-    <li>🌊 Vue mer & ville</li>
-    <li>📸 Idéal photos & détente</li>
-     <li>🎟️ Billet du télésiège non inclus</li>
-  </ul>
+<ul>
+  <li data-fr="⏱ Environ 30 minutes" data-en="⏱ About 30 minutes">⏱ Environ 30 minutes</li>
+  <li data-fr="🌊 Vue mer & ville" data-en="🌊 Sea & city view">🌊 Vue mer & ville</li>
+  <li data-fr="📸 Idéal photos & détente" data-en="📸 Perfect for photos & relaxation">📸 Idéal photos & détente</li>
+  <li data-fr="🎟️ Billet du télésiège non inclus" data-en="🎟️ Cable car ticket not included">🎟️ Billet du télésiège non inclus</li>
+</ul>
 
-  <span class="price">À partir de 10€</span>
+<span class="price"
+data-fr="À partir de 10€"
+data-en="From 10€">
+À partir de 10€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Téléphérique et visite de la Kasbah')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Cable Car & Kasbah Visit' : 'Téléphérique et visite de la Kasbah')
+)">
+Réserver maintenant
 </a>
 
 </div>
 
 <div class="exc-card">
 
-    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Safari Quad / Buggy')">
+    <div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Quad / Buggy Safari' : 'Safari Quad / Buggy')
+)">
     <img src="./images/excursions/quad/Quad1.jpg" alt="Buggy Premium Agadir">
     <img src="./images/excursions/quad/Quad2.jpg" alt="Safari Buggy dunes Agadir">
     <img src="./images/excursions/quad/Quad3.jpg" alt="Pause désert buggy Agadir">
@@ -2100,23 +2261,36 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/quad/Quad5.jpg" alt="Groupe buggy désert Agadir">
   </div>
 
-  <h3>Safari en Quad / Buggy</h3>
+  <h3 data-fr="Safari en Quad / Buggy" data-en="Quad / Buggy Safari">
+Safari en Quad / Buggy
+</h3>
 
-  <p>
-    Partez à l’aventure en Quad ou Buggy à travers les dunes,
-    pistes désertiques et paysages sauvages autour d’Agadir.
-  </p>
+<p
+data-fr="Partez à l’aventure en Quad ou Buggy à travers les dunes, pistes désertiques et paysages sauvages autour d’Agadir."
+data-en="Go on an adventure by Quad or Buggy through dunes, desert tracks and wild landscapes around Agadir.">
+Partez à l’aventure en Quad ou Buggy à travers les dunes,
+pistes désertiques et paysages sauvages autour d’Agadir.
+</p>
 
-  <ul>
-    <li>⏱ 2 heures</li>
-    <li>🏜️ Dunes & désert</li>
-    <li>🪖 Casque & guide inclus</li>
-  </ul>
+<ul>
+  <li data-fr="⏱ 2 heures" data-en="⏱ 2 hours">⏱ 2 heures</li>
+  <li data-fr="🏜️ Dunes & désert" data-en="🏜️ Dunes & desert">🏜️ Dunes & désert</li>
+  <li data-fr="🪖 Casque & guide inclus" data-en="🪖 Helmet & guide included">🪖 Casque & guide inclus</li>
+</ul>
 
-  <span class="price">À partir de 25€</span>
+<span class="price"
+data-fr="À partir de 25€"
+data-en="From 25€">
+À partir de 25€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Safari Quad / Buggy')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Quad / Buggy Safari' : 'Safari Quad / Buggy')
+)">
+Réserver maintenant
 </a>
 
 
@@ -2124,7 +2298,10 @@ data-en="🚐 Modern air-conditioned vehicles">
 
 <div class="exc-card">
 
-    <div class="exc-slider auto fast" onclick="scrollToExcursionDetail('Chameau')">
+    <div class="exc-slider auto fast"
+onclick="scrollToExcursionDetail(
+(localStorage.getItem('lang')==='EN' ? 'Camel Ride' : 'Chameau')
+)">
     <img src="./images/excursions/chameau/Camel1.jpg" alt="Promenade chameau coucher de soleil">
     <img src="./images/excursions/chameau/Camel2.jpg" alt="Chameaux dunes désert Agadir">
     <img src="./images/excursions/chameau/Camel3.jpg" alt="Promenade chameau plage Agadir">
@@ -2135,23 +2312,36 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/chameau/Camel8.jpg" alt="Promenade chameaux dunes sunset">
   </div>
 
-  <h3>Promenade à dos de chameau</h3>
+  <h3 data-fr="Promenade à dos de chameau" data-en="Camel Ride">
+Promenade à dos de chameau
+</h3>
 
-  <p>
-    Vivez une expérience authentique à dos de chameau,
-    entre dunes dorées et plage, au rythme du désert marocain.
-  </p>
+<p
+data-fr="Vivez une expérience authentique à dos de chameau, entre dunes dorées et plage, au rythme du désert marocain."
+data-en="Enjoy an authentic camel ride between golden dunes and the beach, in the rhythm of the Moroccan desert.">
+Vivez une expérience authentique à dos de chameau,
+entre dunes dorées et plage, au rythme du désert marocain.
+</p>
 
-  <ul>
-    <li>⏱ 1 heure / </li>
-    <li>🐪 Chameau avec guide</li>
-    <li>🌅 Option diner et coucher de soleil</li>
-  </ul>
+<ul>
+  <li data-fr="⏱ 1 heure" data-en="⏱ 1 hour">⏱ 1 heure</li>
+  <li data-fr="🐪 Chameau avec guide" data-en="🐪 Camel with guide">🐪 Chameau avec guide</li>
+  <li data-fr="🌅 Option diner et coucher de soleil" data-en="🌅 Dinner & sunset option">🌅 Option diner et coucher de soleil</li>
+</ul>
 
-  <span class="price">À partir de 15€ </span>
+<span class="price"
+data-fr="À partir de 15€"
+data-en="From 15€">
+À partir de 15€
+</span>
+
 <a href="javascript:void(0)" class="btn"
-   onclick="openExcursion('Chameau')">
-   Réserver maintenant
+data-fr="Réserver maintenant"
+data-en="Book now"
+onclick="openExcursion(
+(localStorage.getItem('lang')==='EN' ? 'Camel Ride' : 'Chameau')
+)">
+Réserver maintenant
 </a>
 
 </div>
@@ -2170,25 +2360,33 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/agadir/Agadir5.jpg">
   </div>
 
-  <h3>Tour de la ville d’Agadir</h3>
+  <h3 data-fr="Tour de la ville d’Agadir" data-en="Agadir City Tour">
+Tour de la ville d’Agadir
+</h3>
 
-  <p>
-    Découvrez Agadir à travers une visite guidée complète de ses sites emblématiques.
-    Cette excursion vous emmène à la Kasbah Oufella, perchée sur les hauteurs de la ville,
-    offrant une vue panoramique exceptionnelle sur toute la baie d’Agadir et l’océan Atlantique.
-    Vous visiterez également la Marina, la Mosquée Mohammed V et plusieurs quartiers typiques de la ville.
-  </p>
+<p
+data-fr="Découvrez Agadir à travers une visite guidée complète de ses sites emblématiques. Cette excursion vous emmène à la Kasbah Oufella, perchée sur les hauteurs de la ville, offrant une vue panoramique exceptionnelle sur toute la baie d’Agadir et l’océan Atlantique. Vous visiterez également la Marina, la Mosquée Mohammed V et plusieurs quartiers typiques de la ville."
+data-en="Discover Agadir through a complete guided tour of its iconic sites. This excursion takes you to the Kasbah Oufella, perched above the city, offering exceptional panoramic views over Agadir Bay and the Atlantic Ocean. You will also visit the Marina, Mohammed V Mosque and several typical districts of the city.">
+Découvrez Agadir à travers une visite guidée complète de ses sites emblématiques.
+Cette excursion vous emmène à la Kasbah Oufella, perchée sur les hauteurs de la ville,
+offrant une vue panoramique exceptionnelle sur toute la baie d’Agadir et l’océan Atlantique.
+Vous visiterez également la Marina, la Mosquée Mohammed V et plusieurs quartiers typiques de la ville.
+</p>
 
-  <p>
-    La visite se poursuit au Souk El Had, le plus grand marché urbain du sud marocain,
-    où vous pourrez flâner librement parmi plus de 3000 boutiques d’artisanat, d’épices,
-    de vêtements traditionnels et de produits locaux.
-    Une excursion idéale pour une première immersion culturelle à Agadir.
-  </p>
+<p
+data-fr="La visite se poursuit au Souk El Had, le plus grand marché urbain du sud marocain, où vous pourrez flâner librement parmi plus de 3000 boutiques d’artisanat, d’épices, de vêtements traditionnels et de produits locaux. Une excursion idéale pour une première immersion culturelle à Agadir."
+data-en="The tour continues at Souk El Had, the largest urban market in southern Morocco, where you can freely stroll among more than 3000 shops of handicrafts, spices, traditional clothing and local products. An ideal excursion for a first cultural immersion in Agadir.">
+La visite se poursuit au Souk El Had, le plus grand marché urbain du sud marocain,
+où vous pourrez flâner librement parmi plus de 3000 boutiques d’artisanat, d’épices,
+de vêtements traditionnels et de produits locaux.
+Une excursion idéale pour une première immersion culturelle à Agadir.
+</p>
 
-  <p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 </div>
 
@@ -2201,21 +2399,29 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/souk/Souk5.jpg">
   </div>
 
-  <h3>Souk El Had – Shopping Tour</h3>
+  <h3 data-fr="Souk El Had – Shopping Tour" data-en="Souk El Had Shopping Tour">
+Souk El Had – Shopping Tour
+</h3>
 
-  <p>
-    Découvrez le plus grand marché traditionnel d’Agadir. Le Souk El Had est un véritable labyrinthe de plus de 3000 boutiques
-    où se mélangent parfums d’épices, artisanat marocain, poteries, tapis, vêtements traditionnels et produits locaux.
-  </p>
+<p
+data-fr="Découvrez le plus grand marché traditionnel d’Agadir. Le Souk El Had est un véritable labyrinthe de plus de 3000 boutiques où se mélangent parfums d’épices, artisanat marocain, poteries, tapis, vêtements traditionnels et produits locaux."
+data-en="Discover Agadir’s largest traditional market. Souk El Had is a real labyrinth of over 3000 shops mixing spice aromas, Moroccan handicrafts, pottery, carpets, traditional clothing and local products.">
+Découvrez le plus grand marché traditionnel d’Agadir. Le Souk El Had est un véritable labyrinthe de plus de 3000 boutiques
+où se mélangent parfums d’épices, artisanat marocain, poteries, tapis, vêtements traditionnels et produits locaux.
+</p>
 
-  <p>
-    Temps libre pour flâner, négocier et vivre l’ambiance authentique du commerce marocain dans un lieu sécurisé et animé.
-    Une excursion idéale pour ramener des souvenirs uniques.
-  </p>
+<p
+data-fr="Temps libre pour flâner, négocier et vivre l’ambiance authentique du commerce marocain dans un lieu sécurisé et animé. Une excursion idéale pour ramener des souvenirs uniques."
+data-en="Free time to stroll, bargain and enjoy the authentic Moroccan trading atmosphere in a safe and lively place. An ideal excursion to bring back unique souvenirs.">
+Temps libre pour flâner, négocier et vivre l’ambiance authentique du commerce marocain dans un lieu sécurisé et animé.
+Une excursion idéale pour ramener des souvenirs uniques.
+</p>
 
-<p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 </div>
 
@@ -2228,21 +2434,29 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/paradise/Paradise5.jpg">
   </div>
 
-  <h3>Paradise Valley</h3>
+  <h3 data-fr="Paradise Valley" data-en="Paradise Valley">
+Paradise Valley
+</h3>
 
-  <p>
-    Paradise Valley est une oasis naturelle nichée au cœur des montagnes de l’Anti-Atlas.
-    Vous découvrirez des piscines naturelles, gorges rocheuses, palmiers et eaux turquoise.
-  </p>
+<p
+data-fr="Paradise Valley est une oasis naturelle nichée au cœur des montagnes de l’Anti-Atlas. Vous découvrirez des piscines naturelles, gorges rocheuses, palmiers et eaux turquoise."
+data-en="Paradise Valley is a natural oasis nestled in the heart of the Anti-Atlas mountains. You will discover natural pools, rocky gorges, palm trees and turquoise waters.">
+Paradise Valley est une oasis naturelle nichée au cœur des montagnes de l’Anti-Atlas.
+Vous découvrirez des piscines naturelles, gorges rocheuses, palmiers et eaux turquoise.
+</p>
 
-  <p>
-    Temps libre pour baignade, détente et photos dans un décor digne d’une carte postale.
-    Une excursion nature parfaite pour se rafraîchir loin de la ville.
-  </p>
+<p
+data-fr="Temps libre pour baignade, détente et photos dans un décor digne d’une carte postale. Une excursion nature parfaite pour se rafraîchir loin de la ville."
+data-en="Free time for swimming, relaxation and photos in a postcard-perfect setting. A perfect nature excursion to cool off away from the city.">
+Temps libre pour baignade, détente et photos dans un décor digne d’une carte postale.
+Une excursion nature parfaite pour se rafraîchir loin de la ville.
+</p>
 
-<p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 </div>
 
@@ -2255,21 +2469,29 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/timlaline/Timlaline5.jpg">
   </div>
 
-  <h3>Dunes de Timlaline</h3>
+  <h3 data-fr="Dunes de Timlaline" data-en="Timlaline Sand Dunes">
+Dunes de Timlaline
+</h3>
 
-  <p>
-    Un site spectaculaire où les dunes du Sahara rencontrent l’océan Atlantique.
-    Vous découvrirez des paysages uniques, canyons naturels et vues panoramiques exceptionnelles.
-  </p>
+<p
+data-fr="Un site spectaculaire où les dunes du Sahara rencontrent l’océan Atlantique. Vous découvrirez des paysages uniques, canyons naturels et vues panoramiques exceptionnelles."
+data-en="A spectacular site where Sahara dunes meet the Atlantic Ocean. You will discover unique landscapes, natural canyons and breathtaking panoramic views.">
+Un site spectaculaire où les dunes du Sahara rencontrent l’océan Atlantique.
+Vous découvrirez des paysages uniques, canyons naturels et vues panoramiques exceptionnelles.
+</p>
 
-  <p>
-    Possibilité de sandboarding, photos et balade dans un environnement sauvage et préservé.
-    Une excursion idéale pour les amoureux de grands espaces.
-  </p>
+<p
+data-fr="Possibilité de sandboarding, photos et balade dans un environnement sauvage et préservé. Une excursion idéale pour lovers of wide open spaces."
+data-en="Possibility of sandboarding, photo stops and walks in a wild and preserved environment. An ideal excursion for lovers of wide open spaces.">
+Possibilité de sandboarding, photos et balade dans un environnement sauvage et préservé.
+Une excursion idéale pour les amoureux de grands espaces.
+</p>
 
-<p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 </div>
 
@@ -2281,23 +2503,31 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/crocopark/Croco4.jpg">
     <img src="./images/excursions/crocopark/Croco5.jpg">
   </div>
+<h3 data-fr="Crocoparc Agadir" data-en="Agadir Crocoparc">
+Crocoparc Agadir
+</h3>
 
-  <h3>Crocoparc Agadir</h3>
-
-  <p>
-    Parc zoologique unique abritant plus de 300 crocodiles du Nil, reptiles rares et jardins botaniques exotiques.
-    Un parcours ludique et éducatif pour petits et grands.
-  </p>
-
-  <p>
-    Découvrez des espèces impressionnantes dans un environnement sécurisé et naturel.
-    Idéal pour les familles et enfants.
-  </p>
-
-  <p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p
+data-fr="Parc zoologique unique abritant plus de 300 crocodiles du Nil, reptiles rares et jardins botaniques exotiques. Un parcours ludique et éducatif pour petits et grands."
+data-en="A unique zoological park home to over 300 Nile crocodiles, rare reptiles and exotic botanical gardens. A fun and educational route for both children and adults.">
+Parc zoologique unique abritant plus de 300 crocodiles du Nil, reptiles rares et jardins botaniques exotiques.
+Un parcours ludique et éducatif pour petits et grands.
 </p>
+
+<p
+data-fr="Découvrez des espèces impressionnantes dans un environnement sécurisé et naturel. Idéal pour les familles et enfants."
+data-en="Discover impressive species in a safe and natural environment. Ideal for families and children.">
+Découvrez des espèces impressionnantes dans un environnement sécurisé et naturel.
+Idéal pour les familles et enfants.
+</p>
+
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+</p>
+  
 </div>
 
 <div class="exc-detail">
@@ -2309,21 +2539,29 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/telesiege/Tele5.jpg">
   </div>
 
-  <h3>Téléphérique d’Agadir & Kasbah</h3>
+  <h3 data-fr="Téléphérique d’Agadir & Kasbah" data-en="Agadir Cable Car & Kasbah">
+Téléphérique d’Agadir & Kasbah
+</h3>
 
-  <p>
-    Montez au sommet de la Kasbah Oufella grâce au téléphérique moderne offrant
-    une vue panoramique incroyable sur toute la baie d’Agadir.
-  </p>
+<p
+data-fr="Montez au sommet de la Kasbah Oufella grâce au téléphérique moderne offrant une vue panoramique incroyable sur toute la baie d’Agadir."
+data-en="Reach the top of the Kasbah Oufella thanks to the modern cable car offering an incredible panoramic view over the entire Agadir bay.">
+Montez au sommet de la Kasbah Oufella grâce au téléphérique moderne offrant
+une vue panoramique incroyable sur toute la baie d’Agadir.
+</p>
 
-  <p>
-    Temps libre pour photos, détente et découverte du site historique.
-    Une expérience romantique et mémorable.
-  </p>
+<p
+data-fr="Temps libre pour photos, détente et découverte du site historique. Une expérience romantique et mémorable."
+data-en="Free time for photos, relaxation and discovery of the historic site. A romantic and memorable experience.">
+Temps libre pour photos, détente et découverte du site historique.
+Une expérience romantique et mémorable.
+</p>
 
-<p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 </div>
 
@@ -2336,21 +2574,29 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/quad/Quad5.jpg">
   </div>
 
-  <h3>Safari Quad / Buggy</h3>
+  <h3 data-fr="Safari Quad / Buggy" data-en="Quad / Buggy Safari">
+Safari Quad / Buggy
+</h3>
 
-  <p>
-    Partez à l’aventure à travers pistes désertiques, dunes et paysages sauvages
-    accompagnés d’un guide professionnel.
-  </p>
+<p
+data-fr="Partez à l’aventure à travers pistes désertiques, dunes et paysages sauvages accompagnés d’un guide professionnel."
+data-en="Set off on an adventure through desert tracks, dunes and wild landscapes accompanied by a professional guide.">
+Partez à l’aventure à travers pistes désertiques, dunes et paysages sauvages
+accompagnés d’un guide professionnel.
+</p>
 
-  <p>
-    Sensations fortes garanties dans un cadre sécurisé. Casque, briefing et assistance inclus.
-    Accessible aux débutants.
-  </p>
+<p
+data-fr="Sensations fortes garanties dans un cadre sécurisé. Casque, briefing et assistance inclus. Accessible aux débutants."
+data-en="Thrills guaranteed in a safe environment. Helmet, briefing and assistance included. Suitable for beginners.">
+Sensations fortes garanties dans un cadre sécurisé. Casque, briefing et assistance inclus.
+Accessible aux débutants.
+</p>
 
-<p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 
 
@@ -2365,58 +2611,97 @@ data-en="🚐 Modern air-conditioned vehicles">
     <img src="./images/excursions/chameau/Camel5.jpg">
   </div>
 
-  <h3>Promenade à dos de chameau</h3>
+  <h3 data-fr="Promenade à dos de chameau" data-en="Camel Ride">
+Promenade à dos de chameau
+</h3>
 
-  <p>
-    Une expérience traditionnelle marocaine au rythme du désert,
-    entre dunes, plages et couchers de soleil.
-  </p>
+<p
+data-fr="Une expérience traditionnelle marocaine au rythme du désert, entre dunes, plages et couchers de soleil."
+data-en="A traditional Moroccan experience at the rhythm of the desert, between dunes, beaches and sunsets.">
+Une expérience traditionnelle marocaine au rythme du désert,
+entre dunes, plages et couchers de soleil.
+</p>
 
-  <p>
-    Possibilité de dîner traditionnel et thé à la menthe en option.
-    Une activité idéale pour couples et familles.
-  </p>
+<p
+data-fr="Possibilité de dîner traditionnel et thé à la menthe en option. Une activité idéale pour couples et familles."
+data-en="Optional traditional dinner and mint tea. An ideal activity for couples and families.">
+Possibilité de dîner traditionnel et thé à la menthe en option.
+Une activité idéale pour couples et familles.
+</p>
 
-<p class="exc-transport">
-  Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
-  puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
+<p class="exc-transport"
+data-fr="Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés, puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale."
+data-en="Our professional drivers will pick you up directly at the agreed address in air-conditioned vehicles, then drop you off at the same point after your excursion, for total comfort and peace of mind.">
+Nos chauffeurs professionnels viendront vous chercher directement à l’adresse convenue à bord de véhicules climatisés,
+puis vous reconduiront au même point après votre excursion, pour un confort et une tranquillité totale.
 </p>
 
 </section>
 
 <div id="resumeOverlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="resumeTitle">
   <div id="resumeBox">
-    <h3 id="resumeTitle">📋 Récapitulatif de votre réservation</h3>
+
+    <h3 id="resumeTitle"
+        data-fr="📋 Récapitulatif de votre réservation"
+        data-en="📋 Your Booking Summary">
+      📋 Récapitulatif de votre réservation
+    </h3>
 
     <div id="resumeContent"></div>
 
     <div style="margin-top:20px;display:flex;gap:10px;">
-      <button type="button" id="resumeCancel" aria-label="Modifier la réservation">✏️ Modifier</button>
-      <button type="button" id="resumeConfirm" aria-label="Confirmer la réservation et ouvrir WhatsApp">📲 Confirmer & WhatsApp</button>
+      <button type="button"
+              id="resumeCancel"
+              data-fr="✏️ Modifier"
+              data-en="✏️ Edit"
+              aria-label="Edit booking">
+        ✏️ Modifier
+      </button>
+
+      <button type="button"
+              id="resumeConfirm"
+              data-fr="📲 Confirmer & WhatsApp"
+              data-en="📲 Confirm & WhatsApp"
+              aria-label="Confirm booking and open WhatsApp">
+        📲 Confirmer & WhatsApp
+      </button>
     </div>
+
   </div>
 </div>
 <section id="reviews">
-<h2 style="text-align:center">Avis de nos clients</h2>
+<h2 style="text-align:center"
+    data-fr="Avis de nos clients"
+    data-en="Customer Reviews">
+Avis de nos clients
+</h2>
 
 <div class="reviews-grid">
-  <div class="review-card">
+
+  <div class="review-card"
+       data-fr="⭐⭐⭐⭐⭐  “Chauffeur très ponctuel, voiture propre, service parfait.”  — Sarah, France 🇫🇷"
+       data-en="⭐⭐⭐⭐⭐  “Very punctual driver, clean car, perfect service.”  — Sarah, France 🇫🇷">
     ⭐⭐⭐⭐⭐  
     “Chauffeur très ponctuel, voiture propre, service parfait.”  
     <b>— Sarah, France 🇫🇷</b>
   </div>
 
-  <div class="review-card">
+  <div class="review-card"
+       data-fr="⭐⭐⭐⭐⭐  “Excursion Paradise Valley incroyable. Organisation top !”  — John, UK 🇬🇧"
+       data-en="⭐⭐⭐⭐⭐  “Amazing Paradise Valley excursion. Perfect organization!”  — John, UK 🇬🇧">
     ⭐⭐⭐⭐⭐  
     “Excursion Paradise Valley incroyable. Organisation top !”  
     <b>— John, UK 🇬🇧</b>
   </div>
 
-  <div class="review-card">
+  <div class="review-card"
+       data-fr="⭐⭐⭐⭐⭐  “Très bonne communication WhatsApp, je recommande.”  — Fatima, Maroc 🇲🇦"
+       data-en="⭐⭐⭐⭐⭐  “Great WhatsApp communication, highly recommended.”  — Fatima, Morocco 🇲🇦">
     ⭐⭐⭐⭐⭐  
     “Très bonne communication WhatsApp, je recommande.”  
     <b>— Fatima, Maroc 🇲🇦</b>
   </div>
+
 </div>
 </section>
 
