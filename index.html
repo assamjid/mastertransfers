@@ -870,26 +870,35 @@ header{
 #mainHeader nav a:hover{
   color:white !important;
 }
-  .booking-card{
+
+  /* ===================== */
+/* CARTE RÉSERVATION 2 COLONNES */
+/* ===================== */
+.booking-card{
   display:grid;
-  grid-template-columns:1.1fr 0.9fr;
-  gap:20px;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:25px;
   align-items:stretch;
 }
 
-.booking-photo{
-  border-radius:20px;
+.booking-card::after{
+  content:"";
+  border-radius:22px;
   background:url("./images/interville/Fond1.jpg") center/cover no-repeat;
+  box-shadow:0 15px 45px rgba(0,0,0,0.25);
 }
 
+/* Mobile */
 @media(max-width:800px){
   .booking-card{
     grid-template-columns:1fr;
   }
-  .booking-photo{
-    height:200px;
+  .booking-card::after{
+    height:220px;
   }
 }
+
+  
 </style>
 </head>
 
@@ -948,19 +957,18 @@ Services
 
 </section>
 
-
-
 <section id="booking">
 
 <h2 id="bookingTitle">Réservation</h2>
 <p id="bookingSubtitle"></p>
 
+  <div class="booking-card">
 
-<div class="booking-card">
-
-<form id="bookingForm"
+  <div class="booking-card">
+     <form id="bookingForm"
       action="https://formsubmit.co/mastertrip2030@gmail.com"
       method="POST">
+
 
 
 <div class="floating-field">
@@ -1275,13 +1283,11 @@ Services
 
 
 
-
-
 </form>
-
-
-<div class="booking-photo"></div>
 </div>
+</section>
+
+
 </section>
 
 
