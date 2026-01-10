@@ -2762,7 +2762,8 @@ if (email.value) {
   text += `📧 Email : ${email.value}\n`;
 }
 
-/* =============================
+
+  /* =============================
    DATE & HEURE
 ============================= */
 if (date.value) {
@@ -2770,9 +2771,11 @@ if (date.value) {
   text += `📅 Date : ${date.value}\n`;
 }
 
-if (heure.value) {
-  html += `<p><b>Heure :</b> ${escapeHTML(heure.value)}</p>`;
-  text += `⏰ Heure : ${heure.value}\n`;
+const heureFinale = fixedTime.value || heure.value;
+
+if (heureFinale) {
+  html += `<p><b>Heure :</b> ${escapeHTML(heureFinale)}</p>`;
+  text += `⏰ Heure : ${heureFinale}\n`;
 }
 
 /* =============================
