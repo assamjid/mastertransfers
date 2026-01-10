@@ -870,7 +870,26 @@ header{
 #mainHeader nav a:hover{
   color:white !important;
 }
-  
+  .booking-card{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:20px;
+  align-items:stretch;
+}
+
+.booking-photo{
+  border-radius:20px;
+  background:url("./images/interville/Fond1.jpg") center/cover no-repeat;
+}
+
+@media(max-width:800px){
+  .booking-card{
+    grid-template-columns:1fr;
+  }
+  .booking-photo{
+    height:200px;
+  }
+}
 </style>
 </head>
 
@@ -937,6 +956,7 @@ Services
 <p id="bookingSubtitle"></p>
 
 
+<div class="booking-card">
 
 <form id="bookingForm"
       action="https://formsubmit.co/mastertrip2030@gmail.com"
@@ -1258,6 +1278,10 @@ Services
 
 
 </form>
+
+
+<div class="booking-photo"></div>
+</div>
 </section>
 
 
