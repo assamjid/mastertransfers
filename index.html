@@ -795,15 +795,7 @@ header{
     margin-bottom:10px;
   }
 
-  #mainHeader nav{
-    width:100%;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);   /* 3 boutons */
-    gap:12px;
-    padding:0 12px;
-  }
-
-  #mainHeader nav a{
+    #mainHeader nav a{
     text-align:center;
     padding:12px 0;
     border-radius:16px;
@@ -815,10 +807,6 @@ header{
   @media (max-width:600px){
   #mainHeader{
     padding:8px 10px 14px;
-  }
-
-  #mainHeader nav{
-    gap:10px;
   }
 
   #mainHeader nav a{
@@ -1040,6 +1028,31 @@ header{
   cursor:pointer;
   border-radius:4px;
   box-shadow:0 0 4px rgba(0,0,0,.4);
+}
+
+  /* MENU MOBILE PREMIUM – 4 ÉLÉMENTS SUR UNE LIGNE */
+@media (max-width:600px){
+
+  #mainHeader nav{
+    display:flex !important;
+    flex-wrap:nowrap;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    padding:0 8px;
+  }
+
+  #mainHeader nav a{
+    font-size:12px;
+    padding:10px 12px;
+    border-radius:18px;
+    white-space:nowrap;
+  }
+
+  .lang-flag-single img{
+    width:24px;
+    height:16px;
+  }
 }
   
 </style>
