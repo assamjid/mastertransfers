@@ -3091,33 +3091,80 @@ function openInterville(trajetName){
   window.open("https://buy.stripe.com/xxxxxxxxx","_blank");
   }
 
-  const EN = {
+  <script>
+const LANG = {
+  fr:{
+    menu_services:"Services",
+    menu_booking:"Réservation",
+    menu_contact:"Contact",
 
-menu_services: "Services",
-menu_booking: "Booking",
-menu_contact: "Contact",
+    booking_title:"Réservation",
+    booking_sub_transfer:"Détails de votre transfert",
+    booking_sub_intercity:"Détails du transport interville",
+    booking_sub_excursion:"Détails du circuit / excursion",
 
-booking_title: "Book Your Transfer or Excursion",
-booking_sub_transfer: "Transfer details",
-booking_sub_intercity: "Intercity transport details",
-booking_sub_excursion: "Excursion details",
+    btn_reserve:"Réserver maintenant",
+    btn_pay:"Payer par carte",
 
-btn_reserve: "Book Now",
-btn_pay: "Pay by Card",
+    service_choose:"Choisir service",
+    service_transfer:"Transferts Aéroport & Privés",
+    service_intercity:"Transport Intervilles",
+    service_excursion:"Excursions & Circuits",
 
-service_choose: "Choose a service",
-service_transfer: "Airport & Private Transfers",
-service_intercity: "Intercity Transfers",
-service_excursion: "Excursions & Tours",
+    trust:`⭐⭐⭐⭐⭐ 4.9/5 basé sur 120+ clients satisfaits<br>
+🚐 Véhicules récents climatisés<br>
+👨‍✈️ Chauffeurs professionnels<br>
+⏱ Ponctualité garantie<br>
+🔒 Aucune carte bancaire demandée`
+  },
 
-trust: `
-⭐⭐⭐⭐⭐ 4.9/5 rated by 120+ satisfied clients<br>
+  en:{
+    menu_services:"Services",
+    menu_booking:"Booking",
+    menu_contact:"Contact",
+
+    booking_title:"Book Your Transfer or Excursion",
+    booking_sub_transfer:"Transfer details",
+    booking_sub_intercity:"Intercity transport details",
+    booking_sub_excursion:"Excursion details",
+
+    btn_reserve:"Book Now",
+    btn_pay:"Pay by Card",
+
+    service_choose:"Choose a service",
+    service_transfer:"Airport & Private Transfers",
+    service_intercity:"Intercity Transfers",
+    service_excursion:"Excursions & Tours",
+
+    trust:`⭐⭐⭐⭐⭐ 4.9/5 rated by 120+ satisfied clients<br>
 🚐 New air-conditioned vehicles<br>
 👨‍✈️ Professional drivers<br>
 ⏱ Punctuality guaranteed<br>
-🔒 No credit card required to book
-`
+🔒 No credit card required`
+  }
 };
+
+function setLang(lang){
+
+  localStorage.setItem("siteLang", lang);
+
+  const L = LANG[lang];
+
+  document.querySelector("nav a:nth-child(1)").innerText = L.menu_services;
+  document.querySelector("nav a:nth-child(2)").innerText = L.menu_booking;
+  document.querySelector("nav a:nth-child(3)").innerText = L.menu_contact;
+
+  document.getElementById("bookingTitle").innerText = L.booking_title;
+  document.getElementById("btnReserve").innerText = L.btn_reserve;
+  document.getElementById("btnPay").innerText = "💳 "+L.btn_pay;
+
+  document.querySelector(".trust-box").innerHTML = L.trust;
+}
+
+window.onload = ()=>{
+  setLang(localStorage.getItem("siteLang") || "fr");
+};
+</script>
 
 function setLang(lang){
 
