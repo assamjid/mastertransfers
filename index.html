@@ -898,6 +898,62 @@ header{
   opacity:.9;
 }
 
+    /* ================= MENU MASTERTRIP ================= */
+
+/* Barre de menu */
+.main-nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:nowrap;
+}
+
+/* Boutons du menu */
+#mainHeader nav a{
+  background:linear-gradient(135deg,#072e57,#001f3f);
+  color:#f1c40f;
+  padding:10px 20px;
+  border-radius:30px;
+  font-weight:900;
+  font-size:17px;
+  letter-spacing:1.2px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:0.3s;
+}
+
+/* Hover */
+#mainHeader nav a:hover{
+  background:#f1c40f;
+  color:#001f3f !important;
+}
+
+/* Drapeau langue */
+.lang-flag-single img{
+  width:32px;
+  height:22px;
+  cursor:pointer;
+  border-radius:4px;
+  margin:0 4px;
+  box-shadow:0 0 4px rgba(0,0,0,.4);
+  transition:.25s;
+}
+.lang-flag-single img:hover{transform:scale(1.2)}
+
+/* Mobile */
+@media (max-width:600px){
+  #mainHeader nav a{
+    font-size:15px;
+    padding:8px 14px;
+    letter-spacing:1px;
+  }
+  .lang-flag-single img{
+    width:26px;
+    height:18px;
+  }
+}
 
 
 
