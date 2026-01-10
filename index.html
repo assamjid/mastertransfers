@@ -1,722 +1,184 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MasterTripTransfers - Transport Touristique à Agadir</title>
-<meta name="description" content="MasterTripTransfers – Transport touristique à Agadir : transferts aéroport, transport inter-villes, excursions et circuits privés avec chauffeur professionnel.">
-
-
-<style>
-
+/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
-
+html{scroll-behavior:smooth}
 body{
   font-family:'Poppins',sans-serif;
-  
   color:#111;
+  background:url('https://images.unsplash.com/photo-1617946959277-49883ecf96b5?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size:cover;
 }
 
-header{
-  background:rgba(0,31,63,0.9);
+/* ===== HEADER ===== */
+#mainHeader{
+  background:rgba(0,31,63,.95);
   color:#fff;
-  padding:20px;
+  padding:18px 10px 20px;
   text-align:center;
   position:sticky;
   top:0;
   z-index:1000;
 }
-  
-section{
-  background:rgba(255,255,255,0.96);
-  max-width:800px;
-  margin:15px auto;     /* 🔼 presque collé */
-  padding:30px 20px;   /* 🔼 plus compact */
-  border-radius:18px;
-}
+#mainHeader h1{font-size:30px;margin-bottom:6px}
 
-
-#siteFooter{
-  background:linear-gradient(160deg,#001f3f,#003b6f);
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-  margin-top:40px;
-}
-
-.footer-content h3{
-  font-size:24px;
-  margin-bottom:6px;
-  color:#f1c40f;
-}
-
-.footer-content p{
-  margin:6px 0;
-  opacity:0.9;
-}
-
-.footer-contact{
-  margin:15px 0;
+/* ===== MENU ===== */
+#mainHeader nav{
   display:flex;
   justify-content:center;
-  gap:18px;
-  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
 }
-
-.footer-contact a{
-  color:white;
+#mainHeader nav a{
+  background:linear-gradient(135deg,#072e57,#001f3f);
+  color:#f1c40f;
+  padding:12px 22px;
+  border-radius:30px;
+  font-weight:900;
+  font-size:18px;
+  letter-spacing:1.3px;
   text-decoration:none;
-  font-weight:600;
-  background:rgba(255,255,255,0.1);
-  padding:8px 14px;
-  border-radius:20px;
-  transition:0.3s;
+  white-space:nowrap;
+  transition:.25s;
 }
-
-.footer-contact a:hover{
+#mainHeader nav a:hover{
   background:#f1c40f;
   color:#001f3f;
 }
 
-.footer-copy{
-  margin-top:20px;
-  font-size:13px;
-  opacity:0.7;
-}
-
-
-
-h2{color:#001f3f;margin-bottom:30px}
-
-.service-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
-}
-.service-card{
-  background:#001f3f;
-  color:#fff;
-  width:200px;
-  padding:20px;
-  border-radius:14px;
-}
-.service-card h3{color:#00aaff}
-
-form{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
-
-form input,
-form select,
-form textarea{
-  width:100%;
-  max-width:320px;
-height: 60px;   
-  padding:14px;
-  border-radius:12px;
-  border:2px solid #dde3ea;
-  background:#f9fbfc;
-  font-size:16px;
-}
-
-
-.phone-group{
-  display:flex;
-  width:100%;
-  max-width:320px;
-  gap:8px;
-}
-.phone-group select{
-  width:120px;
-  font-weight:600;
-  text-align:center;
-}
-.phone-group input{flex:1}
-
-button{
-  width:100%;
-  max-width:320px;
-  padding:15px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,#f39c12,#f1c40f);
-  color:#fff;
-  font-size:16px;
-  font-weight:600;
+/* ===== DRAPEAU LANGUE ===== */
+.lang-flag-single img{
+  width:32px;
+  height:22px;
   cursor:pointer;
+  border-radius:6px;
+  box-shadow:0 0 6px rgba(0,0,0,.45);
+  transition:.25s;
 }
-button:hover{transform:translateY(-2px)}
+.lang-flag-single img:hover{transform:scale(1.15)}
 
-#intervillesFields,
-#circuitsFields,
-#transferFields{
-  display:none;
-  width:100%;
-  max-width:320px;
-  flex-direction:column;
-  gap:8px;
-}
-
-
-
-#bookingTitle {
+/* ===== BARRE CONFIANCE ===== */
+.trust-top{
+  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  color:#001f3f;
   text-align:center;
-  font-size: 25px;
-  font-weight: 800;
-  color: #001f3f;
-  margin-top: 0px;
-margin-bottom:25px;
+  font-weight:700;
+  padding:12px 10px;
+  font-size:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
 }
 
+/* ===== SECTIONS ===== */
+section{
+  background:rgba(255,255,255,.97);
+  max-width:1100px;
+  margin:22px auto;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 14px 40px rgba(0,0,0,.25);
+}
 
+/* ===== GRIDS ===== */
+.service-grid,.exc-grid,.dest-grid,.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
 
-
-#bookingSubtitle {
+/* ===== CARTES ===== */
+.service-pro,.exc-card,.review-card{
+  background:white;
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
+  padding:20px;
   text-align:center;
-  font-size: 20px;
-  font-weight: 600;
-  color: #001f3f;
-  margin-top: -15px;
-margin-bottom:8px;
+  transition:.3s;
+}
+.service-pro:hover,.exc-card:hover,.review-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 20px 55px rgba(0,0,0,.35);
 }
 
-
-
-.floating-field {
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-}
-
-.floating-field input {
-  padding: 22px 14px 10px;
-}
-
-
-.floating-field label {
-  position: absolute;
-  top: 6px;
-  left: 14px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #001f3f;
-  pointer-events: none;
-}
-
-
-
-
-.floating-field textarea {
-  padding: 28px 14px 10px;
-  resize: none;
-}
-  
-
-
-.floating-field input[type="date"],
-.floating-field input[type="time"] {
-  padding: 26px 14px 10px;
-}
-
-#resumeBox h3 {
-  margin-bottom: 15px;
-  color: #001f3f;
-}
-
-#resumeContent p {
-  margin: 6px 0;
-}
-
-#resumeBox button {
-  flex: 1;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-#resumeCancel {
-  background: #ccc;
-}
-
-#resumeConfirm {
-  background: linear-gradient(135deg,#25D366,#1ebe57);
-  color: white;
-}
-
-/* OVERLAY */
-#resumeOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-#resumeOverlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* BOX */
-#resumeBox {
-  background: #fff;
-  width: 90%;
-  max-width: 420px;
-  padding: 25px;
-  border-radius: 16px;
-  font-size: 14px;
-
-  transform: translateY(30px) scale(0.95);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-#resumeOverlay.active #resumeBox {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-/* SELECT avec texte en bas */
-.floating-field select {
-  width: 100%;
-  padding: 26px 14px 8px;   /* ⬅️ plus d’espace en haut */
-  border-radius: 12px;
-  border: 2px solid #dde3ea;
-  background: #f9fbfc;
-  font-size: 16px;
-
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  
-}
-
-form select option {
-  font-size: 17px;
-}
-
-.excursions-section{
-  text-align:center;
-}
-.exc-sub{margin-bottom:30px;color:#444}
-
-.exc-grid{
-  justify-items: center;
-   display:grid;
-  grid-template-columns:repeat(2, 1fr);   /* 2 cartes par ligne */
-  gap:25px;
-}
-
-@media (max-width: 700px){
-  .exc-grid{
-    grid-template-columns:1fr;   /* 1 carte sur mobile */
-  }
-}
-
-.exc-card{
-  background:#fff;
-  border-radius:16px;
-  padding:15px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.18);
-  max-width:360px;
-  min-height:100px;
-  display:flex;
-  flex-direction:column;
-}
-
-
+/* ===== IMAGES EXCURSIONS ===== */
 .exc-card img{
   width:100%;
-  height:200px;
+  height:240px;
   object-fit:cover;
   border-radius:14px;
 }
 
-
-.exc-card h3{margin:12px 0;color:#001f3f}
-.exc-card ul{list-style:none;padding:0;font-size:14px}
-.exc-card li{margin:4px 0}
-.exc-card a{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 18px;
-  background:#f39c12;
-  color:#fff;
-  border-radius:10px;
-  font-weight:600;
-  text-decoration:none;
-}
-.exc-card a:hover{background:#e08e0b}
-
-.exc-card p{
-  font-size:15px;
-  line-height:1.6;
-}
-
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
-  margin-top:25px;
-}
-
-.service-pro{
-  background:linear-gradient(160deg,#001f3f,#003b6f);
-  color:white;
-  padding:28px;
-  border-radius:22px;
-  text-align:center;
-  transition:0.35s;
-  box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
-
-.service-pro:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 25px 60px rgba(0,0,0,0.35);
-}
-
-.service-pro h3{
-  margin:12px 0;
-  color:#00c3ff;
-  font-size:20px;
-}
-
-.service-pro p{
-  font-size:15px;
-  opacity:0.95;
-  margin-bottom:15px;
-}
-
-.service-pro a{
-  color:#f1c40f;
-  font-weight:700;
-  text-decoration:none;
-  font-size:15px;
-}
-
-.service-icon{
-  font-size:48px;
-}
-
-#services h2,
-#excursions h2{
-  text-align:center;
-  font-size:32px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.service-pro{
-  padding:18px 20px;     /* ⬅️ moins haut */
-}
-
-.service-pro p{
-  margin-bottom:10px;    /* ⬅️ espace réduit */
-}
-
-.service-pro h3{
-  margin:8px 0;          /* ⬅️ titre plus serré */
-}
-
-.service-pro:nth-child(3){
-  grid-column:1 / -1;
-  justify-self:center;
-}
-
-
-/* ==== FORMULAIRE PREMIUM ==== */
-#booking form{
-  background:linear-gradient(180deg,#ffffff,#f4f8fb);
-  padding:25px 15px;
-  border-radius:22px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.15);
-}
-
-.floating-field input,
-.floating-field select,
-.floating-field textarea{
-  border:2px solid #cfd9e2;
-  background:white;
-  transition:0.3s;
-}
-
-.floating-field input:focus,
-.floating-field select:focus,
-.floating-field textarea:focus{
-  border-color:#f39c12;
-  box-shadow:0 0 0 3px rgba(243,156,18,0.2);
-  outline:none;
-}
-
-button[type="submit"]{
-  background:linear-gradient(135deg,#ffb400,#ff8f00);
-  box-shadow:0 12px 30px rgba(255,143,0,0.4);
+/* ===== PRIX ===== */
+.price{
+  display:block;
+  margin:14px 0;
+  font-weight:900;
+  color:#f39c12;
   font-size:18px;
 }
 
-button[type="submit"]:hover{
-  transform:scale(1.04);
+/* ===== BOUTONS ===== */
+.btn,#booking button{
+  background:#f39c12;
+  color:#001f3f;
+  border:none;
+  border-radius:30px;
+  padding:12px 22px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+}
+.btn:hover,#booking button:hover{
+  background:#001f3f;
+  color:white;
 }
 
-
-
-
-/* ============================= */
-/* SLIDER – CADRES IDENTIQUES    */
-/* ============================= */
-.exc-slider.auto {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  display: flex;
-}
-
-.exc-slider.auto img {
-  min-width: 100%;
-  height: 200px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 14px;
-  flex-shrink: 0;
-}
-
-
-
-@media (max-width: 600px) {
-  .exc-slider.auto,
-  .exc-slider.auto img {
-    height: 180px;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    background-attachment: scroll;
-  }
-}
-
-
-
-#message {
-  height: 60px;
-  line-height: 1;
-  resize: vertical;
-}
-
-
-#excursionDetails{
-  background:#fff;
-  max-width:720px;   /* 👈 largeur premium */
-  margin:40px auto;
-  padding:28px 22px;
-  border-radius:22px;
-}
-
-
-.exc-detail{
-  margin-bottom:35px;
-}
-
-.exc-detail img{
+/* ===== FORMULAIRE RÉSERVATION ===== */
+#booking form{max-width:600px;margin:auto}
+.floating-field input,
+.floating-field select{
   width:100%;
-  max-height:500px;     /* ⬅️ plus immersif */
-  object-fit:cover;
-  border-radius:20px;
-  margin-bottom:16px;
-}
-
-.exc-detail h3{
-  color:#001f3f;
-  margin:10px 0;
-}
-
-
-.exc-detail{margin-bottom:40px;}
-.exc-detail h3{color:#001f3f;margin:12px 0;}
-
-
-/* AGRANDIR UNIQUEMENT LES SLIDERS DES FICHES DÉTAILLÉES */
-#excursionDetails .exc-slider.auto.slow,
-#excursionDetails .exc-slider.auto.slow img{
-  height:340px !important;
-}
-
-#excursionDetails .exc-slider.auto.slow img{
-  object-fit:cover;
-  border-radius:20px;
-}
-
-.contact-title{
-  text-align:center;
-  font-size:32px;
-  font-weight:900;
-  color:#001f3f;
-  letter-spacing:1px;
-  margin-bottom:25px;
-  position:relative;
-}
-
-.contact-title::after{
-  content:"";
-  display:block;
-  width:90px;
-  height:4px;
-  background:linear-gradient(90deg,#f39c12,#f1c40f);
-  margin:12px auto 0;
-  border-radius:10px;
-}
-
-
-header{
-  background:rgba(0,31,63,0.9);
-  color:#fff;
-  padding:22px 15px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-
-/* Conteneur interne centré */
-#mainHeader{
-  max-width:1100px;
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-/* Titre */
-#mainHeader h1{
-  font-size:30px;
-  letter-spacing:1px;
-  margin-bottom:8px;
-  text-align:center;
-}
-
-.exc-transport{
-  background:linear-gradient(120deg,#f4f8fb,#ffffff);
-  border-left:5px solid #f39c12;
-  padding:16px 18px;
-  border-radius:14px;
-  margin-top:18px;
-  font-size:14px;
-  color:#001f3f;
-  box-shadow:0 6px 16px rgba(0,0,0,0.08);
-}
-
-
-/* TEXTE PREMIUM FICHES DÉTAILLÉES */
-#excursionDetails .exc-detail h3{
-  font-size:26px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #ccc;
   margin-bottom:14px;
-  letter-spacing:0.5px;
 }
 
-#excursionDetails .exc-detail p{
-  font-size:17px;
-  line-height:1.85;
+/* ===== TÉLÉPHONE ===== */
+.phone-group{
+  display:flex;
+  gap:10px;
+}
+.phone-group select,
+.phone-group input{
+  flex:1;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #ccc;
 }
 
-#excursionDetails .exc-transport{
-  font-size:15px;
-  line-height:1.6;
-}
-
-/* TEXTE PREMIUM CARTES EXCURSIONS */
-.exc-card h3{
-  font-size:20px;
-  margin-top:14px;
-  margin-bottom:10px;
-  letter-spacing:0.4px;
-}
-
-.exc-card p{
-  font-size:16px;
-  line-height:1.7;
-}
-
-.exc-card ul{
-  font-size:15px;
-}
-
-.exc-card .price{
-  display:block;
-  margin-top:10px;
-  font-size:17px;
-  font-weight:700;
-  color:#f39c12;
-}
-
-/* TEXTE PREMIUM CARTES SERVICES */
-.service-pro h3{
-  font-size:22px;
-  letter-spacing:0.5px;
-}
-
-.service-pro p{
-  font-size:16px;
-  line-height:1.7;
-}
-
-.service-pro a{
-  font-size:16px;
-}
-
-
-.dest-title{
-  text-align:center;
-  font-size:32px;
-  font-weight:900;
-  color:#001f3f;
-  margin-bottom:10px;
-}
-.dest-sub{
-  text-align:center;
-  max-width:700px;
-  margin:0 auto 30px;
-  color:#555;
-}
-
-.dest-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
-.dest-card{
-  height:80px;   /* ⬅️ plus compact */
+/* ===== SLIDERS EXCURSIONS ===== */
+.exc-slider{
   border-radius:18px;
-  background-size:cover;
-  background-position:center;
-  position:relative;
-  text-decoration:none;
   overflow:hidden;
-  box-shadow:0 12px 35px rgba(0,0,0,0.25);
-  transition:.35s;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+.exc-slider img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
 }
 
-
-.dest-card:hover{
-  transform:scale(1.04);
+/* ===== DESTINATIONS ===== */
+.dest-card{
+  height:220px;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 12px 30px rgba(0,0,0,.3);
 }
-
 .dest-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(120deg,rgba(0,0,0,.6),rgba(0,0,0,.2));
+  background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.1));
   color:white;
   display:flex;
   flex-direction:column;
@@ -724,314 +186,56 @@ header{
   padding:16px;
 }
 
-.dest-overlay span{
-  font-size:17px;
-  font-weight:700;
-}
-
-.dest-overlay b{
-  color:#f1c40f;
-  font-size:16px;
-}
-
-.dest-card{
-  filter:brightness(0.95) saturate(1.1);
-}
-
-.dest-card:hover{
-  filter:brightness(1.1) saturate(1.2);
-}
-
-@media (max-width:600px){
-
-  #mainHeader{
-    padding:12px 12px 16px;
-  }
-
-  #mainHeader h1{
-    font-size:24px;
-    margin-bottom:10px;
-  }
-
-    
-}
-  @media (max-width:600px){
-  #mainHeader{
-    padding:8px 10px 14px;
-  }
-
-
-
-  /* Boutons excursions – largeur réduite */
-.exc-card .btn{
-  display:inline-block;
-  width:auto;                 /* ⬅️ plus plein écran */
-  min-width:140px;            /* largeur élégante */
+/* ===== FOOTER ===== */
+#siteFooter{
+  background:#001f3f;
+  color:white;
+  padding:40px 20px;
   text-align:center;
 }
-  
-  @media (max-width:600px){
-  #mainHeader nav a{
-    font-size:15px;
-    letter-spacing:1.2px;
-  }
-  }
-  
-.exc-slider{
-  cursor:pointer;
+.footer-contact{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
-  /* Couleur du menu comme le footer */
-
-
-#mainHeader nav a:hover{
-  color:white !important;
-}
-
-  /* TITRE + MENU EN OR PREMIUM */
-#mainHeader h1,
-
-
-#mainHeader nav a:hover{
-  color:white !important;
-}
-
-.trust-box{
-  margin-top:22px;
-  background:linear-gradient(120deg,#f4f8fb,#ffffff);
-  border-left:5px solid #f39c12;
-  padding:16px 18px;
-  border-radius:14px;
-  font-size:14px;
-  color:#001f3f;
-  box-shadow:0 6px 16px rgba(0,0,0,0.08);
-  text-align:left;
-}
-.trust-box div{margin:6px 0;}
-
-  .reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:22px;
-}
-.review-card{
-  background:white;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:0 12px 35px rgba(0,0,0,0.18);
-  font-size:15px;
-  line-height:1.6;
-  color:#001f3f;
-}
-.review-card b{display:block;margin-top:10px;color:#f39c12}
-
-.trust-top{
-  background:linear-gradient(135deg,#f39c12,#f1c40f);
-  color:#001f3f;
-  text-align:center;
-  font-weight:700;
-  padding:10px;
-  font-size:14px;
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:#25d366;
+  border-radius:50%;
+  padding:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  z-index:2000;
 }
 .wa-label{
   position:fixed;
-  bottom:90px;
-  right:22px;
-  background:#25D366;
+  bottom:70px;
+  right:18px;
+  background:#25d366;
   color:white;
-  padding:8px 12px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:600;
-}
-
-.hero-h1{
-  margin-top:6px;
-  font-size:16px;
-  font-weight:600;
-  color:#f1c40f;
-  opacity:0.95;
-  text-align:center;
-  letter-spacing:0.5px;
-}
-@media(max-width:600px){
-  .hero-h1{
-    font-size:14px;
-  }
-}
-
-  .local-badge{
-  margin-top:4px;
-  font-size:13px;
-  font-weight:700;
-  color:#25D366;
-  background:rgba(37,211,102,0.12);
-  padding:4px 12px;
-  border-radius:30px;
-  display:inline-block;
-  letter-spacing:0.3px;
-}
-@media(max-width:600px){
-  .local-badge{font-size:12px;}
-}
-
-  #btnPay{
-  width:100%;
-  max-width:320px;
-  margin-top:10px;
-  padding:15px;
-  border:none;
+  padding:6px 12px;
   border-radius:14px;
-  background:linear-gradient(135deg,#1abc9c,#16a085);
-  color:white;
-  font-size:17px;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 10px 30px rgba(22,160,133,.4);
-}
-
-#btnPay:hover{transform:scale(1.05)}
-
-  button[type="submit"]::after{
-  content:" • Paiement plus tard ou par WhatsApp";
   font-size:13px;
-  opacity:.9;
+  z-index:2000;
 }
 
-    /* ================= MENU MASTERTRIP ================= */
-
-/* Barre de menu */
-.main-nav{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  margin-top:12px;
-  flex-wrap:nowrap;
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  #mainHeader nav a{font-size:16px;padding:10px 16px}
+  .exc-card img{height:220px}
 }
-
-/* Boutons du menu */
-#mainHeader nav a{
-  background:linear-gradient(135deg,#072e57,#001f3f);
-  color:#f1c40f;
-  padding:10px 20px;
-  border-radius:30px;
-  font-weight:900;
-  font-size:17px;
-  letter-spacing:1.2px;
-  text-decoration:none;
-  white-space:nowrap;
-  transition:0.3s;
-}
-
-/* Hover */
-#mainHeader nav a:hover{
-  background:#f1c40f;
-  color:#001f3f !important;
-}
-
-/* Drapeau langue */
-.lang-flag-single img{
-  width:32px;
-  height:22px;
-  cursor:pointer;
-  border-radius:4px;
-  margin:0 4px;
-  box-shadow:0 0 4px rgba(0,0,0,.4);
-  transition:.25s;
-}
-.lang-flag-single img:hover{transform:scale(1.2)}
-
-/* Mobile */
-@media (max-width:600px){
-  #mainHeader nav a{
-    font-size:15px;
-    padding:8px 14px;
-    letter-spacing:1px;
-  }
-  .lang-flag-single img{
-    width:26px;
-    height:18px;
-  }
-}
-
-@media (max-width:900px){
-  #mainHeader nav{
-    gap:6px;
-  }
-
-  #mainHeader nav a{
-    font-size:14px;
-    padding:8px 12px;
-    border-radius:22px;
-  }
-
-  .lang-flag-single img{
-    width:22px;
-    height:15px;
-  }
-}
-
-/* ================= TABLETTE ANDROID FIX ================= */
-@media (min-width:601px) and (max-width:1024px){
-
-/* MENU */
-#mainHeader nav{
-  gap:12px;
-}
-#mainHeader nav a{
-  font-size:17px;
-  padding:10px 18px;
-}
-
-/* TITRES */
-#services h2,
-#excursions h2,
-.dest-title,
-.contact-title{
-  font-size:30px;
-}
-
-/* CARTES SERVICES */
-.service-grid{
-  grid-template-columns:repeat(2,1fr);
-}
-.service-pro{
-  padding:24px;
-}
-
-/* CARTES EXCURSIONS */
-.exc-grid{
-  grid-template-columns:repeat(2,1fr);
-}
-.exc-card img{
-  height:230px;
-}
-
-/* FORMULAIRE */
-#booking form{
-  max-width:700px;
-}
-.floating-field,
-.phone-group{
-  max-width:100%;
-}
-
-/* DESTINATIONS */
-.dest-grid{
-  grid-template-columns:repeat(2,1fr);
-}
-
-/* FOOTER */
-.footer-contact{
-  gap:14px;
-}
+@media(max-width:600px){
+  #mainHeader nav a{font-size:14px;padding:8px 12px}
+  .lang-flag-single img{width:26px;height:18px}
+  section{padding:20px}
+  .dest-card{height:200px}
 }
 
 
 
-  
-</style>
 </head>
 
 <body>
