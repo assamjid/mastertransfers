@@ -3179,6 +3179,9 @@ function setLang(lang){
   if(service.value === "Excursions & Circuits Touristiques") bookingSubtitle.textContent = L.subtitle_excursion;
   }
 
+  window.onload = ()=>{
+  setLang("FR");
+};
 
 
 </script>
@@ -3218,11 +3221,6 @@ function setLang(lang){
   50%{transform:scale(1.1)}
   100%{transform:scale(1)}
 }
-
-window.onload = ()=>{
-  setLang("FR");
-};
-  
 
 </style>
 
