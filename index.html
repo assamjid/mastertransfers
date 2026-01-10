@@ -3309,79 +3309,39 @@ EN:{
 /* =====================================================
    APPLIQUER LANGUE
 ===================================================== */
-function translateSelects(lang){
-  const key = lang.toLowerCase();
-  document.querySelectorAll("select option[data-fr][data-en]").forEach(opt=>{
-    opt.textContent = opt.dataset[key];
-  });
-}
-  function translateTexts(lang){
-  const key = lang.toLowerCase();
-  document.querySelectorAll("[data-fr][data-en]").forEach(el=>{
-    el.textContent = el.dataset[key];
-  });
-  }
-  
-  function setLang(lang){
-  localStorage.setItem("lang", lang); // ✅ AJOUT OBLIGATOIRE
-  document.documentElement.lang = lang === "EN" ? "en" : "fr"; // bonus SEO
-  const L = LANG[lang];
+function setLang(lang){
+  localStorage.setItem("lang", lang);
+  document.documentElement.lang = lang === "EN" ? "en" : "fr";
 
-  if(service) service.options[0].textContent = L.service_choose;
-  if(transferType) transferType.options[0].textContent = L.transfer_choose;
-  if(trajet) trajet.options[0].textContent = L.intercity_choose;
-  if(circuit) circuit.options[0].textContent = L.excursion_choose;
-  if(places) places.options[0].textContent = L.places_choose;
-  if(circuitPlaces) circuitPlaces.options[0].textContent = L.places_choose;
+  // Traduction globale
+  translateTexts(lang);
+  translateSelects(lang);
 
-  const map = {
-    depart: L.pickup,
-    arrivee: L.dropoff,
-    flightNumber: L.flight,
-    date: L.date,
-    heure: L.time,
-    fixedTime: L.fixedtime,
-    nom: L.name,
-    email: L.email,
-    message: L.note,
-    tel: L.phone
-    };
-  // Label Prix (€)
-const priceLabels = document.querySelectorAll(
-  "input[readonly] + label"
-);
-priceLabels.forEach(l=>{
-  l.innerText = lang === "EN" ? "Price (€)" : "Prix (€)";
-});
+  // Boutons
+  document.getElementById("btnReserve").innerText =
+    lang === "EN" ? "Book Now" : "Réserver maintenant";
 
-  Object.keys(map).forEach(id=>{
-    const label = document.querySelector(`label[for='${id}']`);
-    if(label) label.innerText = map[id];
+  document.getElementById("btnPay").innerText =
+    lang === "EN" ? "💳 Pay by Card" : "💳 Payer par carte";
+
+  // Labels Prix
+  document.querySelectorAll("input[readonly] + label").forEach(l=>{
+    l.innerText = lang === "EN" ? "Price (€)" : "Prix (€)";
   });
 
-  document.getElementById("btnReserve").innerText = L.reserve;
-  document.getElementById("btnPay").innerText = L.pay;
-
+  // Sous-titre formulaire
   if(service.value === "Transferts Aéroport & Privés")
-    bookingSubtitle.textContent = L.subtitle_transfer;
+    bookingSubtitle.textContent =
+      lang === "EN" ? "Transfer details" : "Détails de votre transfert";
 
   if(service.value === "Transferts Inter-Villes Maroc")
-    bookingSubtitle.textContent = L.subtitle_intercity;
+    bookingSubtitle.textContent =
+      lang === "EN" ? "Intercity transfer details" : "Détails du transport interville";
 
   if(service.value === "Excursions & Circuits Touristiques")
-    bookingSubtitle.textContent = L.subtitle_excursion;
-
-    translateSelects(lang);
-    translateTexts(lang);
+    bookingSubtitle.textContent =
+      lang === "EN" ? "Excursion details" : "Détails de votre excursion";
 }
-  
-window.onload = ()=>{
-  const saved = localStorage.getItem("lang") || "FR";
-  setLang(saved);
-  updateCircuitPlaces();
-};
-
-
   
 
   
