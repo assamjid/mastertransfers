@@ -1143,8 +1143,7 @@ Services
 
 <div class="floating-field" id="flightField">
 <input id="flightNumber" name="" placeholder="Ex: FR456">
-  
-  <label>Numéro de vol</label>
+  <label for="flightNumber">Numéro de vol</label>
 </div>
 
   
@@ -3148,36 +3147,45 @@ EN:{
 /* =====================================================
    APPLIQUER LANGUE
 ===================================================== */
-
 function setLang(lang){
-
   const L = LANG[lang];
 
-  service.options[0].textContent = L.service_choose;
-  transferType.options[0].textContent = L.transfer_choose;
-  trajet.options[0].textContent = L.intercity_choose;
-  circuit.options[0].textContent = L.excursion_choose;
-  places.options[0].textContent = L.places_choose;
-  circuitPlaces.options[0].textContent = L.places_choose;
+  if(service) service.options[0].textContent = L.service_choose;
+  if(transferType) transferType.options[0].textContent = L.transfer_choose;
+  if(trajet) trajet.options[0].textContent = L.intercity_choose;
+  if(circuit) circuit.options[0].textContent = L.excursion_choose;
+  if(places) places.options[0].textContent = L.places_choose;
+  if(circuitPlaces) circuitPlaces.options[0].textContent = L.places_choose;
 
-  document.querySelector("label[for='depart']").innerText = L.pickup;
-  document.querySelector("label[for='arrivee']").innerText = L.dropoff;
-  document.querySelector("label[for='flightNumber']").innerText = L.flight;
-  document.querySelector("label[for='date']").innerText = L.date;
-  document.querySelector("label[for='heure']").innerText = L.time;
-  document.querySelector("label[for='fixedTime']").innerText = L.fixedtime;
-  document.querySelector("label[for='nom']").innerText = L.name;
-  document.querySelector("label[for='email']").innerText = L.email;
-  document.querySelector("label[for='message']").innerText = L.note;
+  const map = {
+    depart: L.pickup,
+    arrivee: L.dropoff,
+    flightNumber: L.flight,
+    date: L.date,
+    heure: L.time,
+    fixedTime: L.fixedtime,
+    nom: L.name,
+    email: L.email,
+    message: L.note
+  };
+
+  Object.keys(map).forEach(id=>{
+    const label = document.querySelector(`label[for='${id}']`);
+    if(label) label.innerText = map[id];
+  });
 
   document.getElementById("btnReserve").innerText = L.reserve;
   document.getElementById("btnPay").innerText = L.pay;
 
-  // Sous-titre dynamique
-  if(service.value === "Transferts Aéroport & Privés") bookingSubtitle.textContent = L.subtitle_transfer;
-  if(service.value === "Transferts Inter-Villes Maroc") bookingSubtitle.textContent = L.subtitle_intercity;
-  if(service.value === "Excursions & Circuits Touristiques") bookingSubtitle.textContent = L.subtitle_excursion;
-  }
+  if(service.value === "Transferts Aéroport & Privés")
+    bookingSubtitle.textContent = L.subtitle_transfer;
+
+  if(service.value === "Transferts Inter-Villes Maroc")
+    bookingSubtitle.textContent = L.subtitle_intercity;
+
+  if(service.value === "Excursions & Circuits Touristiques")
+    bookingSubtitle.textContent = L.subtitle_excursion;
+}
 
   window.onload = ()=>{
   setLang("FR");
