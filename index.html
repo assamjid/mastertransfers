@@ -3293,9 +3293,15 @@ function setLang(lang){
     nom: L.name,
     email: L.email,
     message: L.note,
-    tel: L.phone,
-    transferPrix.previousElementSibling.innerText = lang==="EN"?"Price (€)":"Prix (€)";
-  };
+    tel: L.phone
+    };
+  // Label Prix (€)
+const priceLabels = document.querySelectorAll(
+  "input[readonly] + label"
+);
+priceLabels.forEach(l=>{
+  l.innerText = lang === "EN" ? "Price (€)" : "Prix (€)";
+});
 
   Object.keys(map).forEach(id=>{
     const label = document.querySelector(`label[for='${id}']`);
@@ -3313,11 +3319,15 @@ function setLang(lang){
 
   if(service.value === "Excursions & Circuits Touristiques")
     bookingSubtitle.textContent = L.subtitle_excursion;
-}
+
   translateSelects(lang);
+}
+  
 
   window.onload = ()=>{
   setLang("FR");
+  updateCircuitPlaces(); // sécurité
+};
 };
 
   
