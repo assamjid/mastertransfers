@@ -884,6 +884,36 @@ header{
 }
 .trust-box div{margin:6px 0;}
 
+  .reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+.review-card{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,0.18);
+  font-size:15px;
+  line-height:1.6;
+  color:#001f3f;
+}
+.review-card b{display:block;margin-top:10px;color:#f39c12}
+
+#langSwitch{
+  position:absolute;
+  top:16px;
+  right:20px;
+}
+#langSwitch button{
+  background:#f1c40f;
+  border:none;
+  border-radius:8px;
+  padding:6px 10px;
+  margin-left:6px;
+  font-weight:700;
+  cursor:pointer;
+}
   
 </style>
 </head>
@@ -908,7 +938,10 @@ Services
 <a href="#siteFooter">Contact</a>
 
 </nav>
-
+<div id="langSwitch">
+  <button onclick="setLang('fr')">FR</button>
+  <button onclick="setLang('en')">EN</button>
+</div>
 
 </header>
 
