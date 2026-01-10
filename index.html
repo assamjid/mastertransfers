@@ -3305,6 +3305,13 @@ EN:{
 }
 
 };
+  function translateTexts(lang){
+  document.querySelectorAll("[data-fr]").forEach(el=>{
+    el.textContent = (lang === "EN" && el.dataset.en)
+      ? el.dataset.en
+      : el.dataset.fr;
+  });
+}
 
 /* =====================================================
    APPLIQUER LANGUE
@@ -3313,39 +3320,52 @@ function setLang(lang){
   localStorage.setItem("lang", lang);
   document.documentElement.lang = lang === "EN" ? "en" : "fr";
 
-  // Traduction globale
+  // Textes simples (h2, p, span, etc.)
   translateTexts(lang);
+
+  // Selects & options
   translateSelects(lang);
 
   // Boutons
-  document.getElementById("btnReserve").innerText =
-    lang === "EN" ? "Book Now" : "Réserver maintenant";
-
-  document.getElementById("btnPay").innerText =
-    lang === "EN" ? "💳 Pay by Card" : "💳 Payer par carte";
-
-  // Labels Prix
-  document.querySelectorAll("input[readonly] + label").forEach(l=>{
-    l.innerText = lang === "EN" ? "Price (€)" : "Prix (€)";
-  });
+  document.getElementById("btnReserve").innerText = LANG[lang].reserve;
+  document.getElementById("btnPay").innerText = LANG[lang].pay;
 
   // Sous-titre formulaire
-  if(service.value === "Transferts Aéroport & Privés")
-    bookingSubtitle.textContent =
-      lang === "EN" ? "Transfer details" : "Détails de votre transfert";
+  if(service.value === "Transferts Aéroport & Privés"){
+    bookingSubtitle.textContent = LANG[lang].subtitle_transfer;
+  }
 
-  if(service.value === "Transferts Inter-Villes Maroc")
-    bookingSubtitle.textContent =
-      lang === "EN" ? "Intercity transfer details" : "Détails du transport interville";
+  if(service.value === "Transferts Inter-Villes Maroc"){
+    bookingSubtitle.textContent = LANG[lang].subtitle_intercity;
+  }
 
-  if(service.value === "Excursions & Circuits Touristiques")
-    bookingSubtitle.textContent =
-      lang === "EN" ? "Excursion details" : "Détails de votre excursion";
-}
+  if(service.value === "Excursions & Circuits Touristiques"){
+    bookingSubtitle.textContent = LANG[lang].subtitle_excursion;
+  }
+
+  // Labels Prix
+  document.querySelectorAll("input[readonly] + label").forEach(label=>{
+    label.textContent = lang === "EN" ? "Price (€)" : "Prix (€)";
+  });
+
+
+    function translateSelects(lang){
+  document.querySelectorAll("select").forEach(select=>{
+    select.querySelectorAll("option").forEach(option=>{
+      if(lang === "EN" && option.dataset.en){
+        option.textContent = option.dataset.en;
+      }
+      if(lang === "FR" && option.dataset.fr){
+        option.textContent = option.dataset.fr;
+      }
+    });
+  });
+  }
   
-
-  
-
+document.addEventListener("DOMContentLoaded", ()=>{
+  const lang = localStorage.getItem("lang") || "FR";
+  setLang(lang);
+});
 
 </script>
 
