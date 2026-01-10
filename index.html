@@ -1027,40 +1027,26 @@ header{
   Transferts & Excursions à Agadir – MasterTripTransfers
 </p>
 
-  <nav>
+  <nav class="main-nav">
 
-<a href="javascript:void(0)"
-   onclick="
-const header=document.getElementById('mainHeader');
+  <a href="javascript:void(0)" onclick="
+const h=document.getElementById('mainHeader');
 const s=document.getElementById('services');
-window.scrollTo({top:s.offsetTop-header.offsetHeight-10,behavior:'smooth'});
-"
-data-fr="Services"
-data-en="Services">
-Services
-</a>
+window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
+" data-fr="Services" data-en="Services">Services</a>
 
-<a href="javascript:void(0)"
-   onclick="fixBookingScroll()"
-   data-fr="Réservation"
-   data-en="Booking">
-Réservation
-</a>
+  <a href="javascript:void(0)" onclick="fixBookingScroll()"
+     data-fr="Réservation" data-en="Booking">Réservation</a>
 
-    <span class="lang-flag-single">
-  <img id="langFlagBtn"
-       src="https://flagcdn.com/w40/gb.png"
-       onclick="toggleLang()"
-       title="Switch language">
-    </span>
-    
-<a href="#siteFooter"
-   data-fr="Contact"
-   data-en="Contact">
-Contact
-</a>
+  <span class="lang-flag-single">
+    <img id="langFlagBtn"
+         src="https://flagcdn.com/w40/gb.png"
+         onclick="toggleLang()">
+  </span>
 
-  </nav>
+  <a href="#siteFooter" data-fr="Contact" data-en="Contact">Contact</a>
+
+</nav>
   
 </header>
   
