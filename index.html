@@ -1258,7 +1258,7 @@ Services
 
 <div class="floating-field">
 <input type="text" id="prix" name="" placeholder="0,00€" readonly>
-<label>Prix (€)</label>
+<label for="prix">Prix (€)</label>
 </div>
 
 </div>
@@ -1364,16 +1364,7 @@ Services
 
 
 <div class="floating-field">
-<select id="circuitPlaces" name="" required>
-<option value="">Nombre de places</option>
-<option value="5">5 et moins</option>
-<option value="6">6</option><option value="7">7</option>
-<option value="8">8</option><option value="9">9</option>
-<option value="10">10</option><option value="11">11</option>
-<option value="12">12</option><option value="13">13</option>
-<option value="14">14</option><option value="15">15</option>
-    
-  </select>
+
   <label for="circuitPlaces">Places</label>
 </div>
 
@@ -1381,7 +1372,7 @@ Services
 
 <div class="floating-field">
 <input type="text" id="circuitPrix" name="" placeholder="0,00€" readonly>
-  <label>Prix (€)</label>
+  <label for="circuitPrix">Prix (€)</label>
 </div>
 
 </div>
@@ -3272,7 +3263,16 @@ EN:{
 /* =====================================================
    APPLIQUER LANGUE
 ===================================================== */
-function setLang(lang){
+function translateSelects(lang){
+  document.querySelectorAll("select option").forEach(opt=>{
+    const key = lang.toLowerCase();
+    if(opt.dataset[key]){
+      opt.textContent = opt.dataset[key];
+    }
+  });
+}
+  
+  function setLang(lang){
   const L = LANG[lang];
 
   if(service) service.options[0].textContent = L.service_choose;
@@ -3327,17 +3327,9 @@ priceLabels.forEach(l=>{
   setLang("FR");
   updateCircuitPlaces(); // sécurité
 };
-};
 
   
-function translateSelects(lang){
-  document.querySelectorAll("select option").forEach(opt=>{
-    const key = lang.toLowerCase();
-    if(opt.dataset[key]){
-      opt.textContent = opt.dataset[key];
-    }
-  });
-}
+
 
 </script>
 
