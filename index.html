@@ -2948,23 +2948,10 @@ function escapeHTML(str) {
     .replace(/"/g, "&quot;");
 }
 
+
 /* =====================================================
-   SOUMISSION – RÉSUMÉ & WHATSAPP
+   SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
-
-btnConfirm.addEventListener("click", () => {
-
-  btnConfirm.disabled = true;
-
-  // 🔑 ESSENTIEL
-  disableUnusedFields();
-
-
-bookingForm.submit();
-setTimeout(()=>{
- window.open("https://wa.me/212691059759?text="+encodeURIComponent(whatsappMessage),"_blank");
-},600);
-});
 
 bookingForm.addEventListener("submit", e => {
   e.preventDefault();
@@ -2974,21 +2961,56 @@ bookingForm.addEventListener("submit", e => {
     return;
   }
 
-// Validation Quad
-if (circuit.value === "Safari Quad / Buggy" && !quadType.value) {
-  alert("Veuillez choisir le type de véhicule (Quad ou Buggy).");
-  return;
-}
+  // Validation Quad
+  if (circuit.value === "Safari Quad / Buggy" && !quadType.value) {
+    alert("Veuillez choisir le type de véhicule (Quad ou Buggy).");
+    return;
+  }
 
-// Validation Chameau
-if (circuit.value === "Chameau" && !camelType.value) {
-  alert("Veuillez choisir le type de promenade à dos de chameau.");
-  return;
-}
+  // Validation Chameau
+  if (circuit.value === "Chameau" && !camelType.value) {
+    alert("Veuillez choisir le type de promenade à dos de chameau.");
+    return;
+  }
+
+  let priceToSend = "";
+  if (service.value === "Transferts Aéroport & Privés") priceToSend = transferPrix.value;
+  if (service.value === "Transferts Inter-Villes Maroc") priceToSend = prix.value;
+  if (service.value === "Excursions & Circuits Touristiques") priceToSend = circuitPrix.value;
+
+  document.getElementById("finalPrice").value = priceToSend || "Sur devis";
+
+  let html = `<p><b>Nom :</b> ${nom.value}</p>
+<p><b>Téléphone :</b> +${countryCode.value} ${tel.value}</p>
+<p><b>Email :</b> ${email.value}</p>
+<p><b>Service :</b> ${service.value}</p>
+<p><b>Prix :</b> ${priceToSend}</p>`;
+
+  whatsappMessage =
+`Nouvelle réservation MasterTripTransfers
+Nom: ${nom.value}
+Téléphone: +${countryCode.value}${tel.value}
+Email: ${email.value}
+Service: ${service.value}
+Prix: ${priceToSend}`;
+
+  openResume(html, whatsappMessage);
+});
+
+  btnConfirm.addEventListener("click", () => {
+  disableUnusedFields();                 // active uniquement les bons champs
+  bookingForm.submit();                  // ENVOIE L’EMAIL
+  setTimeout(() => {
+    window.open(
+      "https://wa.me/212691059759?text=" + encodeURIComponent(whatsappMessage),
+      "_blank"
+    );
+  }, 500);
+});
 
   /* =============================
      GESTION PRIX UNIQUE EMAIL
-  ============================= */
+  ============================= 
   let priceToSend = "";
 
   if (service.value === "Transferts Aéroport & Privés") {
@@ -3010,7 +3032,7 @@ if (circuit.value === "Chameau" && !camelType.value) {
   // On vide les autres prix pour l’email
   transferPrix.name = "";
   prix.name = "";
-  circuitPrix.name = "";
+  circuitPrix.name = "";*/
 
   /* =============================
      RÉCAP & WHATSAPP (TON CODE)
