@@ -2480,6 +2480,7 @@ if (btnCancel) {
     document.getElementById("finalPrice"),
     document.getElementById("emailMessage")
     ].forEach(el => el && (el.disabled = false));
+    document.getElementById("btnReserve").disabled = false;
 
   // 🚐 TRANSFERTS AÉROPORT & PRIVÉS
   if (service.value === "airport") {
