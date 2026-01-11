@@ -2963,9 +2963,9 @@ bookingForm.addEventListener("submit", function(e){
 const msg =
 `📩 *NOUVELLE RÉSERVATION MASTERTRIPTRANSFERS*
 
-👤 Nom : ${nom.value}
-📞 Téléphone : +${countryCode.value}${tel.value}
-📧 Email : ${email.value}
+👤 *Nom* : *${nom.value}*
+📞 *Téléphone* : +${countryCode.value}${tel.value}
+📧 *Email* : ${email.value}
 
 🛎️ *Service* : ${service.options[service.selectedIndex].text}
 🚘 *Type* : ${type}
@@ -2973,8 +2973,7 @@ ${service.value === "excursion" ? `🎯 *Choix* : ${choix}\n` : ""}📍 *Lieu d�
 🏁 *Destination* : ${destTxt}
 👥 *Places* : ${placesTxt}
 
-📝 *Message client* :
-${message.value || "-"}
+📝 *Message client* :${message.value || "-"}
 
 💰 *Prix total* : ${document.getElementById("finalPrice").value || "-"}`;
   
