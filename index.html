@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2585,8 +2585,7 @@ transferType.addEventListener("change", () => {
     transferType.value.includes("Airport")
   ) {
     flightField.style.display = "block";
-    flightNumber.required = true;
-  }
+    }
 
   /* ===============================
      AUTO-REMPLISSAGE AÉROPORT AGADIR
@@ -2922,40 +2921,98 @@ function escapeHTML(str) {
 /* =====================================================
    SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
-bookingForm.addEventListener("submit", function(e){
+bookingForm.addEventListener("submit", e => {
+e.preventDefault();
 
-  e.preventDefault(); // ⬅️ IMPORTANT
+if (!bookingForm.checkValidity()) {
+bookingForm.reportValidity();
+return;
+}
 
-  let price="";
-  if(service.value==="airport") price=transferPrix.value;
-  if(service.value==="intercity") price=prix.value;
-  if(service.value==="excursion") price=circuitPrix.value;
+/* =============================
+GESTION PRIX UNIQUE EMAIL
+============================= */
+let priceToSend = "";
 
-  document.getElementById("finalPrice").value = price;
+if (service.value === "Transferts Aéroport & Privés") {
+priceToSend = transferPrix.value;
+}
 
-  const msg = `
-SERVICE: ${service.options[service.selectedIndex].text}
-DATE: ${date.value}
-TIME: ${fixedTime.value || heure.value}
-NAME: ${nom.value}
-PHONE: +${countryCode.value}${tel.value}
-EMAIL: ${email.value}
-PRICE: ${price}
-NOTE: ${message.value || "-"}
-`.trim();
+if (service.value === "Transferts Inter-Villes Maroc") {
+priceToSend = prix.value;
+}
 
-  document.getElementById("emailMessage").value = msg;
+if (service.value === "Excursions & Circuits Touristiques") {
+priceToSend = circuitPrix.value;
+}
 
-  // WhatsApp
-  setTimeout(()=>{
-    window.open("https://wa.me/212691059759?text="+encodeURIComponent(msg),"_blank");
-  },500);
-  
-  // 🔴 Forcer envoi natif après préparation
+document.getElementById("finalPrice").value = priceToSend || "Sur devis";
+
+// On vide les autres prix pour l’email
+transferPrix.name = "";
+prix.name = "";
+circuitPrix.name = "";
+
+/* =============================
+RÉCAP & WHATSAPP (TON CODE)
+============================= */
+
+let html = "";
+let text = 📩 *Nouvelle demande de réservation MasterTripTransfers *\n\n;
+
+html += <p><b>Nom :</b> ${nom.value}</p>;
+html += <p><b>Téléphone :</b> +${countryCode.value} ${tel.value}</p>;
+html += <p><b>Email :</b> ${email.value}</p>;
+html += <p><b>Date :</b> ${date.value}</p>;
+html += <p><b>Heure :</b> ${heure.value}</p>;
+
+text += 👤Nom : ${nom.value}\n📞Téléphone : +${countryCode.value} ${tel.value}\n📧Email : ${email.value}\n\n;
+text += 📅 Date : ${date.value}\n⏰Heure ${heure.value}\n\n;
+
+if (message.value) {
+html += <p><b>Message :</b> ${message.value}</p>;
+text += 📝 ${message.value}\n\n;
+}
+
+html += <hr>;
+html += <p><b>Service :</b> ${service.value}</p>;
+text += 🛎️ Service : ${service.value}\n;
+
+if (service.value === "Transferts Aéroport & Privés") {
+html += <p><b>Type :</b> ${transferType.value}</p>;
+html += <p><b>Départ :</b> ${depart.value}</p>;
+html += <p><b>Arrivée :</b> ${arrivee.value}</p>;
+html += <p><b>Places :</b> ${transferPlaces.value}</p>;
+html += <p><b>Prix :</b> ${transferPrix.value}</p>;
+
+text += `📍Départ : ${depart.value}\n📍Arrivée : ${arrivee.value}\n👥 Places : ${transferPlaces.value}\n💰 Total : ${transferPrix.value}\n`;  
+if (flightNumber.value) {  
+  html += `<p><b>Vol :</b> ${flightNumber.value}</p>`;  
+  text += `✈️ Vol : ${flightNumber.value}\n`;  
+}
+
+}
+
+if (service.value === "Transferts Inter-Villes Maroc") {
+html += <p><b>Trajet :</b> ${trajet.value}</p>;
+html += <p><b>Places :</b> ${places.value}</p>;
+html += <p><b>Prix :</b> ${prix.value}</p>;
+text += 🚌 Trajet : ${trajet.value}\n👥 Places : ${places.value}\n💰 Total : ${prix.value}\n;
+}
+
+if (service.value === "Excursions & Circuits Touristiques") {
+html += <p><b>Excursion :</b> ${circuit.value}</p>;
+html += <p><b>Places :</b> ${circuitPlaces.value}</p>;
+html += <p><b>Prix :</b> ${circuitPrix.value}</p>;
+text += 🏞️ Excursion : ${circuit.value}\n👥 Places : ${circuitPlaces.value}\n💰 Total : ${circuitPrix.value}\n;
+}
+
+document.getElementById("emailMessage").value = text;
+
+openResume(html, text);
   HTMLFormElement.prototype.submit.call(bookingForm);
-
-  
 });
+
 
   
 /* =====================================================
