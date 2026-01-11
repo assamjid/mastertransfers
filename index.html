@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2922,38 +2922,41 @@ function escapeHTML(str) {
 /* =====================================================
    SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
-bookingForm.addEventListener("submit", function () {
+bookingForm.addEventListener("submit", function(e){
 
-  let price = "";
-  if (service.value === "airport") price = transferPrix.value;
-  if (service.value === "intercity") price = prix.value;
-  if (service.value === "excursion") price = circuitPrix.value;
+  e.preventDefault(); // ⬅️ IMPORTANT
+
+  let price="";
+  if(service.value==="airport") price=transferPrix.value;
+  if(service.value==="intercity") price=prix.value;
+  if(service.value==="excursion") price=circuitPrix.value;
 
   document.getElementById("finalPrice").value = price;
 
-  const messageToSend = `
+  const msg = `
 SERVICE: ${service.options[service.selectedIndex].text}
 DATE: ${date.value}
 TIME: ${fixedTime.value || heure.value}
-
 NAME: ${nom.value}
 PHONE: +${countryCode.value}${tel.value}
 EMAIL: ${email.value}
-
 PRICE: ${price}
-
-NOTE:
-${message.value || "-"}
+NOTE: ${message.value || "-"}
 `.trim();
 
-  document.getElementById("emailMessage").value = messageToSend;
+  document.getElementById("emailMessage").value = msg;
 
-  setTimeout(() => {
-    window.open("https://wa.me/212691059759?text=" + encodeURIComponent(messageToSend), "_blank");
-  }, 700);
+  // WhatsApp
+  setTimeout(()=>{
+    window.open("https://wa.me/212691059759?text="+encodeURIComponent(msg),"_blank");
+  },500);
+  
+  // 🔴 Forcer envoi natif après préparation
+  HTMLFormElement.prototype.submit.call(bookingForm);
 
-  bookingForm.submit();   // 👈 AJOUTE CETTE LIGNE
+  
 });
+
   
 /* =====================================================
    OVERLAY ANIMÉ
