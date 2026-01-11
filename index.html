@@ -991,7 +991,7 @@ Nos services
 </div>
  
 <div class="floating-field">
-<input type="text" id="transferPrix" name="price" placeholder="0,00€" readonly>
+<input type="text" id="transferPrix" name="transfer_price" placeholder="0,00€" readonly>
 <label for="transferPrix"
   data-fr="Prix (€)"
   data-en="Price (€)">
@@ -1091,7 +1091,7 @@ Nos services
 </div>
 
 <div class="floating-field">
-<input type="text" id="prix" name="price" placeholder="0,00€" readonly>
+<input type="text" id="prix" name="intercity_price" placeholder="0,00€" readonly>
 <label for="prix"
   data-fr="Prix (€)"
   data-en="Price (€)">
@@ -1237,7 +1237,7 @@ Nos services
 
 
 <div class="floating-field">
-<input type="text" id="circuitPrix" name="price" placeholder="0,00€" readonly>
+<input type="text" id="circuitPrix" name="excursion_price" placeholder="0,00€" readonly>
   <label for="circuitPrix"
   data-fr="Prix (€)"
   data-en="Price (€)">
@@ -2479,7 +2479,7 @@ if (btnCancel) {
     message,
     document.getElementById("finalPrice"),
     document.getElementById("emailMessage")
-  ].forEach(el => el && (el.disabled = false));
+    ].forEach(el => el && (el.disabled = false));
 
   // 🚐 TRANSFERTS AÉROPORT & PRIVÉS
   if (service.value === "airport") {
@@ -2519,6 +2519,7 @@ if (btnCancel) {
       quadType.disabled = false;
     }
   }
+    
   }
 
 
