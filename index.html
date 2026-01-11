@@ -2960,22 +2960,31 @@ bookingForm.addEventListener("submit", function(e){
     placesTxt = circuitPlaces.value;
   }
   
-const msg =
-`📩 *NOUVELLE RÉSERVATION MASTERTRIPTRANSFERS*
+let msg = `📩 *NOUVELLE RÉSERVATION MASTERTRIPTRANSFERS*\n\n`;
 
-👤 *Nom* : *${nom.value}*
-📞 *Téléphone* : +${countryCode.value}${tel.value}
-📧 *Email* : ${email.value}
+msg += `👤 Nom : ${nom.value}\n`;
+msg += `📞 Téléphone : +${countryCode.value}${tel.value}\n`;
+msg += `📧 Email : ${email.value}\n\n`;
 
-🛎️ *Service* : ${service.options[service.selectedIndex].text}
-🚘 *Type* : ${type}
-${service.value === "excursion" ? `🎯 *Choix* : ${choix}\n` : ""}📍 *Lieu départ* : ${departTxt}
-🏁 *Destination* : ${destTxt}
-👥 *Places* : ${placesTxt}
+msg += `🛎️ Service : ${service.options[service.selectedIndex].text}\n`;
+msg += `🚘 Type : ${type}\n`;
 
-📝 *Message client* :${message.value || "-"}
+if(service.value === "excursion" && choix) {
+  msg += `🎯 Choix : ${choix}\n`;
+}
 
-💰 *Prix total* : ${document.getElementById("finalPrice").value || "-"}`;
+if(departTxt) msg += `📍 Lieu départ : ${departTxt}\n`;
+if(destTxt) msg += `🏁 Destination : ${destTxt}\n`;
+if(placesTxt) msg += `👥 Places : ${placesTxt}\n`;
+if(flightNumber.value) msg += `✈️ Vol : ${flightNumber.value}\n`;
+
+if(message.value) {
+  msg += `\n📝 Message client :\n${message.value}\n`;
+}
+
+if(document.getElementById("finalPrice").value) {
+  msg += `\n💰 Prix total : ${document.getElementById("finalPrice").value}\n`;
+   }
   
   document.getElementById("emailMessage").value = msg;
 
@@ -3380,13 +3389,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 
   function toggleLang(){
-  const current = localStorage.getItem("lang") || "FR";
+  const current = localStorage.getItem("lang") || "EN";
   setLang(current === "FR" ? "EN" : "FR");
   updateLangFlag();
 }
 
 function updateLangFlag(){
-  const current = localStorage.getItem("lang") || "FR";
+  const current = localStorage.getItem("lang") || "EN";
   const flag = document.getElementById("langFlagBtn");
 
   if(current === "FR"){
