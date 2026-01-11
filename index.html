@@ -3000,23 +3000,23 @@ if (btnCancel && btnConfirm) {
   btnCancel.addEventListener("click", closeResume);
 
   btnConfirm.addEventListener("click", function(e){
-    e.preventDefault();
+  e.preventDefault();
 
-    const msg = document.getElementById("emailMessage").value;
+  const msg = document.getElementById("emailMessage").value;
 
-    // 1️⃣ WhatsApp
-    window.open(
-      "https://wa.me/212691059759?text=" + encodeURIComponent(msg),
-      "_blank"
-    );
+  // WhatsApp DOIT être 1er et direct (pas de délai)
+  const w = window.open(
+    "https://wa.me/212691059759?text=" + encodeURIComponent(msg),
+    "_blank"
+  );
 
-    // 2️⃣ Email
-    setTimeout(() => bookingForm.submit(), 600);
-
-    // 3️⃣ Recharge page
-    setTimeout(() => location.reload(), 1600);
-  });
-
+  // Ensuite seulement on envoie l’email
+  if (w) {
+    bookingForm.submit();
+    setTimeout(() => location.reload(), 1200);
+  }
+});
+  
   }
 
 
