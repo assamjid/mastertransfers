@@ -2927,18 +2927,17 @@ function escapeHTML(str) {
 ===================================================== */
 
 bookingForm.addEventListener("submit", function(e){
-  e.preventDefault(); // ⬅️ on bloque le POST normal
+  e.preventDefault();   // ⬅️ ON BLOQUE LE POST NORMAL
 
   if (!bookingForm.checkValidity()) return;
 
-  // Calcul du prix
   let price = "";
   if(service.value === "airport")   price = transferPrix.value;
   if(service.value === "intercity") price = prix.value;
   if(service.value === "excursion") price = circuitPrix.value;
+
   document.getElementById("finalPrice").value = price || "Sur devis";
 
-  // Heure toujours valide
   const timeValue = fixedTime.value || heure.value || "-";
 
   const msg =
@@ -2959,17 +2958,16 @@ ${message.value || "-"}`;
 
   document.getElementById("emailMessage").value = msg;
 
-  // Ouvre le résumé (overlay)
-  openResume(
-    `<p><b>Nom :</b> ${nom.value}</p>
-     <p><b>Téléphone :</b> +${countryCode.value}${tel.value}</p>
-     <p><b>Email :</b> ${email.value}</p>
-     <p><b>Date :</b> ${date.value}</p>
-     <p><b>Heure :</b> ${timeValue}</p>
-     <p><b>Service :</b> ${service.options[service.selectedIndex].text}</p>
-     <p><b>Prix :</b> ${price || "Sur devis"}</p>`,
-    msg
-  );
+  // OUVRE L’OVERLAY RÉCAP
+  openResume(`
+<p><b>Nom :</b> ${nom.value}</p>
+<p><b>Téléphone :</b> +${countryCode.value}${tel.value}</p>
+<p><b>Email :</b> ${email.value}</p>
+<p><b>Date :</b> ${date.value}</p>
+<p><b>Heure :</b> ${timeValue}</p>
+<p><b>Service :</b> ${service.options[service.selectedIndex].text}</p>
+<p><b>Prix :</b> ${price || "Sur devis"}</p>
+`, msg);
 });
   
 /* =====================================================
