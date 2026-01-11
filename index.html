@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2983,58 +2983,44 @@ function escapeHTML(str) {
 /* =====================================================
    SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
-
-bookingForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  if (bookingForm.dataset.submitted === "true") return;
-  bookingForm.dataset.submitted = "true";
+bookingForm.addEventListener("submit", function () {
 
   disableUnusedFields();
 
-  let priceToSend = "";
-  if (service.value === "airport") priceToSend = transferPrix.value;
-  if (service.value === "intercity") priceToSend = prix.value;
-  if (service.value === "excursion") priceToSend = circuitPrix.value;
+  let price = "";
+  if (service.value === "airport") price = transferPrix.value;
+  if (service.value === "intercity") price = prix.value;
+  if (service.value === "excursion") price = circuitPrix.value;
 
-  const serviceText =
-    service.options[service.selectedIndex]?.text || "";
+  const serviceText = service.options[service.selectedIndex]?.text || "";
 
   const messageToSend = `
 Service: ${serviceText}
 Date: ${date.value}
-Time: ${heure.value || fixedTime.value}
+Time: ${fixedTime.value || heure.value}
 
 Name: ${nom.value}
-Phone: ${countryCode.value} ${tel.value}
+Phone: +${countryCode.value}${tel.value}
 Email: ${email.value}
 
-Price: ${priceToSend}
+Price: ${price}
 
 Note:
 ${message.value || "-"}
 `.trim();
 
-  // 📲 WhatsApp
-  window.open(
-    "https://wa.me/212691059759?text=" +
-      encodeURIComponent(messageToSend),
-    "_blank"
-  );
-
-  // ✉️ Email
+  // ✉️ EMAIL
   document.getElementById("emailMessage").value = messageToSend;
 
-  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
-    el.disabled = false;
-  });
-
-  HTMLFormElement.prototype.submit.call(bookingForm);
-
+  // 📲 WHATSAPP (après envoi email)
   setTimeout(() => {
-    bookingForm.dataset.submitted = "false";
-  }, 3000);
+    window.open(
+      "https://wa.me/212691059759?text=" + encodeURIComponent(messageToSend),
+      "_blank"
+    );
+  }, 700);
 });
+  
 
 /* =====================================================
    OVERLAY ANIMÉ
