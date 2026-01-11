@@ -554,6 +554,126 @@ button:hover{transform:translateY(-2px)}
   .local-badge{font-size:12px}
 }
 
+  /* ===============================
+   CARTE PREMIUM EXCURSIONS & CIRCUITS
+================================= */
+#services .service-pro:nth-child(3){
+  grid-column:1 / -1;
+  max-width:100%;
+  padding:40px 35px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#001f3f,#005fa3,#00c3ff);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Effet glow premium */
+#services .service-pro:nth-child(3)::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top,#ffffff22,transparent 70%);
+  pointer-events:none;
+}
+
+/* Texte plus grand */
+#services .service-pro:nth-child(3) h3{
+  font-size:30px;
+}
+
+#services .service-pro:nth-child(3) p{
+  font-size:17px;
+  max-width:750px;
+  margin:0 auto 18px;
+}
+
+/* Bouton */
+#services .service-pro:nth-child(3) a{
+  font-size:18px;
+  padding:12px 28px;
+}
+
+/* Mobile */
+@media(max-width:700px){
+  #services .service-pro:nth-child(3){
+    padding:26px 18px;
+  }
+}
+
+  /* ===============================
+   TITRES PREMIUM – STYLE DESTINATIONS
+================================= */
+#services h2,
+#excursions h2,
+#reviews h2,
+section h2[data-fr="Pourquoi choisir MasterTripTransfers ?"],
+section h2[data-fr="Ils nous font confiance"]{
+  text-align:center;
+  font-size:32px;
+  font-weight:900;
+  color:#001f3f;
+  margin-bottom:12px;
+  position:relative;
+  letter-spacing:0.8px;
+}
+
+/* Soulignement doré */
+#services h2::after,
+#excursions h2::after,
+#reviews h2::after,
+section h2[data-fr="Pourquoi choisir MasterTripTransfers ?"]::after,
+section h2[data-fr="Ils nous font confiance"]::after{
+  content:"";
+  display:block;
+  width:90px;
+  height:4px;
+  background:linear-gradient(90deg,#f39c12,#f1c40f);
+  margin:14px auto 0;
+  border-radius:10px;
+}
+
+/* Mobile */
+@media(max-width:600px){
+  #services h2,
+  #excursions h2,
+  #reviews h2,
+  section h2[data-fr="Pourquoi choisir MasterTripTransfers ?"],
+  section h2[data-fr="Ils nous font confiance"]{
+    font-size:26px;
+  }
+}
+
+  /* ===============================
+   TRUST / AVANTAGES – TEXTE PREMIUM
+================================= */
+
+/* Cartes Pourquoi nous */
+.review-card{
+  font-size:17px;           /* ⬅️ PLUS GROS */
+  font-weight:700;
+  letter-spacing:0.4px;
+}
+
+/* Bloc réassurance sous le formulaire */
+.trust-box{
+  font-size:16.5px;        /* ⬅️ PLUS GROS */
+  font-weight:600;
+  line-height:1.8;
+}
+
+/* Première ligne ⭐⭐⭐⭐⭐ 4.9/5 ... */
+.trust-box div:first-child{
+  font-size:18.5px;
+  font-weight:900;
+  color:#f39c12;
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .review-card{font-size:16px}
+  .trust-box{font-size:15.5px}
+  .trust-box div:first-child{font-size:17px}
+}
 
   </style>
 
