@@ -2461,36 +2461,19 @@ if (btnCancel) {
 
   function disableUnusedFields() {
 
-  // Désactiver tous les champs
-  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
-    el.disabled = true;
-  });
-
-  // Champs toujours envoyés
-  [
-    service,
-    date,
-    nom,
-    tel,
-    email,
-    countryCode,
-    message,
+  const keep = [
+    service, date, heure, fixedTime,
+    nom, tel, email, countryCode, message,
     document.getElementById("finalPrice"),
     document.getElementById("emailMessage")
-  ].forEach(el => el && (el.disabled = false));
+  ];
 
-  // Champs selon service
-  if (service.value === "airport") {
-    [transferType, depart, arrivee, transferPlaces, flightNumber].forEach(el => el && (el.disabled = false));
-  }
+  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
+    if (!keep.includes(el)) el.disabled = true;
+  });
 
-  if (service.value === "intercity") {
-    [trajet, places].forEach(el => el && (el.disabled = false));
-  }
-
-  if (service.value === "excursion") {
-    [circuit, circuitPlaces, quadType, camelType].forEach(el => el && (el.disabled = false));
-  }
+  // bouton submit TOUJOURS actif
+  document.getElementById("btnReserve").disabled = false;
   }
 
 
