@@ -2606,8 +2606,86 @@ service.addEventListener("change", () => {
   ) {
     bookingSubtitle.textContent =
       lang === "fr"
-        ? "Détails du circuit / excursion"
-        : "Tour / excursion details";
+service.addEventListener("change", () => {
+resetAll();
+
+if (service.value === "Transferts Aéroport & Privés"){
+bookingSubtitle.textContent = "Détails de votre transfert";
+transferFields.style.display = "flex";
+
+transferType.disabled = false;  
+transferType.required = true;  
+
+depart.disabled = false;  
+arrivee.disabled = false;  
+depart.required = true;  
+arrivee.required = true;  
+
+transferPlaces.disabled = false;  
+service.addEventListener("change", () => {
+  resetAll();
+
+  const currentLang = localStorage.getItem("lang") || "FR";
+
+  /* ===============================
+     TRANSFERTS AÉROPORT & PRIVÉS
+  =============================== */
+  if (
+    service.value === "Transferts Aéroport & Privés" ||
+    service.value === "Airport & Private Transfers"
+  ) {
+    bookingSubtitle.textContent =
+      currentLang === "EN"
+        ? "Your transfer details"
+        : "Détails de votre transfert";
+
+    transferFields.style.display = "flex";
+
+    transferType.disabled = false;
+    transferType.required = true;
+
+    depart.disabled = false;
+    arrivee.disabled = false;
+    depart.required = true;
+    arrivee.required = true;
+
+    transferPlaces.disabled = false;
+    transferPlaces.required = true;
+
+    flightNumber.disabled = false;
+  }
+
+  /* ===============================
+     TRANSFERTS INTER-VILLES
+  =============================== */
+  if (
+    service.value === "Transferts Inter-Villes Maroc" ||
+    service.value === "Intercity Transfers Morocco"
+  ) {
+    bookingSubtitle.textContent =
+      currentLang === "EN"
+        ? "Intercity transfer details"
+        : "Détails du transport interville";
+
+    intervillesFields.style.display = "flex";
+
+    trajet.disabled = false;
+    places.disabled = false;
+    trajet.required = true;
+    places.required = true;
+  }
+
+  /* ===============================
+     EXCURSIONS & CIRCUITS
+  =============================== */
+  if (
+    service.value === "Excursions & Circuits Touristiques" ||
+    service.value === "Excursions & Tours"
+  ) {
+    bookingSubtitle.textContent =
+      currentLang === "EN"
+        ? "Excursion details"
+        : "Détails du circuit / excursion";
 
     circuitsFields.style.display = "flex";
 
@@ -2619,6 +2697,7 @@ service.addEventListener("change", () => {
 
   updateExcursionTimes();
 });
+
 
 /* =====================================================
    TRANSFERT – LOGIQUE
