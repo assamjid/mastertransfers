@@ -2987,75 +2987,53 @@ function escapeHTML(str) {
 bookingForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  /* ===============================
-     SÉCURITÉ : éviter double submit
-  =============================== */
   if (bookingForm.dataset.submitted === "true") return;
   bookingForm.dataset.submitted = "true";
 
-  // 🔒 Désactiver les champs inutiles
   disableUnusedFields();
 
-  /* ===============================
-     DÉTERMINER LE PRIX
-  =============================== */
   let priceToSend = "";
+  if (service.value === "airport") priceToSend = transferPrix.value;
+  if (service.value === "intercity") priceToSend = prix.value;
+  if (service.value === "excursion") priceToSend = circuitPrix.value;
 
-  if (service.value === "airport") {
-    priceToSend = transferPrix.value;
-  }
-
-  if (service.value === "intercity") {
-    priceToSend = prix.value;
-  }
-
-  if (service.value === "excursion") {
-    priceToSend = circuitPrix.value;
-  }
-
-  /* ===============================
-     TEXTE DU SERVICE (VISIBLE)
-  =============================== */
   const serviceText =
     service.options[service.selectedIndex]?.text || "";
 
-  /* ===============================
-     MESSAGE FINAL
-  =============================== */
   const messageToSend = `
-${LANG[lang].service}: ${serviceText}
-${LANG[lang].date}: ${date.value}
-${LANG[lang].time}: ${heure.value || fixedTime.value}
+Service: ${serviceText}
+Date: ${date.value}
+Time: ${heure.value || fixedTime.value}
 
-${LANG[lang].name}: ${nom.value}
-${LANG[lang].phone}: ${countryCode.value} ${tel.value}
-${LANG[lang].email}: ${email.value}
+Name: ${nom.value}
+Phone: ${countryCode.value} ${tel.value}
+Email: ${email.value}
 
-${LANG[lang].price}: ${priceToSend}
+Price: ${priceToSend}
 
-${LANG[lang].note || LANG[lang].message}:
+Note:
 ${message.value || "-"}
 `.trim();
 
-  /* ===============================
-     WHATSAPP
-  =============================== */
-  const whatsappUrl =
+  // 📲 WhatsApp
+  window.open(
     "https://wa.me/212691059759?text=" +
-    encodeURIComponent(messageToSend);
+      encodeURIComponent(messageToSend),
+    "_blank"
+  );
 
-  window.open(whatsappUrl, "_blank");
-
-  /* ===============================
-     EMAIL (FORMSUBMIT)
-  =============================== */
+  // ✉️ Email
   document.getElementById("emailMessage").value = messageToSend;
 
   bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
-  el.disabled = false;
-});
-  // ✅ SOUMISSION NATIVE (PAS DE BOUCLE)
+    el.disabled = false;
+  });
+
   HTMLFormElement.prototype.submit.call(bookingForm);
+
+  setTimeout(() => {
+    bookingForm.dataset.submitted = "false";
+  }, 3000);
 });
 
 /* =====================================================
