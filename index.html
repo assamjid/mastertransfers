@@ -3125,58 +3125,6 @@ if (service.value === "Transferts Inter-Villes Maroc") {
 
 /* =============================
    EXCURSIONS & CIRCUITS
-============================= */
-if (service.value === "Excursions & Circuits Touristiques") {
-
-  if (circuit.value) {
-    html += `<p><b>Excursion :</b> ${escapeHTML(circuit.value)}</p>`;
-    text += `🏞️ Excursion : ${circuit.value}\n`;
-  }
-
-  if (circuitPlaces.value) {
-    html += `<p><b>Places :</b> ${escapeHTML(circuitPlaces.value)}</p>`;
-    text += `👥 Places : ${circuitPlaces.value}\n`;
-  }
-
-  if (circuitPrix.value) {
-    html += `<p><b>Prix :</b> ${escapeHTML(circuitPrix.value)}</p>`;
-    text += `💰 Prix : ${circuitPrix.value}\n`;
-  }
-
-  if (circuit.value === "Chameau" && camelType.value) {
-    html += `<p><b>Type :</b> ${escapeHTML(camelType.value)}</p>`;
-    text += `🐪 Type : ${camelType.value}\n`;
-  }
-
-  if (circuit.value === "Safari Quad / Buggy" && quadType.value) {
-    html += `<p><b>Véhicule :</b> ${escapeHTML(quadType.value)}</p>`;
-    text += `🏜️ Véhicule : ${quadType.value}\n`;
-  }
-}
-
-
-
-document.getElementById("emailMessage").value =
-`📩 *Nouvelle réservation – MasterTripTransfers*
-
-👤 Nom : ${nom.value}
-📞 Téléphone : +${countryCode.value} ${tel.value}
-📧 Email : ${email.value}
-
-🛎️ Service : ${service.value}
-🎯 Prestation : ${circuit.value || transferType.value || trajet.value}
-👥 Personnes : ${circuitPlaces.value || transferPlaces.value || places.value}
-
-📅 Date : ${date.value}
-⏰ Heure : ${fixedTime.value || heure.value}
-
-💰 Prix : ${priceToSend}
-`;
-
-
-
-  openResume(html, text);
-});
 
 
   
