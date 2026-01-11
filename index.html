@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -864,7 +864,7 @@ method="POST">
 
 <div class="floating-field">
 
-  <select id="service" required>
+  <select id="service" name="service" required>
   <option value="" data-fr="Choisir un service" data-en="Choose a service"></option>
 
   <option value="airport"
@@ -899,7 +899,7 @@ Nos services
 <div class="floating-field">
 
   
-<select id="transferType" name="" required>
+<select id="transferType" name="transfer_type">
     <option value=""
   data-fr="Choisir transfert"
   data-en="Choose transfer">
@@ -945,7 +945,7 @@ Nos services
 </div>
 
 <div class="floating-field">
-  <input id="depart" name="" type="text" placeholder="adresse, aéroport, hotel ..." >
+  <input id="depart" name="pickup" type="text" placeholder="adresse, aéroport, hotel ..." >
   <label for="depart"
   data-fr="Lieu de prise en charge"
   data-en="Pickup location">
@@ -954,7 +954,7 @@ Nos services
 </div>
 
   <div class="floating-field">
-  <input id="arrivee" name="" type="text" placeholder="adresse, aéroport, hotel ..." >
+  <input id="arrivee" name="dropoff" type="text" placeholder="adresse, aéroport, hotel ..." >
   <label for="arrivee"
   data-fr="Destination"
   data-en="Drop-off location">
@@ -964,7 +964,7 @@ Nos services
 
   
 <div class="floating-field">
-  <select id="transferPlaces" name="" required>
+  <select id="transferPlaces" name="people" required>
   <option value=""
   data-fr="Nombre de places"
   data-en="Number of people">
@@ -991,7 +991,7 @@ Nos services
 </div>
  
 <div class="floating-field">
-<input type="text" id="transferPrix" name="" placeholder="0,00€" readonly>
+<input type="text" id="transferPrix" name="price" placeholder="0,00€" readonly>
 <label for="transferPrix"
   data-fr="Prix (€)"
   data-en="Price (€)">
@@ -1000,7 +1000,7 @@ Nos services
 </div>
 
 <div class="floating-field" id="flightField">
-<input id="flightNumber" name="" placeholder="Ex: FR456">
+<input id="flightNumber" name="flight" placeholder="Ex: FR456">
   <label for="flightNumber"
   data-fr="Numéro de vol"
   data-en="Flight number">
@@ -1014,7 +1014,7 @@ Nos services
 <div id="intervillesFields">
 <div class="floating-field">
   
-<select id="trajet" name="" required>
+<select id="trajet" name="route" required>
   <option value=""
   data-fr="Choisir Trajet"
   data-en="Choose route">
@@ -1064,7 +1064,7 @@ Nos services
 
 <div class="floating-field">
 
-<select id="places" name="" required>
+<select id="places" name="people" required>
   <option value=""
   data-fr="Nombre de places"
   data-en="Number of people">
@@ -1091,7 +1091,7 @@ Nos services
 </div>
 
 <div class="floating-field">
-<input type="text" id="prix" name="" placeholder="0,00€" readonly>
+<input type="text" id="prix" name="price" placeholder="0,00€" readonly>
 <label for="prix"
   data-fr="Prix (€)"
   data-en="Price (€)">
@@ -1103,7 +1103,7 @@ Nos services
 <div id="circuitsFields"> 
 <div class="floating-field">
   
-<select id="circuit" name="" required>
+<select id="circuit" name="excursion" required>
     <option value=""
   data-fr="Choisir Excursion"
   data-en="Choose excursion">
@@ -1226,7 +1226,7 @@ Nos services
 
 
 <div class="floating-field">
-  <select id="circuitPlaces" required></select>
+  <select id="circuitPlaces" name="people" required></select>
   <label for="circuitPlaces"
   data-fr="Places"
   data-en="People">
@@ -1237,7 +1237,7 @@ Nos services
 
 
 <div class="floating-field">
-<input type="text" id="circuitPrix" name="" placeholder="0,00€" readonly>
+<input type="text" id="circuitPrix" name="price" placeholder="0,00€" readonly>
   <label for="circuitPrix"
   data-fr="Prix (€)"
   data-en="Price (€)">
@@ -1249,7 +1249,7 @@ Nos services
 
 
 <div class="floating-field">
-<input type="date" id="date" name="" required>
+<input type="date" id="date" name="date" required>
   
   <label for="date"
   data-fr="Date"
@@ -1261,7 +1261,7 @@ Nos services
 
 
 <div class="floating-field" id="heureField">
-  <input type="time" id="heure" name="" required>
+  <input type="time" id="heure" name="time" required>
   <label for="heure"
   data-fr="Heure de prise en charge"
   data-en="Pickup time">
@@ -1271,7 +1271,7 @@ Nos services
 
 
 <div class="floating-field" id="fixedTimeField" style="display:none;">
-  <select id="fixedTime">
+  <select id="fixedTime" name="fixed_time" required>
     <option value=""
         data-fr="Choisir l’horaire"
         data-en="Select time">
@@ -1295,7 +1295,7 @@ Nos services
 </div>
         
 <div class="floating-field">
-<input id="nom" name="" type="text" required>
+<input id="nom" name="full_name" type="text" required>
   <label for="nom"
   data-fr="Nom et Prénom"
   data-en="Full name">
@@ -1304,9 +1304,8 @@ Nos services
 </div>
 
 
-
 <div class="phone-group">
-<select id="countryCode" name="">
+  <select id="countryCode" name="country_code">
 <option value="44">🇬🇧 +44 </option>
 <option value="212">🇲🇦 +212</option>
 <option value="33">🇫🇷 +33</option>
@@ -1367,13 +1366,14 @@ Nos services
 
   
 </select>
-<input id="tel" name="" type="tel" inputmode="numeric" placeholder="Téléphone" required>
+
+<input id="tel" name="phone" type="tel" inputmode="numeric" placeholder="Téléphone" required>
 
 </div>
 
 
 <div class="floating-field">
-<input id="email" name="" type="email" required>
+<input id="email" name="email" type="email" required>
   <label for="email"
   data-fr="Email"
   data-en="Email">
