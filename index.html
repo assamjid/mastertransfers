@@ -1,240 +1,561 @@
-/* ===== RESET ===== */
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterTripTransfers - Transport Touristique à Agadir</title>
+<meta name="description" content="MasterTripTransfers – Transport touristique à Agadir : transferts aéroport, transport inter-villes, excursions et circuits privés avec chauffeur professionnel.">
+
+
+<style>
+
+
+
+/* ================= RESET ================= */
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+/* ================= BASE ================= */
 body{
   font-family:'Poppins',sans-serif;
   color:#111;
-  background:url('https://images.unsplash.com/photo-1617946959277-49883ecf96b5?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-  background-size:cover;
 }
 
-/* ===== HEADER ===== */
-#mainHeader{
-  background:rgba(0,31,63,.95);
+/* ================= HEADER ================= */
+header{
+  background:rgba(0,31,63,0.9);
   color:#fff;
-  padding:18px 10px 20px;
+  padding:22px 15px;
   text-align:center;
   position:sticky;
   top:0;
   z-index:1000;
 }
-#mainHeader h1{font-size:30px;margin-bottom:6px}
 
-/* ===== MENU ===== */
-#mainHeader nav{
+/* Conteneur interne centré */
+#mainHeader{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* Titre */
+#mainHeader h1{
+  font-size:30px;
+  letter-spacing:1px;
+  margin-bottom:8px;
+  text-align:center;
+}
+
+/* Slogan */
+.hero-h1{
+  margin-top:6px;
+  font-size:16px;
+  font-weight:600;
+  color:#f1c40f;
+  opacity:0.95;
+  text-align:center;
+  letter-spacing:0.5px;
+}
+
+/* ================= MENU FINAL ================= */
+.main-nav{
   display:flex;
   justify-content:center;
   align-items:center;
   gap:10px;
+  margin-top:12px;
   flex-wrap:nowrap;
 }
+
+/* Boutons du menu */
 #mainHeader nav a{
   background:linear-gradient(135deg,#072e57,#001f3f);
   color:#f1c40f;
-  padding:12px 22px;
+  padding:10px 20px;
   border-radius:30px;
   font-weight:900;
-  font-size:18px;
-  letter-spacing:1.3px;
+  font-size:17px;
+  letter-spacing:1.2px;
   text-decoration:none;
   white-space:nowrap;
-  transition:.25s;
+  transition:0.3s;
 }
+
+/* Hover */
 #mainHeader nav a:hover{
   background:#f1c40f;
   color:#001f3f;
 }
 
-/* ===== DRAPEAU LANGUE ===== */
+/* Drapeau langue */
 .lang-flag-single img{
   width:32px;
   height:22px;
   cursor:pointer;
-  border-radius:6px;
-  box-shadow:0 0 6px rgba(0,0,0,.45);
+  border-radius:4px;
+  margin:0 4px;
+  box-shadow:0 0 4px rgba(0,0,0,.4);
   transition:.25s;
 }
-.lang-flag-single img:hover{transform:scale(1.15)}
+.lang-flag-single img:hover{transform:scale(1.2)}
 
-/* ===== BARRE CONFIANCE ===== */
-.trust-top{
-  background:linear-gradient(135deg,#f39c12,#f1c40f);
-  color:#001f3f;
-  text-align:center;
-  font-weight:700;
-  padding:12px 10px;
-  font-size:14px;
-  box-shadow:0 8px 22px rgba(0,0,0,.18);
+/* Mobile */
+@media (max-width:600px){
+  #mainHeader{padding:10px}
+  #mainHeader h1{font-size:24px}
+  .main-nav{gap:8px}
+  #mainHeader nav a{font-size:15px;padding:8px 14px;letter-spacing:1px}
+  .lang-flag-single img{width:24px;height:16px}
 }
 
-/* ===== SECTIONS ===== */
+/* Tablette */
+@media (min-width:601px) and (max-width:1024px){
+  .main-nav{gap:14px}
+  #mainHeader nav a{font-size:17px;padding:10px 18px}
+}
+
+/* ================= SECTIONS ================= */
 section{
-  background:rgba(255,255,255,.97);
-  max-width:1100px;
-  margin:22px auto;
-  padding:30px;
+  background:rgba(255,255,255,0.96);
+  max-width:800px;
+  margin:15px auto;
+  padding:30px 20px;
   border-radius:18px;
-  box-shadow:0 14px 40px rgba(0,0,0,.25);
 }
 
-/* ===== GRIDS ===== */
-.service-grid,.exc-grid,.dest-grid,.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
-
-/* ===== CARTES ===== */
-.service-pro,.exc-card,.review-card{
-  background:white;
-  border-radius:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,.22);
-  padding:20px;
+/* ================= FOOTER ================= */
+#siteFooter{
+  background:linear-gradient(160deg,#001f3f,#003b6f);
+  color:white;
   text-align:center;
-  transition:.3s;
+  padding:40px 20px;
+  margin-top:40px;
 }
-.service-pro:hover,.exc-card:hover,.review-card:hover{
-  transform:translateY(-6px) scale(1.02);
-  box-shadow:0 20px 55px rgba(0,0,0,.35);
+.footer-content h3{
+  font-size:24px;
+  margin-bottom:6px;
+  color:#f1c40f;
+}
+.footer-content p{
+  margin:6px 0;
+  opacity:0.9;
+}
+.footer-contact{
+  margin:15px 0;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.footer-contact a{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  background:rgba(255,255,255,0.1);
+  padding:8px 14px;
+  border-radius:20px;
+  transition:0.3s;
+}
+.footer-contact a:hover{
+  background:#f1c40f;
+  color:#001f3f;
+}
+.footer-copy{
+  margin-top:20px;
+  font-size:13px;
+  opacity:0.7;
 }
 
-/* ===== IMAGES EXCURSIONS ===== */
+/* ================= TITRES ================= */
+h2{color:#001f3f;margin-bottom:30px}
+
+/* ================= SERVICES ================= */
+.service-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+.service-card{
+  background:#001f3f;
+  color:#fff;
+  width:200px;
+  padding:20px;
+  border-radius:14px;
+}
+.service-card h3{color:#00aaff}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-top:25px;
+}
+.service-pro{
+  background:linear-gradient(160deg,#001f3f,#003b6f);
+  color:white;
+  padding:18px 20px;
+  border-radius:22px;
+  text-align:center;
+  transition:0.35s;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+.service-pro:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 25px 60px rgba(0,0,0,0.35);
+}
+.service-pro h3{
+  margin:8px 0;
+  color:#00c3ff;
+  font-size:22px;
+}
+.service-pro p{
+  font-size:16px;
+  opacity:0.95;
+  margin-bottom:10px;
+}
+.service-pro a{
+  color:#f1c40f;
+  font-weight:700;
+  text-decoration:none;
+  font-size:16px;
+}
+.service-icon{font-size:48px}
+
+/* ================= FORMULAIRE ================= */
+form{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+form input,
+form select,
+form textarea{
+  width:100%;
+  max-width:320px;
+  height:60px;
+  padding:14px;
+  border-radius:12px;
+  border:2px solid #dde3ea;
+  background:#f9fbfc;
+  font-size:16px;
+}
+.phone-group{
+  display:flex;
+  width:100%;
+  max-width:320px;
+  gap:8px;
+}
+.phone-group select{
+  width:120px;
+  font-weight:600;
+  text-align:center;
+}
+.phone-group input{flex:1}
+button{
+  width:100%;
+  max-width:320px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{transform:translateY(-2px)}
+#intervillesFields,
+#circuitsFields,
+#transferFields{
+  display:none;
+  width:100%;
+  max-width:320px;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* ================= RÉSERVATION ================= */
+#bookingTitle{
+  text-align:center;
+  font-size:25px;
+  font-weight:800;
+  color:#001f3f;
+  margin-bottom:25px;
+}
+#bookingSubtitle{
+  text-align:center;
+  font-size:20px;
+  font-weight:600;
+  color:#001f3f;
+  margin-top:-15px;
+  margin-bottom:8px;
+}
+.floating-field{
+  position:relative;
+  width:100%;
+  max-width:320px;
+}
+.floating-field input{padding:22px 14px 10px}
+.floating-field textarea{padding:28px 14px 10px;resize:none}
+.floating-field label{
+  position:absolute;
+  top:6px;
+  left:14px;
+  font-size:12px;
+  font-weight:600;
+  color:#001f3f;
+  pointer-events:none;
+}
+.floating-field input[type="date"],
+.floating-field input[type="time"]{
+  padding:26px 14px 10px;
+}
+
+/* ================= OVERLAY ================= */
+#resumeOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  transition:0.25s ease;
+}
+#resumeOverlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+#resumeBox{
+  background:#fff;
+  width:90%;
+  max-width:420px;
+  padding:25px;
+  border-radius:16px;
+  font-size:14px;
+  transform:translateY(30px) scale(.95);
+  opacity:0;
+  transition:0.3s;
+}
+#resumeOverlay.active #resumeBox{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
+#resumeBox h3{margin-bottom:15px;color:#001f3f}
+#resumeContent p{margin:6px 0}
+#resumeBox button{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+#resumeCancel{background:#ccc}
+#resumeConfirm{background:linear-gradient(135deg,#25D366,#1ebe57);color:white}
+
+/* ================= EXCURSIONS ================= */
+.excursions-section{text-align:center}
+.exc-sub{margin-bottom:30px;color:#444}
+.exc-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px;
+  justify-items:center;
+}
+@media(max-width:700px){
+  .exc-grid{grid-template-columns:1fr}
+}
+.exc-card{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.18);
+  max-width:360px;
+  display:flex;
+  flex-direction:column;
+}
 .exc-card img{
   width:100%;
-  height:240px;
+  height:200px;
   object-fit:cover;
   border-radius:14px;
 }
-
-/* ===== PRIX ===== */
-.price{
-  display:block;
-  margin:14px 0;
-  font-weight:900;
-  color:#f39c12;
-  font-size:18px;
-}
-
-/* ===== BOUTONS ===== */
-.btn,#booking button{
+.exc-card h3{margin:12px 0;color:#001f3f}
+.exc-card ul{list-style:none;padding:0;font-size:14px}
+.exc-card li{margin:4px 0}
+.exc-card a{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 18px;
   background:#f39c12;
-  color:#001f3f;
-  border:none;
-  border-radius:30px;
-  padding:12px 22px;
-  font-weight:900;
-  cursor:pointer;
-  transition:.3s;
+  color:#fff;
+  border-radius:10px;
+  font-weight:600;
+  text-decoration:none;
 }
-.btn:hover,#booking button:hover{
-  background:#001f3f;
-  color:white;
-}
+.exc-card a:hover{background:#e08e0b}
+.exc-card p{font-size:15px;line-height:1.6}
 
-/* ===== FORMULAIRE RÉSERVATION ===== */
-#booking form{max-width:600px;margin:auto}
-.floating-field input,
-.floating-field select{
+/* ================= SLIDER ================= */
+.exc-slider.auto{
   width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #ccc;
-  margin-bottom:14px;
-}
-
-/* ===== TÉLÉPHONE ===== */
-.phone-group{
+  height:200px;
+  overflow:hidden;
   display:flex;
-  gap:10px;
 }
-.phone-group select,
-.phone-group input{
-  flex:1;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #ccc;
-}
-
-/* ===== SLIDERS EXCURSIONS ===== */
-.exc-slider{
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-.exc-slider img{
-  width:100%;
-  height:240px;
+.exc-slider.auto img{
+  min-width:100%;
+  height:200px;
   object-fit:cover;
+  border-radius:14px;
+  flex-shrink:0;
+}
+@media(max-width:600px){
+  .exc-slider.auto,
+  .exc-slider.auto img{height:180px}
 }
 
-/* ===== DESTINATIONS ===== */
-.dest-card{
-  height:220px;
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 12px 30px rgba(0,0,0,.3);
+/* ================= TEXTE PREMIUM ================= */
+.exc-card h3{font-size:20px;margin-top:14px;margin-bottom:10px;letter-spacing:0.4px}
+.exc-card p{font-size:16px;line-height:1.7}
+.exc-card ul{font-size:15px}
+.exc-card .price{display:block;margin-top:10px;font-size:17px;font-weight:700;color:#f39c12}
+
+.service-pro h3{font-size:22px;letter-spacing:0.5px}
+.service-pro p{font-size:16px;line-height:1.7}
+.service-pro a{font-size:16px}
+
+/* ================= DETAILS EXCURSIONS ================= */
+#excursionDetails{
+  background:#fff;
+  max-width:720px;
+  margin:40px auto;
+  padding:28px 22px;
+  border-radius:22px;
 }
+.exc-detail{margin-bottom:40px}
+.exc-detail img{
+  width:100%;
+  max-height:500px;
+  object-fit:cover;
+  border-radius:20px;
+  margin-bottom:16px;
+}
+.exc-detail h3{color:#001f3f;margin:12px 0}
+#excursionDetails .exc-slider.auto.slow,
+#excursionDetails .exc-slider.auto.slow img{
+  height:340px!important;
+}
+#excursionDetails .exc-slider.auto.slow img{border-radius:20px}
+.exc-transport{
+  background:linear-gradient(120deg,#f4f8fb,#ffffff);
+  border-left:5px solid #f39c12;
+  padding:16px 18px;
+  border-radius:14px;
+  margin-top:18px;
+  font-size:14px;
+  color:#001f3f;
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* ================= DESTINATIONS ================= */
+.dest-title{text-align:center;font-size:32px;font-weight:900;color:#001f3f;margin-bottom:10px}
+.dest-sub{text-align:center;max-width:700px;margin:0 auto 30px;color:#555}
+.dest-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+.dest-card{
+  height:80px;
+  border-radius:18px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  text-decoration:none;
+  overflow:hidden;
+  box-shadow:0 12px 35px rgba(0,0,0,0.25);
+  transition:.35s;
+}
+.dest-card:hover{transform:scale(1.04)}
 .dest-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.1));
+  background:linear-gradient(120deg,rgba(0,0,0,.6),rgba(0,0,0,.2));
   color:white;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
   padding:16px;
 }
+.dest-overlay span{font-size:17px;font-weight:700}
+.dest-overlay b{color:#f1c40f;font-size:16px}
 
-/* ===== FOOTER ===== */
-#siteFooter{
-  background:#001f3f;
-  color:white;
-  padding:40px 20px;
+/* ================= TRUST + REVIEWS ================= */
+.trust-box{
+  margin-top:22px;
+  background:linear-gradient(120deg,#f4f8fb,#ffffff);
+  border-left:5px solid #f39c12;
+  padding:16px 18px;
+  border-radius:14px;
+  font-size:14px;
+  color:#001f3f;
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+  text-align:left;
+}
+.trust-box div{margin:6px 0}
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+.review-card{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,0.18);
+  font-size:15px;
+  line-height:1.6;
+  color:#001f3f;
+}
+.review-card b{display:block;margin-top:10px;color:#f39c12}
+.trust-top{
+  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  color:#001f3f;
   text-align:center;
-}
-.footer-contact{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  font-weight:700;
+  padding:10px;
+  font-size:14px;
 }
 
-/* ===== WHATSAPP FLOAT ===== */
-.whatsapp-float{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:#25d366;
-  border-radius:50%;
-  padding:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-  z-index:2000;
-}
+/* ================= WHATSAPP ================= */
 .wa-label{
   position:fixed;
-  bottom:70px;
-  right:18px;
-  background:#25d366;
+  bottom:90px;
+  right:22px;
+  background:#25D366;
   color:white;
-  padding:6px 12px;
-  border-radius:14px;
+  padding:8px 12px;
+  border-radius:20px;
   font-size:13px;
-  z-index:2000;
+  font-weight:600;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:1024px){
-  #mainHeader nav a{font-size:16px;padding:10px 16px}
-  .exc-card img{height:220px}
-}
+/* ================= RESPONSIVE ================= */
 @media(max-width:600px){
-  #mainHeader nav a{font-size:14px;padding:8px 12px}
-  .lang-flag-single img{width:26px;height:18px}
-  section{padding:20px}
-  .dest-card{height:200px}
+  .hero-h1{font-size:14px}
+  .local-badge{font-size:12px}
 }
 
 
+  </style>
 
 </head>
 
