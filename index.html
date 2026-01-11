@@ -527,16 +527,19 @@ button:hover{transform:translateY(-2px)}
 }
 .review-card b{display:block;margin-top:10px;color:#f39c12}
 .trust-top{
-  position: sticky;
-  top: 120px;
-  z-index: 999;
-  background:linear-gradient(135deg,#f39c12,#f1c40f);
+  position: fixed;
+  top: 120px;               /* sous le header */
+  left: 0;
+  right: 0;
+  z-index: 9998;
+
+  background: linear-gradient(135deg,#f39c12,#f1c40f);
   color:#001f3f;
   text-align:center;
   font-weight:700;
   padding:10px 15px;
   font-size:14px;
-}
+  }
   @media(max-width:600px){
   .trust-top{
     top: 100px;
@@ -693,7 +696,15 @@ section h2[data-fr="Ils nous font confiance"]::after{
   line-height:1.6;
   resize:vertical;
 }
-
+  
+body{
+  padding-top: 55px;
+}
+  @media(max-width:600px){
+  body{
+    padding-top: 65px;
+  }
+  }
   
 
   </style>
