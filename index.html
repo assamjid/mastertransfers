@@ -2923,7 +2923,7 @@ function escapeHTML(str) {
 ===================================================== */
 
 bookingForm.addEventListener("submit", function(e){
-  e.preventDefault();   // ⬅️ ON BLOQUE LE POST NORMAL
+  e.preventDefault();
 
   if (!bookingForm.checkValidity()) return;
 
@@ -2936,25 +2936,46 @@ bookingForm.addEventListener("submit", function(e){
 
   const timeValue = fixedTime.value || heure.value || "-";
 
+  let type = "-";
+  let choix = "";          // Choix seulement si excursion
+  let departTxt = "-";
+  let destTxt = "-";
+  let placesTxt = "-";
+
+  if(service.value === "airport"){
+    type = transferType.value;
+    departTxt = depart.value;
+    destTxt = arrivee.value;
+    placesTxt = transferPlaces.value;
+  }
+
+  if(service.value === "intercity"){
+    type = trajet.value;
+    placesTxt = places.value;
+  }
+
+  if(service.value === "excursion"){
+    type = circuit.value;
+    choix = quadType.value || camelType.value || "-";
+    placesTxt = circuitPlaces.value;
+  }
+
   const msg =
-`NOUVELLE RÉSERVATION
+`Nom : ${nom.value}
+Téléphone : +${countryCode.value}${tel.value}
+Email : ${email.value}
 
-Nom: ${nom.value}
-Téléphone: +${countryCode.value}${tel.value}
-Email: ${email.value}
+Service : ${service.options[service.selectedIndex].text}
+Type : ${type}
+${service.value === "excursion" ? `Choix : ${choix}\n` : ""}Lieu départ : ${departTxt}
+Destination : ${destTxt}
+Places : ${placesTxt}
 
-Date: ${date.value}
-Heure: ${timeValue}
-
-Service: ${service.options[service.selectedIndex].text}
-Prix: ${price || "Sur devis"}
-
-Message:
-${message.value || "-"}`;
+Message : ${message.value || "-"}
+Prix : ${document.getElementById("finalPrice").value || "-"}`;
 
   document.getElementById("emailMessage").value = msg;
 
-  // OUVRE L’OVERLAY RÉCAP
   openResume(`
 <p><b>Nom :</b> ${nom.value}</p>
 <p><b>Téléphone :</b> +${countryCode.value}${tel.value}</p>
