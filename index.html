@@ -3051,6 +3051,9 @@ ${message.value || "-"}
   =============================== */
   document.getElementById("emailMessage").value = messageToSend;
 
+  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
+  el.disabled = false;
+});
   // ✅ SOUMISSION NATIVE (PAS DE BOUCLE)
   HTMLFormElement.prototype.submit.call(bookingForm);
 });
