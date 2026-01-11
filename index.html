@@ -3439,7 +3439,39 @@ EN:{
     });
   });
   }
-  
+  function setPlaceholders(lang){
+
+  const PH = {
+    FR:{
+      depart:"Adresse, aéroport, hôtel...",
+      arrivee:"Adresse, aéroport, hôtel...",
+      flight:"Ex : FR456",
+      price:"0,00€",
+      message:"Bagages, siège bébé, demandes spéciales...",
+      phone:"Téléphone",
+      email:"Email"
+    },
+    EN:{
+      depart:"Address, airport, hotel...",
+      arrivee:"Address, airport, hotel...",
+      flight:"Eg: FR456",
+      price:"0.00€",
+      message:"Luggage, baby seat, special requests...",
+      phone:"Phone number",
+      email:"Email"
+    }
+  };
+
+  if(depart) depart.placeholder = PH[lang].depart;
+  if(arrivee) arrivee.placeholder = PH[lang].arrivee;
+  if(flightNumber) flightNumber.placeholder = PH[lang].flight;
+  if(transferPrix) transferPrix.placeholder = PH[lang].price;
+  if(prix) prix.placeholder = PH[lang].price;
+  if(circuitPrix) circuitPrix.placeholder = PH[lang].price;
+  if(message) message.placeholder = PH[lang].message;
+  if(tel) tel.placeholder = PH[lang].phone;
+  if(email) email.placeholder = PH[lang].email;
+        }
 
 /* =====================================================
    APPLIQUER LANGUE
@@ -3454,6 +3486,7 @@ function setLang(lang){
   // Selects
   translateSelects(lang);
 
+  setPlaceholders(lang);
   // Boutons
   document.getElementById("btnReserve").innerText = LANG[lang].reserve;
   document.getElementById("btnPay").innerText = LANG[lang].pay;
