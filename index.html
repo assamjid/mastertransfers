@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2461,17 +2461,15 @@ if (btnCancel) {
 
   function disableUnusedFields() {
 
-  // 🔒 Tout désactiver par défaut
-  bookingForm.querySelectorAll("input, select, textarea, button").forEach(el => {
+  // Désactiver tous les champs
+  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
     el.disabled = true;
   });
 
-  // 🧍‍♂️ Champs TOUJOURS actifs (infos client)
+  // Champs toujours envoyés
   [
     service,
     date,
-    heure,
-    fixedTime,
     nom,
     tel,
     email,
@@ -2479,48 +2477,20 @@ if (btnCancel) {
     message,
     document.getElementById("finalPrice"),
     document.getElementById("emailMessage")
-    ].forEach(el => el && (el.disabled = false));
-    document.getElementById("btnReserve").disabled = false;
+  ].forEach(el => el && (el.disabled = false));
 
-  // 🚐 TRANSFERTS AÉROPORT & PRIVÉS
+  // Champs selon service
   if (service.value === "airport") {
-    [
-      transferType,
-      depart,
-      arrivee,
-      transferPlaces,
-      transferPrix,
-      flightNumber
-    ].forEach(el => el && (el.disabled = false));
+    [transferType, depart, arrivee, transferPlaces, flightNumber].forEach(el => el && (el.disabled = false));
   }
 
-  // 🚗 TRANSFERTS INTER-VILLES
   if (service.value === "intercity") {
-    [
-      trajet,
-      places,
-      prix
-    ].forEach(el => el && (el.disabled = false));
+    [trajet, places].forEach(el => el && (el.disabled = false));
   }
 
-  // 🏜️ EXCURSIONS & CIRCUITS
   if (service.value === "excursion") {
-    [
-      circuit,
-      circuitPlaces,
-      circuitPrix
-    ].forEach(el => el && (el.disabled = false));
-
-    // Cas particuliers
-    if (circuit.value === "Chameau") {
-      camelType.disabled = false;
-    }
-
-    if (circuit.value === "Safari Quad / Buggy") {
-      quadType.disabled = false;
-    }
+    [circuit, circuitPlaces, quadType, camelType].forEach(el => el && (el.disabled = false));
   }
-    
   }
 
 
@@ -2987,44 +2957,39 @@ function escapeHTML(str) {
 ===================================================== */
 bookingForm.addEventListener("submit", function () {
 
-  disableUnusedFields();
-
   let price = "";
   if (service.value === "airport") price = transferPrix.value;
   if (service.value === "intercity") price = prix.value;
   if (service.value === "excursion") price = circuitPrix.value;
-  
+
   document.getElementById("finalPrice").value = price;
-  
-  const serviceText = service.options[service.selectedIndex]?.text || "";
+
+  const serviceText = service.options[service.selectedIndex].text;
 
   const messageToSend = `
-Service: ${serviceText}
-Date: ${date.value}
-Time: ${fixedTime.value || heure.value}
+SERVICE: ${serviceText}
+DATE: ${date.value}
+TIME: ${fixedTime.value || heure.value}
 
-Name: ${nom.value}
-Phone: +${countryCode.value}${tel.value}
-Email: ${email.value}
+NAME: ${nom.value}
+PHONE: +${countryCode.value}${tel.value}
+EMAIL: ${email.value}
 
-Price: ${price}
+PRICE: ${price}
 
-Note:
+NOTE:
 ${message.value || "-"}
 `.trim();
 
-  // ✉️ EMAIL
   document.getElementById("emailMessage").value = messageToSend;
 
-  // 📲 WHATSAPP (après envoi email)
+  disableUnusedFields();
+
+  // Ouvre WhatsApp APRÈS l’envoi du mail
   setTimeout(() => {
-    window.open(
-      "https://wa.me/212691059759?text=" + encodeURIComponent(messageToSend),
-      "_blank"
-    );
-  }, 700);
+    window.open("https://wa.me/212691059759?text=" + encodeURIComponent(messageToSend), "_blank");
+  }, 900);
 });
-  
 
 /* =====================================================
    OVERLAY ANIMÉ
