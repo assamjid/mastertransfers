@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐BBB 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -3021,17 +3021,17 @@ if (btnCancel && btnConfirm) {
 
   const msg = document.getElementById("emailMessage").value;
 
-  // Ouvre WhatsApp chat vide
-  window.open("https://wa.me/212691059759", "_blank");
+  // WhatsApp avec message PRÉ-REMPLI (OBLIGATOIRE)
+  window.open(
+    "https://wa.me/212691059759?text=" + encodeURIComponent(msg),
+    "_blank"
+  );
 
-  // Copie le message dans le presse-papier
-  navigator.clipboard.writeText(msg).then(() => {
-    alert("Message copié automatiquement. Collez-le dans WhatsApp 👍");
-  });
+  // Envoi email juste après
+  setTimeout(() => bookingForm.submit(), 500);
 
-  // Envoi email
-  setTimeout(() => bookingForm.submit(), 600);
-  setTimeout(() => location.reload(), 1600);
+  // Reset page
+  setTimeout(() => location.reload(), 1400);
 });
   
   }
