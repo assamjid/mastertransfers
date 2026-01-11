@@ -555,51 +555,46 @@ button:hover{transform:translateY(-2px)}
 }
 
   /* ===============================
-   CARTE PREMIUM EXCURSIONS & CIRCUITS
+   CARTE SERVICES EXCURSIONS — PREMIUM PLEINE LARGEUR
 ================================= */
 #services .service-pro:nth-child(3){
-  grid-column:1 / -1;
-  max-width:100%;
-  padding:40px 35px;
-  border-radius:26px;
-  background:linear-gradient(135deg,#001f3f,#005fa3,#00c3ff);
-  position:relative;
-  overflow:hidden;
+  grid-column:1 / -1;                 /* pleine largeur */
+  background:linear-gradient(160deg,#001f3f,#003b6f); /* même couleur */
+  padding:18px 22px;                  /* plus compacte */
+  min-height:unset;
+  border-radius:22px;
 }
 
-/* Effet glow premium */
-#services .service-pro:nth-child(3)::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at top,#ffffff22,transparent 70%);
-  pointer-events:none;
-}
-
-/* Texte plus grand */
-#services .service-pro:nth-child(3) h3{
-  font-size:30px;
-}
-
+/* Texte compact */
 #services .service-pro:nth-child(3) p{
-  font-size:17px;
-  max-width:750px;
-  margin:0 auto 18px;
+  margin-bottom:10px;
+  font-size:15.5px;
+  line-height:1.6;
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Titre */
+#services .service-pro:nth-child(3) h3{
+  margin:8px 0;
+  font-size:22px;
 }
 
 /* Bouton */
 #services .service-pro:nth-child(3) a{
-  font-size:18px;
-  padding:12px 28px;
+  margin-top:8px;
+  font-size:16px;
+  padding:10px 26px;
 }
 
 /* Mobile */
 @media(max-width:700px){
   #services .service-pro:nth-child(3){
-    padding:26px 18px;
+    grid-column:1;
+    padding:16px 18px;
   }
-}
-
+  }
   /* ===============================
    TITRES PREMIUM – STYLE DESTINATIONS
 ================================= */
