@@ -1167,7 +1167,7 @@ Nos services
 </div>
 
 <div class="floating-field" id="quadTypeField" style="display:none;">
-  <select id="quadType" name="" required>
+  <select id="quadType" name="quad_type" required>
     <option value=""
   data-fr="Type de véhicule"
   data-en="Vehicle type">
@@ -1195,7 +1195,7 @@ Nos services
 </div>
 
 <div class="floating-field" id="camelTypeField" style="display:none;">
-  <select id="camelType" name="" required>
+  <select id="camelType" name="camel_type" required>
   <option value=""
   data-fr="Type de promenade"
   data-en="Ride type">
@@ -1286,7 +1286,7 @@ Nos services
 </div>
 
 <div class="floating-field">
-<textarea id="message" name="client_note" placeholder="Baggages, Siège bébé ..."></textarea>
+<textarea id="message" name="note" placeholder="Baggages, Siège bébé ..."></textarea>
   <label for="message"
   data-fr="Demandes spéciales"
   data-en="Special requests">
@@ -1385,7 +1385,7 @@ Nos services
 <input type="hidden" name="_subject" value="Nouvelle réservation MasterTripTransfers">
 <input type="hidden" name="_format" value="plain">
 <input type="hidden" name="_captcha" value="false">
-<input type="hidden" id="finalPrice" name="Prix">
+<input type="hidden" id="finalPrice" name="price">
 <input type="hidden" id="emailMessage" name="final_message">
 <input type="hidden" name="_template" value="table">
 <button type="submit" id="btnReserve">Book Now</button>
@@ -2991,7 +2991,9 @@ bookingForm.addEventListener("submit", function () {
   if (service.value === "airport") price = transferPrix.value;
   if (service.value === "intercity") price = prix.value;
   if (service.value === "excursion") price = circuitPrix.value;
-
+  
+  document.getElementById("finalPrice").value = price;
+  
   const serviceText = service.options[service.selectedIndex]?.text || "";
 
   const messageToSend = `
