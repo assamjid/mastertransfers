@@ -2922,38 +2922,49 @@ function escapeHTML(str) {
    SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
 
-bookingForm.addEventListener("submit", e => {
+bookingForm.addEventListener("submit", function(e){
   e.preventDefault();
 
+  // Vérification HTML
   if (!bookingForm.checkValidity()) {
     bookingForm.reportValidity();
     return;
   }
 
-  let priceToSend = "";
+  // Calcul prix
+  let price = "";
+  if(service.value === "Transferts Aéroport & Privés") price = transferPrix.value;
+  if(service.value === "Transferts Inter-Villes Maroc") price = prix.value;
+  if(service.value === "Excursions & Circuits Touristiques") price = circuitPrix.value;
 
-if (service.value === "airport")   priceToSend = transferPrix.value;
-if (service.value === "intercity") priceToSend = prix.value;
-if (service.value === "excursion") priceToSend = circuitPrix.value;
+  document.getElementById("finalPrice").value = price || "Sur devis";
 
-  document.getElementById("finalPrice").value = priceToSend || "Sur devis";
+  // Message email simple
+  const message =
+`NOUVELLE RÉSERVATION
 
-  let html = "";
-  let text = `📩 Nouvelle réservation MasterTripTransfers\n\n`;
+Nom: ${nom.value}
+Téléphone: +${countryCode.value}${tel.value}
+Email: ${email.value}
+Date: ${date.value}
+Heure: ${heure.value}
 
-  const timeValue = fixedTime.value || heure.value || "—";
+Service: ${service.value}
+Prix: ${price}
 
-html += `<p><b>Nom :</b> ${nom.value}</p>`;
-html += `<p><b>Téléphone :</b> +${countryCode.value} ${tel.value}</p>`;
-html += `<p><b>Email :</b> ${email.value}</p>`;
-html += `<p><b>Date :</b> ${date.value}</p>`;
-html += `<p><b>Heure :</b> ${timeValue}</p>`;
+Message:
+${message.value || "-"}`;
 
-text += `Nom : ${nom.value}\nTéléphone : +${countryCode.value}${tel.value}\nEmail : ${email.value}\n\n`;
-text += `Date : ${date.value}\nHeure : ${timeValue}\n\n`;
-  document.getElementById("emailMessage").value = text;
+  document.getElementById("emailMessage").value = message;
 
-  openResume(html, text);
+  // Ouvre WhatsApp
+  window.open(
+    "https://wa.me/212691059759?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+
+  // Envoi email
+  bookingForm.submit();
 });
   
 /* =====================================================
