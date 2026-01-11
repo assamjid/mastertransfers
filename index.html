@@ -2933,9 +2933,10 @@ bookingForm.addEventListener("submit", function(e){
 
   // Calcul prix
   let price = "";
-  if(service.value === "Transferts Aéroport & Privés") price = transferPrix.value;
-  if(service.value === "Transferts Inter-Villes Maroc") price = prix.value;
-  if(service.value === "Excursions & Circuits Touristiques") price = circuitPrix.value;
+
+if(service.value === "airport")   price = transferPrix.value;
+if(service.value === "intercity") price = prix.value;
+if(service.value === "excursion") price = circuitPrix.value;
 
   document.getElementById("finalPrice").value = price || "Sur devis";
 
