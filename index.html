@@ -3003,7 +3003,7 @@ if(finalPrice && finalPrice !== "-"){
 }
   
   document.getElementById("emailMessage").value = msg;
-openResume(recap, msg);
+
   let recap = "";
 
 if(nom.value) recap += `<p><b>👤 Nom :</b> ${nom.value}</p>`;
@@ -3031,7 +3031,7 @@ if(message.value) recap += `<p><b>📝 Message :</b> ${message.value}</p>`;
 
 if(price) recap += `<p><b>💰 Prix :</b> ${price}</p>`;
 
-
+openResume(recap, msg);
  /* openResume(`
 <p><b>Nom :</b> ${nom.value}</p>
 <p><b>Téléphone :</b> +${countryCode.value}${tel.value}</p>
@@ -3040,8 +3040,8 @@ if(price) recap += `<p><b>💰 Prix :</b> ${price}</p>`;
 <p><b>Heure :</b> ${timeValue}</p>
 <p><b>Service :</b> ${service.options[service.selectedIndex].text}</p>
 <p><b>Prix :</b> ${price || "Sur devis"}</p>
-`, msg);
-});*/
+`, msg);*/
+});
   
 /* =====================================================
    OVERLAY ANIMÉ
