@@ -736,7 +736,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐ZZZ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2510,6 +2510,10 @@ function resetAll() {
   depart.readOnly = false;
   arrivee.readOnly = false;
 
+  quadType.required = false;
+camelType.required = false;
+fixedTime.required = false;
+
   setHeureMode("hidden");
 }
 
@@ -2923,49 +2927,40 @@ function escapeHTML(str) {
 ===================================================== */
 
 bookingForm.addEventListener("submit", function(e){
-  e.preventDefault();
 
-  // Vérification HTML
-  if (!bookingForm.checkValidity()) {
-    bookingForm.reportValidity();
-    return;
-  }
+  // On laisse le navigateur faire le POST NATIF
+  if (!bookingForm.checkValidity()) return;
 
-  // Calcul prix
+  // Calcul du prix selon service
   let price = "";
 
-if(service.value === "airport")   price = transferPrix.value;
-if(service.value === "intercity") price = prix.value;
-if(service.value === "excursion") price = circuitPrix.value;
+  if(service.value === "airport")   price = transferPrix.value;
+  if(service.value === "intercity") price = prix.value;
+  if(service.value === "excursion") price = circuitPrix.value;
 
   document.getElementById("finalPrice").value = price || "Sur devis";
 
-  // Message email simple
-  const message =
+  // Heure toujours valide
+  const timeValue = fixedTime.value || heure.value || "-";
+
+  // Message complet email + WhatsApp
+  const msg =
 `NOUVELLE RÉSERVATION
 
 Nom: ${nom.value}
 Téléphone: +${countryCode.value}${tel.value}
 Email: ${email.value}
-Date: ${date.value}
-Heure: ${heure.value}
 
-Service: ${service.value}
-Prix: ${price}
+Date: ${date.value}
+Heure: ${fixedTime.value || heure.value}
+
+Service: ${service.options[service.selectedIndex].text}
+Prix: ${price || "Sur devis"}
 
 Message:
 ${message.value || "-"}`;
 
-  document.getElementById("emailMessage").value = message;
-
-  // Ouvre WhatsApp
-  window.open(
-    "https://wa.me/212691059759?text=" + encodeURIComponent(message),
-    "_blank"
-  );
-
-  // Envoi email
-  bookingForm.submit();
+  document.getElementById("emailMessage").value = msg;
 });
   
 /* =====================================================
