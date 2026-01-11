@@ -699,7 +699,7 @@ section h2[data-fr="Ils nous font confiance"]::after{
 <p class="hero-h1"
    data-fr="Transferts & Excursions à Agadir "
    data-en="Transfers & Excursions in Agadir ">
-  Transferts & Excursions à Agadir – MasterTripTransfers
+  Transferts & Excursions à Agadir 
 </p>
 
   <nav class="main-nav">
@@ -738,7 +738,7 @@ data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers �
 
 <div class="service-grid">
 
-  <div class="service-pro" onclick="openService('Transferts Aéroport & Privés')" style="cursor:pointer;">
+  <div class="service-pro" onclick="openService('airport')" style="cursor:pointer;">
 
   <h3 data-fr="Transferts Privés & Aéroport"
     data-en="Private & Airport Transfers">
@@ -768,7 +768,7 @@ Transferts confortables depuis/vers l’aéroport, hôtels, riads et adresses pr
   </p>
 
   <a href="javascript:void(0)"
-     onclick="event.stopPropagation(); openService('Transferts Inter-Villes Maroc')"
+     onclick="event.stopPropagation(); openService('intercity')"
      data-fr="Réserver →"
      data-en="Book →">
      Réserver →
@@ -852,33 +852,27 @@ method="POST">
 
 <div class="floating-field">
 
-<select id="service" required>
+  <select id="service" required>
+  <option value="" data-fr="Choisir un service" data-en="Choose a service"></option>
 
-<option value=""
-data-fr="Choisir un service"
-data-en="Choose a service">
-Choisir un service
-</option>
+  <option value="airport"
+    data-fr="Transferts Aéroport & Privés"
+    data-en="Airport & Private Transfers">
+    Transferts Aéroport & Privés
+  </option>
 
-<option value="Transferts Aéroport & Privés"
-data-fr="Transferts Aéroport & Privés"
-data-en="Airport & Private Transfers">
-Transferts Aéroport & Privés
-</option>
+  <option value="intercity"
+    data-fr="Transferts Inter-Villes Maroc"
+    data-en="Intercity Transfers Morocco">
+    Transferts Inter-Villes Maroc
+  </option>
 
-<option value="Transferts Inter-Villes Maroc"
-data-fr="Transferts Inter-Villes Maroc"
-data-en="Intercity Transfers Morocco">
-Transferts Inter-Villes Maroc
-</option>
-
-<option value="Excursions & Circuits Touristiques"
-data-fr="Excursions & Circuits Touristiques"
-data-en="Excursions & Tours">
-Excursions & Circuits Touristiques
-</option>
-
-</select>
+  <option value="excursion"
+    data-fr="Excursions & Circuits Touristiques"
+    data-en="Excursions & Tours">
+    Excursions & Circuits Touristiques
+  </option>
+  </select>
 
 <label for="service"
 data-fr="Nos services"
@@ -2396,7 +2390,7 @@ Avis de nos clients
 /* =====================================================
    VARIABLES GLOBALES
 ===================================================== */
-let whatsappMessage = "";
+
 
 /* =====================================================
    RÉFÉRENCES DOM
@@ -2451,48 +2445,70 @@ const btnConfirm = document.getElementById("resumeConfirm");
 if (btnCancel) {
   btnCancel.addEventListener("click", closeResume);
 }
+  let lang = localStorage.getItem("lang") || "EN";
 
+  function disableUnusedFields() {
 
-function disableUnusedFields() {
-
-  // Tout désactiver par défaut
+  // 🔒 Tout désactiver par défaut
   bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
     el.disabled = true;
   });
 
-  // Toujours actifs (infos client)
+  // 🧍‍♂️ Champs TOUJOURS actifs (infos client)
   [
-    service, date, heure, fixedTime,
-    nom, tel, email, countryCode,
+    service,
+    date,
+    heure,
+    fixedTime,
+    nom,
+    tel,
+    email,
+    countryCode,
     message,
     document.getElementById("finalPrice"),
     document.getElementById("emailMessage")
   ].forEach(el => el && (el.disabled = false));
 
-  // Selon service
-  if (service.value === "Transferts Aéroport & Privés") {
+  // 🚐 TRANSFERTS AÉROPORT & PRIVÉS
+  if (service.value === "airport") {
     [
-      transferType, depart, arrivee,
-      transferPlaces, transferPrix,
+      transferType,
+      depart,
+      arrivee,
+      transferPlaces,
+      transferPrix,
       flightNumber
     ].forEach(el => el && (el.disabled = false));
   }
 
-  if (service.value === "Transferts Inter-Villes Maroc") {
+  // 🚗 TRANSFERTS INTER-VILLES
+  if (service.value === "intercity") {
     [
-      trajet, places, prix
+      trajet,
+      places,
+      prix
     ].forEach(el => el && (el.disabled = false));
   }
 
-  if (service.value === "Excursions & Circuits Touristiques") {
+  // 🏜️ EXCURSIONS & CIRCUITS
+  if (service.value === "excursion") {
     [
-      circuit, circuitPlaces, circuitPrix
+      circuit,
+      circuitPlaces,
+      circuitPrix
     ].forEach(el => el && (el.disabled = false));
 
-    if (circuit.value === "Chameau") camelType.disabled = false;
-    if (circuit.value === "Safari Quad / Buggy") quadType.disabled = false;
+    // Cas particuliers
+    if (circuit.value === "Chameau") {
+      camelType.disabled = false;
+    }
+
+    if (circuit.value === "Safari Quad / Buggy") {
+      quadType.disabled = false;
+    }
   }
-}
+  }
+
 
 /* =====================================================
    DATE & TÉLÉPHONE
@@ -2547,150 +2563,35 @@ function resetAll() {
 }
 
 
-
-
-
 /* =====================================================
    CHOIX SERVICE
 ===================================================== */
-service.addEventListener("change", () => {
+
+    service.addEventListener("change", () => {
   resetAll();
 
-  // TRANSFERTS AÉROPORT & PRIVÉS
-  if (
-    service.value === "Transferts Aéroport & Privés" ||
-    service.value === "Airport & Private Transfers"
-  ) {
-    bookingSubtitle.textContent =
-      lang === "fr"
-        ? "Détails de votre transfert"
-        : "Your transfer details";
-
+  if (service.value === "airport") {
+    bookingSubtitle.textContent = LANG[lang].subtitle_transfer;
     transferFields.style.display = "flex";
 
-    transferType.disabled = false;
     transferType.required = true;
-
-    depart.disabled = false;
-    arrivee.disabled = false;
     depart.required = true;
     arrivee.required = true;
-
-    transferPlaces.disabled = false;
     transferPlaces.required = true;
-    flightNumber.disabled = false;
   }
 
-  // TRANSFERTS INTER-VILLES MAROC
-  if (
-    service.value === "Transferts Inter-Villes Maroc" ||
-    service.value === "Intercity Transfers Morocco"
-  ) {
-    bookingSubtitle.textContent =
-      lang === "fr"
-        ? "Détails du transport interville"
-        : "Intercity transfer details";
-
+  if (service.value === "intercity") {
+    bookingSubtitle.textContent = LANG[lang].subtitle_intercity;
     intervillesFields.style.display = "flex";
 
-    trajet.disabled = false;
-    places.disabled = false;
     trajet.required = true;
     places.required = true;
   }
 
-  // EXCURSIONS & CIRCUITS TOURISTIQUES
-  if (
-    service.value === "Excursions & Circuits Touristiques" ||
-    service.value === "Tours & Excursions"
-  ) {
-    bookingSubtitle.textContent =
-      lang === "fr"
-service.addEventListener("change", () => {
-resetAll();
-
-if (service.value === "Transferts Aéroport & Privés"){
-bookingSubtitle.textContent = "Détails de votre transfert";
-transferFields.style.display = "flex";
-
-transferType.disabled = false;  
-transferType.required = true;  
-
-depart.disabled = false;  
-arrivee.disabled = false;  
-depart.required = true;  
-arrivee.required = true;  
-
-transferPlaces.disabled = false;  
-service.addEventListener("change", () => {
-  resetAll();
-
-  const currentLang = localStorage.getItem("lang") || "FR";
-
-  /* ===============================
-     TRANSFERTS AÉROPORT & PRIVÉS
-  =============================== */
-  if (
-    service.value === "Transferts Aéroport & Privés" ||
-    service.value === "Airport & Private Transfers"
-  ) {
-    bookingSubtitle.textContent =
-      currentLang === "EN"
-        ? "Your transfer details"
-        : "Détails de votre transfert";
-
-    transferFields.style.display = "flex";
-
-    transferType.disabled = false;
-    transferType.required = true;
-
-    depart.disabled = false;
-    arrivee.disabled = false;
-    depart.required = true;
-    arrivee.required = true;
-
-    transferPlaces.disabled = false;
-    transferPlaces.required = true;
-
-    flightNumber.disabled = false;
-  }
-
-  /* ===============================
-     TRANSFERTS INTER-VILLES
-  =============================== */
-  if (
-    service.value === "Transferts Inter-Villes Maroc" ||
-    service.value === "Intercity Transfers Morocco"
-  ) {
-    bookingSubtitle.textContent =
-      currentLang === "EN"
-        ? "Intercity transfer details"
-        : "Détails du transport interville";
-
-    intervillesFields.style.display = "flex";
-
-    trajet.disabled = false;
-    places.disabled = false;
-    trajet.required = true;
-    places.required = true;
-  }
-
-  /* ===============================
-     EXCURSIONS & CIRCUITS
-  =============================== */
-  if (
-    service.value === "Excursions & Circuits Touristiques" ||
-    service.value === "Excursions & Tours"
-  ) {
-    bookingSubtitle.textContent =
-      currentLang === "EN"
-        ? "Excursion details"
-        : "Détails du circuit / excursion";
-
+  if (service.value === "excursion") {
+    bookingSubtitle.textContent = LANG[lang].subtitle_excursion;
     circuitsFields.style.display = "flex";
 
-    circuit.disabled = false;
-    circuitPlaces.disabled = false;
     circuit.required = true;
     circuitPlaces.required = true;
   }
@@ -2702,56 +2603,74 @@ service.addEventListener("change", () => {
 /* =====================================================
    TRANSFERT – LOGIQUE
 ===================================================== */
-
-
-
-
 transferType.addEventListener("change", () => {
 
-  depart.value = "";
-  arrivee.value = "";
-  transferPrix.value = "";
+  /* ===============================
+     RESET
+  =============================== */
+  flightField.style.display = "none";
+  flightNumber.required = false;
   flightNumber.value = "";
 
   depart.readOnly = false;
   arrivee.readOnly = false;
 
-  // CACHÉ PAR DÉFAUT
-  flightField.style.display = "none";
-  flightNumber.required = false;
-
-  // TRANSFERT PRIVÉ (pas de numéro de vol)
-  if (transferType.value === "Transfert Privé Personnalisé") {
-    transferPrix.value = "Sur devis";
+  /* ===============================
+     TRANSFERT PRIVÉ PERSONNALISÉ
+  =============================== */
+  if (
+    transferType.value === "Transfert Privé Personnalisé" ||
+    transferType.value === "Customized Private Transfer"
+  ) {
+    transferPrix.value = lang === "EN" ? "On request" : "Sur devis";
     return;
   }
 
-  // TRANSFERTS AÉROPORT → numéro de vol OBLIGATOIRE
-
-
-  if (transferType.value.includes("Aéroport")) {
+  /* ===============================
+     TRANSFERT AÉROPORT / AIRPORT
+  =============================== */
+  if (
+    transferType.value.includes("Aéroport") ||
+    transferType.value.includes("Airport")
+  ) {
     flightField.style.display = "block";
     flightNumber.required = true;
   }
 
+  /* ===============================
+     AUTO-REMPLISSAGE AÉROPORT AGADIR
+  =============================== */
+  const v = transferType.value.toLowerCase();
 
-// AUTO-REMPLISSAGE OFFICIEL AÉROPORT (INTELLIGENT)
-const v = transferType.value.toLowerCase();
+  // Départ depuis l'aéroport
+  if (
+    v.startsWith("aéroport d'agadir") ||
+    v.startsWith("agadir airport")
+  ) {
+    depart.value = "Agadir Al Massira Airport";
+    depart.readOnly = true;
+  }
 
-if (v.startsWith("aéroport d'agadir")) {
-  depart.value = "Aéroport Agadir Al Massira";
-  depart.readOnly = true;
-}
+  // Arrivée à l'aéroport
+  if (
+    v.endsWith("aéroport d'agadir") ||
+    v.endsWith("agadir airport")
+  ) {
+    arrivee.value = "Agadir Al Massira Airport";
+    arrivee.readOnly = true;
+  }
 
-if (v.endsWith("aéroport d'agadir")) {
-  arrivee.value = "Aéroport Agadir Al Massira";
-  arrivee.readOnly = true;
-}
-
-
-
-  if (transferPlaces.value) calculPrixTransfert();
+  /* ===============================
+     RECALCUL DU PRIX
+  =============================== */
+  if (transferPlaces.value) {
+    calculPrixTransfert();
+  }
 });
+
+
+
+
 
 
 
@@ -2923,7 +2842,6 @@ function updateCircuitPlaces() {
     circuitPlaces.appendChild(opt);
   }
 
-  const lang = localStorage.getItem("lang") || "FR";
   translateSelects(lang);
       }
 
@@ -2934,7 +2852,7 @@ function updateExcursionTimes() {
   /* =====================================
      1️⃣ PAS EXCURSIONS → HEURE LIBRE
   ===================================== */
-  if (service.value !== "Excursions & Circuits Touristiques") {
+  if (service.value !== "excursion") {
     setHeureMode("free");
     return;
   }
@@ -3054,68 +2972,82 @@ function escapeHTML(str) {
    SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
 
-bookingForm.addEventListener("submit", e => {
+bookingForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  if (!bookingForm.checkValidity()) {
-    bookingForm.reportValidity();
-    return;
-  }
+  /* ===============================
+     SÉCURITÉ : éviter double submit
+  =============================== */
+  if (bookingForm.dataset.submitted === "true") return;
+  bookingForm.dataset.submitted = "true";
 
-  // Validation Quad
-  if (circuit.value === "Safari Quad / Buggy" && !quadType.value) {
-    alert("Veuillez choisir le type de véhicule (Quad ou Buggy).");
-    return;
-  }
+  // 🔒 Désactiver les champs inutiles
+  disableUnusedFields();
 
-  // Validation Chameau
-  if (circuit.value === "Chameau" && !camelType.value) {
-    alert("Veuillez choisir le type de promenade à dos de chameau.");
-    return;
-  }
-
+  /* ===============================
+     DÉTERMINER LE PRIX
+  =============================== */
   let priceToSend = "";
-  if (service.value === "Transferts Aéroport & Privés") priceToSend = transferPrix.value;
-  if (service.value === "Transferts Inter-Villes Maroc") priceToSend = prix.value;
-  if (service.value === "Excursions & Circuits Touristiques") priceToSend = circuitPrix.value;
 
-  document.getElementById("finalPrice").value = priceToSend || "Sur devis";
+  if (service.value === "airport") {
+    priceToSend = transferPrix.value;
+  }
 
-  let html = `<p><b>Nom :</b> ${nom.value}</p>
-<p><b>Téléphone :</b> +${countryCode.value} ${tel.value}</p>
-<p><b>Email :</b> ${email.value}</p>
-<p><b>Service :</b> ${service.value}</p>
-<p><b>Prix :</b> ${priceToSend}</p>`;
+  if (service.value === "intercity") {
+    priceToSend = prix.value;
+  }
 
-  whatsappMessage =
-`Nouvelle réservation MasterTripTransfers
-Nom: ${nom.value}
-Téléphone: +${countryCode.value}${tel.value}
-Email: ${email.value}
-Service: ${service.value}
-Prix: ${priceToSend}`;
+  if (service.value === "excursion") {
+    priceToSend = circuitPrix.value;
+  }
 
-  openResume(html, whatsappMessage);
+  /* ===============================
+     TEXTE DU SERVICE (VISIBLE)
+  =============================== */
+  const serviceText =
+    service.options[service.selectedIndex]?.text || "";
+
+  /* ===============================
+     MESSAGE FINAL
+  =============================== */
+  const messageToSend = `
+${LANG[lang].service}: ${serviceText}
+${LANG[lang].date}: ${date.value}
+${LANG[lang].time}: ${heure.value || fixedTime.value}
+
+${LANG[lang].name}: ${nom.value}
+${LANG[lang].phone}: ${countryCode.value} ${tel.value}
+${LANG[lang].email}: ${email.value}
+
+${LANG[lang].price}: ${priceToSend}
+
+${LANG[lang].note || LANG[lang].message}:
+${message.value || "-"}
+`.trim();
+
+  /* ===============================
+     WHATSAPP
+  =============================== */
+  const whatsappUrl =
+    "https://wa.me/212691059759?text=" +
+    encodeURIComponent(messageToSend);
+
+  window.open(whatsappUrl, "_blank");
+
+  /* ===============================
+     EMAIL (FORMSUBMIT)
+  =============================== */
+  document.getElementById("emailMessage").value = messageToSend;
+
+  // ✅ SOUMISSION NATIVE (PAS DE BOUCLE)
+  HTMLFormElement.prototype.submit.call(bookingForm);
 });
-
-  btnConfirm.addEventListener("click", () => {
-  disableUnusedFields();                 // active uniquement les bons champs
-  bookingForm.submit();                  // ENVOIE L’EMAIL
-  setTimeout(() => {
-    window.open(
-      "https://wa.me/212691059759?text=" + encodeURIComponent(whatsappMessage),
-      "_blank"
-    );
-  }, 500);
-});
-
-
 
 /* =====================================================
    OVERLAY ANIMÉ
 ===================================================== */
 function openResume(html, text) {
-  whatsappMessage = text;
+  
   const overlay = document.getElementById("resumeOverlay");
   document.getElementById("resumeContent").innerHTML = html;
   overlay.style.display = "flex";
@@ -3181,37 +3113,37 @@ function fixBookingScroll(){
 
 
 
-function openService(serviceName){
+function openService(serviceValue) {
 
-  // Scroll parfait
+  // Scroll propre vers la réservation
   fixBookingScroll();
 
-  // Attendre que le DOM soit bien prêt (GitHub Pages)
+  // Attendre que le scroll + DOM soient prêts
   setTimeout(() => {
     const serviceSelect = document.getElementById("service");
-    if(serviceSelect){
-      serviceSelect.value = serviceName;
-      serviceSelect.dispatchEvent(new Event("change"));
-    }
+    if (!serviceSelect) return;
+
+    serviceSelect.value = serviceValue;
+    serviceSelect.dispatchEvent(new Event("change"));
   }, 200);
-}
+             }
 
-function openExcursion(excursionName){
+function openExcursion(excursionValue) {
 
-  // Descend sous le header
+  // Scroll vers la réservation
   fixBookingScroll();
 
-  // Force le service excursions
-  service.value = "Excursions & Circuits Touristiques";
+  // Forcer le service "excursion"
+  service.value = "excursion";
   service.dispatchEvent(new Event("change"));
 
-  // Attendre l’ouverture des champs
+  // Attendre l’ouverture des champs excursions
   setTimeout(() => {
     const circuitSelect = document.getElementById("circuit");
-    if(circuitSelect){
-      circuitSelect.value = excursionName;
-      circuitSelect.dispatchEvent(new Event("change"));
-    }
+    if (!circuitSelect) return;
+
+    circuitSelect.value = excursionValue;
+    circuitSelect.dispatchEvent(new Event("change"));
   }, 250);
 }
 
@@ -3256,16 +3188,25 @@ function setHeureMode(mode, defaultValue = "") {
   }
 }
 
-function openInterville(trajetName){
+function openInterville(trajetValue) {
+
+  // Scroll vers la réservation
   fixBookingScroll();
-  setTimeout(()=>{
-    service.value = "Transferts Inter-Villes Maroc";
+
+  // Forcer le service "intercity"
+  setTimeout(() => {
+    service.value = "intercity";
     service.dispatchEvent(new Event("change"));
-    setTimeout(()=>{
-      trajet.value = trajetName;
-      trajet.dispatchEvent(new Event("change"));
-    },200);
-  },200);
+
+    // Attendre l’ouverture des champs inter-villes
+    setTimeout(() => {
+      const trajetSelect = document.getElementById("trajet");
+      if (!trajetSelect) return;
+
+      trajetSelect.value = trajetValue;
+      trajetSelect.dispatchEvent(new Event("change"));
+    }, 200);
+  }, 200);
 }
 
  function scrollToExcursionDetail(name){
@@ -3403,39 +3344,58 @@ EN:{
 /* =====================================================
    APPLIQUER LANGUE
 ===================================================== */
-function setLang(lang){
+function setLang(langParam) {
+
+  // 🌍 Sauvegarde + variable globale
+  lang = langParam;
   localStorage.setItem("lang", lang);
   document.documentElement.lang = lang === "EN" ? "en" : "fr";
 
-  // Textes simples
+  /* ===============================
+     TEXTES SIMPLES (data-fr / data-en)
+  =============================== */
   translateTexts(lang);
 
-  // Selects
+  /* ===============================
+     OPTIONS DES SELECT
+  =============================== */
   translateSelects(lang);
 
+  /* ===============================
+     PLACEHOLDERS
+  =============================== */
   setPlaceholders(lang);
-  // Boutons
+
+  /* ===============================
+     BOUTONS
+  =============================== */
   document.getElementById("btnReserve").innerText = LANG[lang].reserve;
   document.getElementById("btnPay").innerText = LANG[lang].pay;
 
-  // Sous-titre formulaire
-  if(service.value === "Transferts Aéroport & Privés"){
+  /* ===============================
+     SOUS-TITRE FORMULAIRE
+  =============================== */
+  if (service.value === "airport") {
     bookingSubtitle.textContent = LANG[lang].subtitle_transfer;
   }
 
-  if(service.value === "Transferts Inter-Villes Maroc"){
+  if (service.value === "intercity") {
     bookingSubtitle.textContent = LANG[lang].subtitle_intercity;
   }
 
-  if(service.value === "Excursions & Circuits Touristiques"){
+  if (service.value === "excursion") {
     bookingSubtitle.textContent = LANG[lang].subtitle_excursion;
   }
 
-  // Labels Prix
-  document.querySelectorAll("input[readonly] + label").forEach(label=>{
+  /* ===============================
+     LABELS PRIX (€)
+  =============================== */
+  document.querySelectorAll("input[readonly] + label").forEach(label => {
     label.textContent = lang === "EN" ? "Price (€)" : "Prix (€)";
   });
+
 }
+  
  
   
 document.addEventListener("DOMContentLoaded", ()=>{
