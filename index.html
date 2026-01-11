@@ -2462,7 +2462,7 @@ if (btnCancel) {
   function disableUnusedFields() {
 
   // 🔒 Tout désactiver par défaut
-  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
+  bookingForm.querySelectorAll("input, select, textarea, button").forEach(el => {
     el.disabled = true;
   });
 
