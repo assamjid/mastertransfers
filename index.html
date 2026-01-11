@@ -2459,23 +2459,7 @@ if (btnCancel) {
 }
   let lang = localStorage.getItem("lang") || "EN";
 
-  function disableUnusedFields() {
-
-  const keep = [
-    service, date, heure, fixedTime,
-    nom, tel, email, countryCode, message,
-    document.getElementById("finalPrice"),
-    document.getElementById("emailMessage")
-  ];
-
-  bookingForm.querySelectorAll("input, select, textarea").forEach(el => {
-    if (!keep.includes(el)) el.disabled = true;
-  });
-
-  // bouton submit TOUJOURS actif
-  document.getElementById("btnReserve").disabled = false;
-  }
-
+  
 
 /* =====================================================
    DATE & TÉLÉPHONE
@@ -2947,10 +2931,8 @@ bookingForm.addEventListener("submit", function () {
 
   document.getElementById("finalPrice").value = price;
 
-  const serviceText = service.options[service.selectedIndex].text;
-
   const messageToSend = `
-SERVICE: ${serviceText}
+SERVICE: ${service.options[service.selectedIndex].text}
 DATE: ${date.value}
 TIME: ${fixedTime.value || heure.value}
 
@@ -2966,14 +2948,12 @@ ${message.value || "-"}
 
   document.getElementById("emailMessage").value = messageToSend;
 
-  disableUnusedFields();
-
-  // Ouvre WhatsApp APRÈS l’envoi du mail
   setTimeout(() => {
     window.open("https://wa.me/212691059759?text=" + encodeURIComponent(messageToSend), "_blank");
-  }, 900);
+  }, 700);
 });
 
+  
 /* =====================================================
    OVERLAY ANIMÉ
 ===================================================== */
