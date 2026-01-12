@@ -3035,6 +3035,12 @@ function updateExcursionTimes() {
   /* =====================================
      1️⃣ PAS EXCURSIONS → HEURE LIBRE
   ===================================== */
+
+  // 🔒 Force toujours le sous-titre excursion si service = excursion
+  if(service.value === "excursion"){
+    bookingSubtitle.textContent = LANG[lang].subtitle_excursion;
+  }
+  
   if (service.value !== "excursion") {
     setHeureMode("free");
     return;
