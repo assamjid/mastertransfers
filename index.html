@@ -746,7 +746,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐BBB 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2816,6 +2816,8 @@ function updateCircuitPlaces() {
     circuitPlaces.add(new Option(i, i));
   }
 
+  
+  translateTexts(lang);
   translateSelects(lang);
 }
 
@@ -2893,6 +2895,9 @@ fixedTime.innerHTML = `
      7️⃣ AUTRES EXCURSIONS → HEURE LIBRE
   ===================================== */
   setHeureMode("free");
+
+  translateTexts(lang);
+  translateSelects(lang);
 }
 
 
