@@ -2506,12 +2506,6 @@ Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expéri
 
 <script>
 
-  let lang = localStorage.getItem("lang");
-
-  if(!lang){
-  lang = "EN";                     // EN par défaut
-  localStorage.setItem("lang","EN");
-}
   
 /* =====================================================
    VARIABLES GLOBALES
@@ -2940,6 +2934,7 @@ function updateCircuitPlaces() {
 
   translateSelects(lang);
   circuitPlaces.value = "";
+  circuitPlaces.selectedIndex = 0;
 }
 
 
@@ -3163,10 +3158,7 @@ if (btnCancel && btnConfirm) {
   const msg = document.getElementById("emailMessage").value;
 
   // WhatsApp avec message PRÉ-REMPLI (OBLIGATOIRE)
-  window.open(
-    "https://wa.me/212691059759?text=" + encodeURIComponent(msg),
-    "_blank"
-  );
+  location.href = "https://wa.me/212691059759?text=" + encodeURIComponent(msg);
 
   // Envoi email juste après
   setTimeout(() => bookingForm.submit(), 500);
@@ -3437,6 +3429,12 @@ EN:{
 }
 
 };
+
+  let lang = localStorage.getItem("lang") || "EN";
+localStorage.setItem("lang", lang);
+setLang(lang);
+updateLangFlag();
+  
   function translateTexts(lang){
   document.querySelectorAll("[data-fr]").forEach(el=>{
     el.textContent = (lang === "EN" && el.dataset.en)
