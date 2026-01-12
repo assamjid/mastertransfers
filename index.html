@@ -2796,12 +2796,21 @@ function updateCircuitPlaces() {
   // Quad & Chameau = 1 → 15
   if (circuit.value === "Safari Quad / Buggy" || circuit.value === "Chameau") {
 
-    circuitPlaces.innerHTML = `
-      <option value="">Nombre de places</option>
-    `;
+    const opt = document.createElement("option");
+    opt.value = "";
+    opt.dataset.fr = "Nombre de places";
+    opt.dataset.en = "Number of seats";
+    opt.textContent = LANG[lang].places;
+
+    circuitPlaces.appendChild(opt);
 
     for (let i = 1; i <= 15; i++) {
-      circuitPlaces.add(new Option(i, i));
+      const o = document.createElement("option");
+      o.value = i;
+      o.dataset.fr = i;
+      o.dataset.en = i;
+      o.textContent = i;
+      circuitPlaces.appendChild(o);
     }
 
     translateSelects(lang);
@@ -2809,20 +2818,32 @@ function updateCircuitPlaces() {
   }
 
   // Autres excursions = Moins de 5, puis 6 → 15
-  circuitPlaces.innerHTML = `
-    <option value="">Nombre de places</option>
-    <option value="5">Moins de 5</option>
-  `;
+  const base = document.createElement("option");
+  base.value = "";
+  base.dataset.fr = "Nombre de places";
+  base.dataset.en = "Number of seats";
+  base.textContent = LANG[lang].places;
+  circuitPlaces.appendChild(base);
+
+  const less = document.createElement("option");
+  less.value = "5";
+  less.dataset.fr = "Moins de 5";
+  less.dataset.en = "Up to 5";
+  less.textContent = LANG[lang].upto5;
+  circuitPlaces.appendChild(less);
 
   for (let i = 6; i <= 15; i++) {
-    circuitPlaces.add(new Option(i, i));
+    const o = document.createElement("option");
+    o.value = i;
+    o.dataset.fr = i;
+    o.dataset.en = i;
+    o.textContent = i;
+    circuitPlaces.appendChild(o);
   }
 
-  
   translateTexts(lang);
   translateSelects(lang);
 }
-
 
 
 function updateExcursionTimes() {
@@ -2900,7 +2921,7 @@ fixedTime.innerHTML = `
 
   translateTexts(lang);
   translateSelects(lang);
-}
+  }
 
 
 
