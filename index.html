@@ -746,7 +746,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2786,27 +2786,36 @@ function calculPrixCircuit() {
 }
 
 function updateCircuitPlaces() {
-  circuitPlaces.innerHTML = '<option value="">Nombre de places</option>';
 
-  let min = 5;
-let cleanNumbers = false;
+  circuitPlaces.innerHTML = "";
 
-if (circuit.value === "Safari Quad / Buggy" || circuit.value === "Chameau") {
-  min = 1;
-  cleanNumbers = true;
-}
+  // Quad & Chameau = 1 → 15
+  if (circuit.value === "Safari Quad / Buggy" || circuit.value === "Chameau") {
 
-for (let i = min; i <= 15; i++) {
-  const opt = document.createElement("option");
-  opt.value = i;
-  opt.textContent = i;
-  opt.dataset.fr = i;
-  opt.dataset.en = i;
-  circuitPlaces.appendChild(opt);
+    circuitPlaces.innerHTML = `
+      <option value="">Nombre de places</option>
+    `;
+
+    for (let i = 1; i <= 15; i++) {
+      circuitPlaces.add(new Option(i, i));
+    }
+
+    translateSelects(lang);
+    return;
+  }
+
+  // Autres excursions = Moins de 5, puis 6 → 15
+  circuitPlaces.innerHTML = `
+    <option value="">Nombre de places</option>
+    <option value="5">Moins de 5</option>
+  `;
+
+  for (let i = 6; i <= 15; i++) {
+    circuitPlaces.add(new Option(i, i));
   }
 
   translateSelects(lang);
-      }
+}
 
 
 
@@ -3092,14 +3101,38 @@ if (btnCancel && btnConfirm) {
   setTimeout(() => bookingForm.submit(), 500);
 
   setTimeout(() => {
-  bookingForm.reset();         // vide les champs
-  resetAll();                  // cache les blocs
-  document.getElementById("emailMessage").value = "";
-  document.getElementById("finalPrice").value = "";
-  service.value = "";          // 🔥 important
+
+  // Reset HTML natif
+  bookingForm.reset();
+
+  // Reset JS complet
+  resetAll();
+
+  // Vide tous les champs cachés
+  ["emailMessage","finalPrice"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = "";
+  });
+
+  // Remet la langue
+  setLang(lang);
+
+  // Force la remise à zéro des selects
+  document.querySelectorAll("#bookingForm select").forEach(s=>{
+    s.selectedIndex = 0;
+  });
+
+  // Remet date/heure par défaut
+  date.value = today;
+  heure.value = "07:00";
+
+  // Nettoie le sous-titre
   bookingSubtitle.textContent = "";
+
+  // Ferme le popup
   closeResume();
-}, 1400);
+
+}, 1200);
 });
   
   }
