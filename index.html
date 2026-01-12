@@ -770,8 +770,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
     
 </nav>
   <div class="hero-cta">
-  <a href="#booking" class="hero-btn primary" data-fr="🚐 Réserver un transfert" data-en="🚐 Book a transfer">
-    🚐 Book a transfer
+  <a href="#booking" class="hero-btn primary" data-fr=" Réserver un transfert" data-en=" Book a transfer">
+     Book a transfer
   </a>
 
   <a href="#excursions" class="hero-btn secondary" data-fr=" Voir les excursions" data-en=" View excursions">
@@ -2730,6 +2730,8 @@ fixedTime.required = false;
     depart.required = true;
     arrivee.required = true;
     transferPlaces.required = true;
+
+    setHeureMode("free");   // 🔥 REMET L’HEURE
   }
 
   if (service.value === "intercity") {
@@ -2738,23 +2740,21 @@ fixedTime.required = false;
 
     trajet.required = true;
     places.required = true;
+
+    setHeureMode("free");   // 🔥 REMET L’HEURE
   }
 
   if (service.value === "excursion") {
-  bookingSubtitle.textContent = LANG[lang].subtitle_excursion;
-  circuitsFields.style.display = "flex";
+    bookingSubtitle.textContent = LANG[lang].subtitle_excursion;
+    circuitsFields.style.display = "flex";
 
-  circuit.required = true;
-  circuitPlaces.required = true;
+    circuit.required = true;
+    circuitPlaces.required = true;
 
-    
-
-  updateCircuitPlaces(); // ✅ ICI EXACTEMENT
-}
-
-  
+    updateCircuitPlaces();
+    updateExcursionTimes(); // gère heure / horaires fixes
+  }
 });
-
 
 /* =====================================================
    TRANSFERT – LOGIQUE
