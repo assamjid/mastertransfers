@@ -2506,7 +2506,12 @@ Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expéri
 
 <script>
 
-  let lang = localStorage.getItem("lang") || "EN";
+  let lang = localStorage.getItem("lang");
+
+  if(!lang){
+  lang = "EN";                     // EN par défaut
+  localStorage.setItem("lang","EN");
+}
   
 /* =====================================================
    VARIABLES GLOBALES
@@ -2934,6 +2939,7 @@ function updateCircuitPlaces() {
   }
 
   translateSelects(lang);
+  circuitPlaces.value = "";
 }
 
 
