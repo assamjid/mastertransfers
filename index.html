@@ -3122,6 +3122,7 @@ if(depart.value) msg += `📍 *Départ* : ${depart.value}\n`;
 if(arrivee.value) msg += `🏁 *Destination* : ${arrivee.value}\n`;
 if(placesTxt && placesTxt !== "-") msg += `👥 *Places* : ${placesTxt}\n`;
 if(flightNumber.value) msg += `✈️ *Vol* : ${flightNumber.value}\n`;
+
 if(date.value) msg += `📅 *Date* : ${date.value}\n`;
 if(timeValue && timeValue !== "-") msg += `⏰ *Heure* : ${timeValue}\n`;
 
@@ -3160,13 +3161,6 @@ if(flightNumber.value) recap += `<p><b>✈️ Vol :</b> ${flightNumber.value}</p
 if(date.value) recap += `<p><b>📅 Date :</b> ${date.value}</p>`;
 if(timeValue && timeValue !== "-") recap += `<p><b>⏰ Heure :</b> ${timeValue}</p>`;
 
-if(date.value) {
-  msg += `\n📅 *Date* : ${date.value}\n`;
-}
-
-if(timeValue && timeValue !== "-") {
-  msg += `⏰ *Heure* : ${timeValue}\n`;
-}
   
 if(message.value) recap += `<p><b>📝 Message :</b> ${message.value}</p>`;
 
@@ -3462,6 +3456,8 @@ FR:{
   subtitle_transfer:"Détails de votre transfert",
   subtitle_intercity:"Détails du transport interville",
   subtitle_excursion:"Détails de votre excursion"
+  places: "Nombre de places",
+  upto5: "Moins de 5",
 },
 
 EN:{
@@ -3485,6 +3481,8 @@ EN:{
   subtitle_transfer:"Transfer details",
   subtitle_intercity:"Intercity transfer details",
   subtitle_excursion:"Excursion details"
+  places: "Number of people",
+  upto5: "Up to 5",
 }
 
 };
