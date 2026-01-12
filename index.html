@@ -3625,6 +3625,27 @@ document.addEventListener("DOMContentLoaded", updateLangFlag);
   setLang(lang);     // applique EN dès le départ
 });
 
+  function sendReview(){
+  const name = document.getElementById("reviewName").value.trim();
+  const stars = document.getElementById("reviewStars").value;
+  const msg = document.getElementById("reviewMessage").value.trim();
+
+  if(!name || !stars || !msg){
+    alert("Merci de remplir tous les champs ⭐");
+    return;
+  }
+
+  const text = `⭐ AVIS CLIENT MASTERTRIPTRANSFERS ⭐
+
+Nom : ${name}
+Note : ${stars}/5
+
+Avis :
+${msg}`;
+
+  window.open("https://wa.me/212691059759?text=" + encodeURIComponent(text), "_blank");
+  }
+
 </script>
 
   <div class="wa-label"
