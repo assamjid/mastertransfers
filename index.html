@@ -3108,27 +3108,27 @@ bookingForm.addEventListener("submit", function(e){
   
 let msg = `📩 *NOUVELLE RÉSERVATION MASTERTRIPTRANSFERS*\n\n`;
 
-if(nom.value)        msg += `👤 *Nom* : ${nom.value}\n`;
-if(tel.value)        msg += `📞 *Téléphone* : +${countryCode.value}${tel.value}\n`;
-if(email.value)      msg += `📧 *Email* : ${email.value}\n`;
+if(nom.value) msg += `👤 *Nom* : ${nom.value}\n`;
+if(tel.value) msg += `📞 *Téléphone* : +${countryCode.value}${tel.value}\n`;
+if(email.value) msg += `📧 *Email* : ${email.value}\n\n`;
 
-msg += `\n`;
-
-if(service.value)    msg += `🛎️ *Service* : ${service.options[service.selectedIndex].text}\n`;
+if(service.value) msg += `🛎️ *Service* : ${service.options[service.selectedIndex].text}\n`;
 if(type && type !== "-") msg += `🚘 *Type* : ${type}\n`;
 
-if(service.value === "excursion" && choix && choix !== "-"){
+if(service.value === "excursion" && choix && choix !== "-")
   msg += `🎯 *Choix* : ${choix}\n`;
-}
 
-if(depart.value)     msg += `📍 *Lieu départ* : ${depart.value}\n`;
-if(arrivee.value)    msg += `🏁 *Destination* : ${arrivee.value}\n`;
+if(depart.value) msg += `📍 *Départ* : ${depart.value}\n`;
+if(arrivee.value) msg += `🏁 *Destination* : ${arrivee.value}\n`;
 if(placesTxt && placesTxt !== "-") msg += `👥 *Places* : ${placesTxt}\n`;
 if(flightNumber.value) msg += `✈️ *Vol* : ${flightNumber.value}\n`;
+if(date.value) msg += `📅 *Date* : ${date.value}\n`;
+if(timeValue && timeValue !== "-") msg += `⏰ *Heure* : ${timeValue}\n`;
 
-if(message.value) {
-  msg += `\n📝 *Message client* : ${message.value}\n`;
-}
+if(message.value) msg += `\n📝 *Message* : ${message.value}\n`;
+if(price) msg += `\n💰 *Prix* : ${price}\n`;
+
+document.getElementById("emailMessage").value = msg;
 
 const finalPrice = document.getElementById("finalPrice").value;
 if(finalPrice && finalPrice !== "-"){
@@ -3649,6 +3649,7 @@ document.addEventListener("DOMContentLoaded", updateLangFlag);
   `;
 
   document.getElementById("liveReviews").prepend(box);
+    saveReview(name, parseInt(stars), msg);
 
   // Message WhatsApp admin
   const text = `⭐ NOUVEL AVIS CLIENT ⭐
@@ -3664,6 +3665,26 @@ ${msg}`;
   // Reset
   document.getElementById("reviewForm").reset();
   }
+
+  
+function saveReview(name, stars, msg){
+  const all = JSON.parse(localStorage.getItem("reviews") || "[]");
+  all.unshift({name, stars, msg});
+  localStorage.setItem("reviews", JSON.stringify(all));
+}
+
+function loadReviews(){
+  const all = JSON.parse(localStorage.getItem("reviews") || "[]");
+  all.forEach(r=>{
+    const box = document.createElement("div");
+    box.className = "review-card";
+    box.innerHTML = `${"⭐".repeat(r.stars)}<br>“${r.msg}”<b>— ${r.name}</b>`;
+    document.getElementById("liveReviews").appendChild(box);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", loadReviews);
+  
 
 </script>
 
