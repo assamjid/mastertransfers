@@ -3473,8 +3473,7 @@ function setLang(langParam) {
  
   
 document.addEventListener("DOMContentLoaded", ()=>{
-  const lang = localStorage.getItem("lang") || "EN";   // ⬅️ EN par défaut
-  setLang(lang);
+  setLang(lang);    // EN par défaut si rien en mémoire
 });
 
   function toggleLang(){
