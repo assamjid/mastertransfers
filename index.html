@@ -2793,16 +2793,16 @@ function updateCircuitPlaces() {
 
   circuitPlaces.innerHTML = "";
 
+  // OPTION PAR DÉFAUT (TOUJOURS)
+  const base = document.createElement("option");
+  base.value = "";
+  base.dataset.fr = "Nombre de places";
+  base.dataset.en = "Number of seats";
+  base.textContent = LANG[lang].places;
+  circuitPlaces.appendChild(base);
+
   // Quad & Chameau = 1 → 15
   if (circuit.value === "Safari Quad / Buggy" || circuit.value === "Chameau") {
-
-    const opt = document.createElement("option");
-    opt.value = "";
-    opt.dataset.fr = "Nombre de places";
-    opt.dataset.en = "Number of seats";
-    opt.textContent = LANG[lang].places;
-
-    circuitPlaces.appendChild(opt);
 
     for (let i = 1; i <= 15; i++) {
       const o = document.createElement("option");
@@ -2818,13 +2818,6 @@ function updateCircuitPlaces() {
   }
 
   // Autres excursions = Moins de 5, puis 6 → 15
-  const base = document.createElement("option");
-  base.value = "";
-  base.dataset.fr = "Nombre de places";
-  base.dataset.en = "Number of seats";
-  base.textContent = LANG[lang].places;
-  circuitPlaces.appendChild(base);
-
   const less = document.createElement("option");
   less.value = "5";
   less.dataset.fr = "Moins de 5";
@@ -2841,7 +2834,6 @@ function updateCircuitPlaces() {
     circuitPlaces.appendChild(o);
   }
 
-  translateTexts(lang);
   translateSelects(lang);
 }
 
