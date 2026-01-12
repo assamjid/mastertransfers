@@ -3086,8 +3086,11 @@ if (btnCancel && btnConfirm) {
   // Envoi email juste après
   setTimeout(() => bookingForm.submit(), 500);
 
-  // Reset page
-  setTimeout(() => location.reload(), 1400);
+  setTimeout(() => {
+  bookingForm.reset();   // ← vide tous les champs
+  resetAll();            // ← referme tous les blocs + prix + heures
+  closeResume();         // ← ferme la popup
+}, 1400);
 });
   
   }
