@@ -3310,9 +3310,7 @@ function goExcursions(){
 
   window.scrollTo({ top: y, behavior: "smooth" });
 }
-  document.addEventListener("DOMContentLoaded", ()=>{
-  setLang(lang);
-});
+  
 
 
 
@@ -3448,10 +3446,12 @@ EN:{
 
 };
 
-  let lang = localStorage.getItem("lang") || "EN";
-localStorage.setItem("lang", lang);
-setLang(lang);
-updateLangFlag();
+  let lang = localStorage.getItem("lang");
+if(!lang){
+  lang = "EN";
+  localStorage.setItem("lang","EN");
+      }
+  
   
   function translateTexts(lang){
   document.querySelectorAll("[data-fr]").forEach(el=>{
@@ -3587,13 +3587,7 @@ function updateLangFlag(){
   }
 }
 
-/* Lance au chargement */
-document.addEventListener("DOMContentLoaded", updateLangFlag);
   
-  document.addEventListener("DOMContentLoaded", () => {
-  setLang(lang);     // applique EN dès le départ
-});
-
   function sendReview(){
 
   const name  = document.getElementById("reviewName").value.trim();
@@ -3652,7 +3646,11 @@ function loadReviews(){
   });
 }
 
-document.addEventListener("DOMContentLoaded", loadReviews);
+document.addEventListener("DOMContentLoaded", ()=>{
+  setLang(lang);
+  updateLangFlag();
+  loadReviews();
+});
   
 
 </script>
