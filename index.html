@@ -2656,6 +2656,8 @@ fixedTime.required = false;
   circuit.required = true;
   circuitPlaces.required = true;
 
+    
+
   updateCircuitPlaces(); // ✅ ICI EXACTEMENT
 }
 
@@ -2895,7 +2897,7 @@ function updateCircuitPlaces() {
   const base = document.createElement("option");
   base.value = "";
   base.dataset.fr = "Nombre de places";
-  base.dataset.en = "Number of seats";
+  base.dataset.en = "Number of people";
   base.textContent = LANG[lang].places;
   circuitPlaces.appendChild(base);
 
@@ -3080,7 +3082,9 @@ bookingForm.addEventListener("submit", function(e){
 
   document.getElementById("finalPrice").value = price || "Sur devis";
 
-  const timeValue = fixedTime.value || heure.value || "-";
+  const timeValue = fixedTimeField.style.display === "block"
+  ? fixedTime.value
+  : heure.value;
 
   let type = "-";
   let choix = "";          // Choix seulement si excursion
@@ -3131,9 +3135,6 @@ if(price) msg += `\n💰 *Prix* : ${price}\n`;
 
 document.getElementById("emailMessage").value = msg;
 
-const finalPrice = document.getElementById("finalPrice").value;
-if(finalPrice && finalPrice !== "-"){
-  msg += `\n💰 *Prix total* : ${finalPrice}\n`;
 }
   
   document.getElementById("emailMessage").value = msg;
