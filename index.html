@@ -746,7 +746,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2409,6 +2409,8 @@ Avis de nos clients
 
 
 <script>
+
+  let lang = localStorage.getItem("lang") || "EN";
 /* =====================================================
    VARIABLES GLOBALES
 ===================================================== */
@@ -2463,7 +2465,7 @@ const fixedTime = document.getElementById("fixedTime");
 
 const heureField = document.getElementById("heureField");
 
-  let lang = localStorage.getItem("lang") || "EN";
+  
 
   
 
@@ -3471,11 +3473,7 @@ function setLang(langParam) {
 }
   
  
-  
-document.addEventListener("DOMContentLoaded", ()=>{
-  setLang(lang);    // EN par défaut si rien en mémoire
-});
-
+ 
   function toggleLang(){
   const current = localStorage.getItem("lang") || "EN";
   setLang(current === "FR" ? "EN" : "FR");
@@ -3498,6 +3496,9 @@ function updateLangFlag(){
 /* Lance au chargement */
 document.addEventListener("DOMContentLoaded", updateLangFlag);
   
+  document.addEventListener("DOMContentLoaded", () => {
+  setLang(lang);     // applique EN dès le départ
+});
 
 </script>
 
