@@ -3440,7 +3440,6 @@ FR:{
   transfer_choose:"Choisir transfert",
   intercity_choose:"Choisir Trajet",
   excursion_choose:"Choisir Excursion",
-  places_choose:"Nombre de places",
   pickup:"Lieu de prise en charge",
   dropoff:"Destination",
   flight:"Numéro de vol",
@@ -3455,9 +3454,9 @@ FR:{
   pay:"💳 Payer par carte",
   subtitle_transfer:"Détails de votre transfert",
   subtitle_intercity:"Détails du transport interville",
-  subtitle_excursion:"Détails de votre excursion"
+  subtitle_excursion:"Détails de votre excursion",
   places: "Nombre de places",
-  upto5: "Moins de 5",
+  upto5: "Moins de 5"
 },
 
 EN:{
@@ -3465,7 +3464,6 @@ EN:{
   transfer_choose:"Choose Transfer",
   intercity_choose:"Choose Route",
   excursion_choose:"Choose Excursion",
-  places_choose:"Number of people",
   pickup:"Pickup location",
   dropoff:"Drop-off location",
   flight:"Flight number",
@@ -3480,9 +3478,9 @@ EN:{
   pay:"💳 Pay by Card",
   subtitle_transfer:"Transfer details",
   subtitle_intercity:"Intercity transfer details",
-  subtitle_excursion:"Excursion details"
+  subtitle_excursion:"Excursion details",
   places: "Number of people",
-  upto5: "Up to 5",
+  upto5: "Up to 5"
 }
 
 };
@@ -3592,6 +3590,10 @@ function setLang(langParam) {
   document.querySelectorAll("input[readonly] + label").forEach(label => {
     label.textContent = lang === "EN" ? "Price (€)" : "Prix (€)";
   });
+  
+  if(service.value === "excursion"){
+  updateCircuitPlaces();
+  }
 
 }
   
