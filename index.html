@@ -2505,7 +2505,64 @@ Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expéri
   </section>
 
 <script>
+  
+const LANG = {
 
+FR:{
+  service_choose:"Choisir service",
+  transfer_choose:"Choisir transfert",
+  intercity_choose:"Choisir Trajet",
+  excursion_choose:"Choisir Excursion",
+  pickup:"Lieu de prise en charge",
+  dropoff:"Destination",
+  flight:"Numéro de vol",
+  date:"Date",
+  time:"Heure de prise en charge",
+  fixedtime:"Choisir l’horaire",
+  name:"Nom et Prénom",
+  email:"Email",
+  phone:"Téléphone",
+  note:"Demandes spéciales",
+  reserve:"Réserver maintenant",
+  pay:"💳 Payer par carte",
+  subtitle_transfer:"Détails de votre transfert",
+  subtitle_intercity:"Détails du transport interville",
+  subtitle_excursion:"Détails de votre excursion",
+  places: "Nombre de places",
+  upto5: "Moins de 5"
+},
+
+EN:{
+  service_choose:"Choose Service",
+  transfer_choose:"Choose Transfer",
+  intercity_choose:"Choose Route",
+  excursion_choose:"Choose Excursion",
+  pickup:"Pickup location",
+  dropoff:"Drop-off location",
+  flight:"Flight number",
+  date:"Date",
+  time:"Pickup time",
+  fixedtime:"Select time",
+  name:"Full name",
+  email:"Email",
+  phone:"Phone number",
+  note:"Special requests",
+  reserve:"Book Now",
+  pay:"💳 Pay by Card",
+  subtitle_transfer:"Transfer details",
+  subtitle_intercity:"Intercity transfer details",
+  subtitle_excursion:"Excursion details",
+  places: "Number of people",
+  upto5: "Up to 5"
+}
+
+};
+
+  let lang = localStorage.getItem("lang");
+if(!lang){
+  lang = "EN";
+  localStorage.setItem("lang","EN");
+      }
   
 /* =====================================================
    VARIABLES GLOBALES
@@ -3396,63 +3453,7 @@ function openInterville(trajetValue) {
    MOTEUR MULTI-LANGUE MASTERTRIP (FR / EN)
 ===================================================== */
 
-const LANG = {
 
-FR:{
-  service_choose:"Choisir service",
-  transfer_choose:"Choisir transfert",
-  intercity_choose:"Choisir Trajet",
-  excursion_choose:"Choisir Excursion",
-  pickup:"Lieu de prise en charge",
-  dropoff:"Destination",
-  flight:"Numéro de vol",
-  date:"Date",
-  time:"Heure de prise en charge",
-  fixedtime:"Choisir l’horaire",
-  name:"Nom et Prénom",
-  email:"Email",
-  phone:"Téléphone",
-  note:"Demandes spéciales",
-  reserve:"Réserver maintenant",
-  pay:"💳 Payer par carte",
-  subtitle_transfer:"Détails de votre transfert",
-  subtitle_intercity:"Détails du transport interville",
-  subtitle_excursion:"Détails de votre excursion",
-  places: "Nombre de places",
-  upto5: "Moins de 5"
-},
-
-EN:{
-  service_choose:"Choose Service",
-  transfer_choose:"Choose Transfer",
-  intercity_choose:"Choose Route",
-  excursion_choose:"Choose Excursion",
-  pickup:"Pickup location",
-  dropoff:"Drop-off location",
-  flight:"Flight number",
-  date:"Date",
-  time:"Pickup time",
-  fixedtime:"Select time",
-  name:"Full name",
-  email:"Email",
-  phone:"Phone number",
-  note:"Special requests",
-  reserve:"Book Now",
-  pay:"💳 Pay by Card",
-  subtitle_transfer:"Transfer details",
-  subtitle_intercity:"Intercity transfer details",
-  subtitle_excursion:"Excursion details",
-  places: "Number of people",
-  upto5: "Up to 5"
-}
-
-};
-
-  let lang = localStorage.getItem("lang");
-if(!lang){
-  lang = "EN";
-  localStorage.setItem("lang","EN");
-      }
   
   
   function translateTexts(lang){
