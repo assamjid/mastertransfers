@@ -3119,6 +3119,14 @@ if(flightNumber.value) recap += `<p><b>✈️ Vol :</b> ${flightNumber.value}</p
 if(date.value) recap += `<p><b>📅 Date :</b> ${date.value}</p>`;
 if(timeValue && timeValue !== "-") recap += `<p><b>⏰ Heure :</b> ${timeValue}</p>`;
 
+if(date.value) {
+  msg += `\n📅 *Date* : ${date.value}\n`;
+}
+
+if(timeValue && timeValue !== "-") {
+  msg += `⏰ *Heure* : ${timeValue}\n`;
+}
+  
 if(message.value) recap += `<p><b>📝 Message :</b> ${message.value}</p>`;
 
 if(price) recap += `<p><b>💰 Prix :</b> ${price}</p>`;
