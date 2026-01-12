@@ -2462,6 +2462,47 @@ Avis de nos clients
 </div>
 </section>
 
+  <section id="leaveReview">
+
+<h2 data-fr="Laissez votre avis"
+    data-en="Leave your review">
+Laissez votre avis
+</h2>
+
+<p style="text-align:center;max-width:700px;margin:0 auto 25px;color:#555"
+   data-fr="Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expérience avec MasterTripTransfers."
+   data-en="Your feedback is valuable. Help other travelers by sharing your experience with MasterTripTransfers.">
+Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expérience avec MasterTripTransfers.
+</p>
+
+<form id="reviewForm">
+
+  <div class="floating-field">
+    <input type="text" id="reviewName" required>
+    <label data-fr="Votre nom" data-en="Your name">Votre nom</label>
+  </div>
+
+  <div class="floating-field">
+    <select id="reviewStars" required>
+      <option value="">★★★★★ Note</option>
+      <option value="5">★★★★★ Excellent</option>
+      <option value="4">★★★★ Très bien</option>
+      <option value="3">★★★ Bien</option>
+      <option value="2">★★ Moyen</option>
+      <option value="1">★ Mauvais</option>
+    </select>
+    <label data-fr="Note" data-en="Rating">Note</label>
+  </div>
+
+  <div class="floating-field">
+    <textarea id="reviewMessage" rows="4" required></textarea>
+    <label data-fr="Votre avis" data-en="Your review">Votre avis</label>
+  </div>
+
+  <button type="button" onclick="sendReview()">📝 Envoyer mon avis</button>
+</form>
+
+  </section>
 
 <script>
 
