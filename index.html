@@ -3129,54 +3129,60 @@ if(flightNumber.value) msg += `✈️ *Vol* : ${flightNumber.value}\n`;
 
 if(date.value) msg += `📅 *Date* : ${date.value}\n`;
 if(timeValue && timeValue !== "-") msg += `⏰ *Heure* : ${timeValue}\n`;
+bookingForm.addEventListener("submit", function(e){
+  e.preventDefault();
+  if (!bookingForm.checkValidity()) return;
 
-if(message.value) msg += `\n📝 *Message* : ${message.value}\n`;
-if(price) msg += `\n💰 *Prix* : ${price}\n`;
+  let price = "";
+  if(service.value === "airport")   price = transferPrix.value;
+  if(service.value === "intercity") price = prix.value;
+  if(service.value === "excursion") price = circuitPrix.value;
 
-document.getElementById("emailMessage").value = msg;
+  document.getElementById("finalPrice").value = price || "Sur devis";
 
-}
-  
+  const timeValue = fixedTimeField.style.display === "block" ? fixedTime.value : heure.value;
+
+  let type="-", choix="", departTxt="-", destTxt="-", placesTxt="-";
+
+  if(service.value==="airport"){ type=transferType.value; departTxt=depart.value; destTxt=arrivee.value; placesTxt=transferPlaces.value; }
+  if(service.value==="intercity"){ type=trajet.value; placesTxt=places.value; }
+  if(service.value==="excursion"){ type=circuit.value; choix=quadType.value||camelType.value||"-"; placesTxt=circuitPlaces.value; }
+
+  let msg = `📩 *NOUVELLE RÉSERVATION MASTERTRIPTRANSFERS*\n\n`;
+  if(nom.value) msg+=`👤 *Nom* : ${nom.value}\n`;
+  if(tel.value) msg+=`📞 *Téléphone* : +${countryCode.value}${tel.value}\n`;
+  if(email.value) msg+=`📧 *Email* : ${email.value}\n\n`;
+  if(service.value) msg+=`🛎️ *Service* : ${service.options[service.selectedIndex].text}\n`;
+  if(type!=="-") msg+=`🚘 *Type* : ${type}\n`;
+  if(service.value==="excursion" && choix!=="-") msg+=`🎯 *Choix* : ${choix}\n`;
+  if(depart.value) msg+=`📍 *Départ* : ${depart.value}\n`;
+  if(arrivee.value) msg+=`🏁 *Destination* : ${arrivee.value}\n`;
+  if(placesTxt!=="-") msg+=`👥 *Places* : ${placesTxt}\n`;
+  if(flightNumber.value) msg+=`✈️ *Vol* : ${flightNumber.value}\n`;
+  if(date.value) msg+=`📅 *Date* : ${date.value}\n`;
+  if(timeValue) msg+=`⏰ *Heure* : ${timeValue}\n`;
+  if(message.value) msg+=`\n📝 *Message* : ${message.value}\n`;
+  if(price) msg+=`\n💰 *Prix* : ${price}\n`;
+
   document.getElementById("emailMessage").value = msg;
 
   let recap = "";
+  if(nom.value) recap+=`<p><b>👤 Nom :</b> ${nom.value}</p>`;
+  if(tel.value) recap+=`<p><b>📞 Téléphone :</b> +${countryCode.value}${tel.value}</p>`;
+  if(email.value) recap+=`<p><b>📧 Email :</b> ${email.value}</p><hr>`;
+  if(service.value) recap+=`<p><b>🛎️ Service :</b> ${service.options[service.selectedIndex].text}</p>`;
+  if(type!=="-") recap+=`<p><b>🚘 Type :</b> ${type}</p>`;
+  if(choix!=="-") recap+=`<p><b>🎯 Choix :</b> ${choix}</p>`;
+  if(depart.value) recap+=`<p><b>📍 Départ :</b> ${depart.value}</p>`;
+  if(arrivee.value) recap+=`<p><b>🏁 Destination :</b> ${arrivee.value}</p>`;
+  if(placesTxt!=="-") recap+=`<p><b>👥 Places :</b> ${placesTxt}</p>`;
+  if(flightNumber.value) recap+=`<p><b>✈️ Vol :</b> ${flightNumber.value}</p>`;
+  if(date.value) recap+=`<p><b>📅 Date :</b> ${date.value}</p>`;
+  if(timeValue) recap+=`<p><b>⏰ Heure :</b> ${timeValue}</p>`;
+  if(message.value) recap+=`<p><b>📝 Message :</b> ${message.value}</p>`;
+  if(price) recap+=`<p><b>💰 Prix :</b> ${price}</p>`;
 
-if(nom.value) recap += `<p><b>👤 Nom :</b> ${nom.value}</p>`;
-if(tel.value) recap += `<p><b>📞 Téléphone :</b> +${countryCode.value}${tel.value}</p>`;
-if(email.value) recap += `<p><b>📧 Email :</b> ${email.value}</p>`;
-
-recap += `<hr>`;
-
-if(service.value) recap += `<p><b>🛎️ Service :</b> ${service.options[service.selectedIndex].text}</p>`;
-if(type && type !== "-") recap += `<p><b>🚘 Type :</b> ${type}</p>`;
-
-if(service.value === "excursion" && choix && choix !== "-"){
-  recap += `<p><b>🎯 Choix :</b> ${choix}</p>`;
-}
-
-if(depart.value) recap += `<p><b>📍 Départ :</b> ${depart.value}</p>`;
-if(arrivee.value) recap += `<p><b>🏁 Destination :</b> ${arrivee.value}</p>`;
-if(placesTxt && placesTxt !== "-") recap += `<p><b>👥 Places :</b> ${placesTxt}</p>`;
-if(flightNumber.value) recap += `<p><b>✈️ Vol :</b> ${flightNumber.value}</p>`;
-
-if(date.value) recap += `<p><b>📅 Date :</b> ${date.value}</p>`;
-if(timeValue && timeValue !== "-") recap += `<p><b>⏰ Heure :</b> ${timeValue}</p>`;
-
-  
-if(message.value) recap += `<p><b>📝 Message :</b> ${message.value}</p>`;
-
-if(price) recap += `<p><b>💰 Prix :</b> ${price}</p>`;
-
-openResume(recap, msg);
- /* openResume(`
-<p><b>Nom :</b> ${nom.value}</p>
-<p><b>Téléphone :</b> +${countryCode.value}${tel.value}</p>
-<p><b>Email :</b> ${email.value}</p>
-<p><b>Date :</b> ${date.value}</p>
-<p><b>Heure :</b> ${timeValue}</p>
-<p><b>Service :</b> ${service.options[service.selectedIndex].text}</p>
-<p><b>Prix :</b> ${price || "Sur devis"}</p>
-`, msg);*/
+  openResume(recap, msg);
 });
   
 /* =====================================================
