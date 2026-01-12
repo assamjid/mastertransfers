@@ -3052,11 +3052,6 @@ circuit.addEventListener("change", updateExcursionTimes);
 camelType.addEventListener("change", updateExcursionTimes);
 quadType.addEventListener("change", updateExcursionTimes);
 
-
-
-
-
-
 function escapeHTML(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -3069,67 +3064,7 @@ function escapeHTML(str) {
 /* =====================================================
    SOUMISSION – RÉSUMÉ & WHATSAPP (FINAL PRO)
 ===================================================== */
-
-bookingForm.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  if (!bookingForm.checkValidity()) return;
-
-  let price = "";
-  if(service.value === "airport")   price = transferPrix.value;
-  if(service.value === "intercity") price = prix.value;
-  if(service.value === "excursion") price = circuitPrix.value;
-
-  document.getElementById("finalPrice").value = price || "Sur devis";
-
-  const timeValue = fixedTimeField.style.display === "block"
-  ? fixedTime.value
-  : heure.value;
-
-  let type = "-";
-  let choix = "";          // Choix seulement si excursion
-  let departTxt = "-";
-  let destTxt = "-";
-  let placesTxt = "-";
-
-  if(service.value === "airport"){
-    type = transferType.value;
-    departTxt = depart.value;
-    destTxt = arrivee.value;
-    placesTxt = transferPlaces.value;
-  }
-
-  if(service.value === "intercity"){
-    type = trajet.value;
-    placesTxt = places.value;
-  }
-
-  if(service.value === "excursion"){
-    type = circuit.value;
-    choix = quadType.value || camelType.value || "-";
-    placesTxt = circuitPlaces.value;
-  }
-  
-let msg = `📩 *NOUVELLE RÉSERVATION MASTERTRIPTRANSFERS*\n\n`;
-
-if(nom.value) msg += `👤 *Nom* : ${nom.value}\n`;
-if(tel.value) msg += `📞 *Téléphone* : +${countryCode.value}${tel.value}\n`;
-if(email.value) msg += `📧 *Email* : ${email.value}\n\n`;
-
-if(service.value) msg += `🛎️ *Service* : ${service.options[service.selectedIndex].text}\n`;
-if(type && type !== "-") msg += `🚘 *Type* : ${type}\n`;
-
-if(service.value === "excursion" && choix && choix !== "-")
-  msg += `🎯 *Choix* : ${choix}\n`;
-
-if(depart.value) msg += `📍 *Départ* : ${depart.value}\n`;
-if(arrivee.value) msg += `🏁 *Destination* : ${arrivee.value}\n`;
-if(placesTxt && placesTxt !== "-") msg += `👥 *Places* : ${placesTxt}\n`;
-if(flightNumber.value) msg += `✈️ *Vol* : ${flightNumber.value}\n`;
-
-if(date.value) msg += `📅 *Date* : ${date.value}\n`;
-if(timeValue && timeValue !== "-") msg += `⏰ *Heure* : ${timeValue}\n`;
-bookingForm.addEventListener("submit", function(e){
+  bookingForm.addEventListener("submit", function(e){
   e.preventDefault();
   if (!bookingForm.checkValidity()) return;
 
@@ -3184,6 +3119,9 @@ bookingForm.addEventListener("submit", function(e){
 
   openResume(recap, msg);
 });
+
+
+
   
 /* =====================================================
    OVERLAY ANIMÉ
