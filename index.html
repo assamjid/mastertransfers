@@ -746,7 +746,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-fr="⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
     data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
@@ -2889,27 +2889,32 @@ fixedTime.innerHTML = `
 
 circuit.addEventListener("change", () => {
 
-// Reset
-quadTypeField.style.display = "none";
-camelTypeField.style.display = "none";
-quadType.value = "";
-camelType.value = "";
+  // RESET
+  quadTypeField.style.display = "none";
+  camelTypeField.style.display = "none";
+  quadType.value = "";
+  camelType.value = "";
+  quadType.required = false;
+  camelType.required = false;
 
-// Quad / Buggy
-if (circuit.value === "Safari Quad / Buggy") {
-  quadTypeField.style.display = "block";
-}
+  // 🏜️ Quad / Buggy
+  if (circuit.value === "Safari Quad / Buggy") {
+    quadTypeField.style.display = "block";
+    quadType.required = true;   // ⬅️ OBLIGATOIRE
+  }
 
-// Chameau
-if (circuit.value === "Chameau") {
-  camelTypeField.style.display = "block";
-}
-
-
+  // 🐪 Chameau
+  if (circuit.value === "Chameau") {
+    camelTypeField.style.display = "block";
+    camelType.required = true;  // ⬅️ OBLIGATOIRE
+  }
 
   updateCircuitPlaces();
   calculPrixCircuit();
+  updateExcursionTimes();
 });
+
+  
 quadType.addEventListener("change", calculPrixCircuit);
 circuitPlaces.addEventListener("change", calculPrixCircuit);
 camelType.addEventListener("change", calculPrixCircuit);
@@ -3087,9 +3092,13 @@ if (btnCancel && btnConfirm) {
   setTimeout(() => bookingForm.submit(), 500);
 
   setTimeout(() => {
-  bookingForm.reset();   // ← vide tous les champs
-  resetAll();            // ← referme tous les blocs + prix + heures
-  closeResume();         // ← ferme la popup
+  bookingForm.reset();         // vide les champs
+  resetAll();                  // cache les blocs
+  document.getElementById("emailMessage").value = "";
+  document.getElementById("finalPrice").value = "";
+  service.value = "";          // 🔥 important
+  bookingSubtitle.textContent = "";
+  closeResume();
 }, 1400);
 });
   
