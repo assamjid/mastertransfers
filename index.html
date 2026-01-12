@@ -747,7 +747,7 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
   <div class="trust-top"
     data-fr="⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-en="⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
@@ -2458,7 +2458,7 @@ Avis de nos clients
     “Très bonne communication WhatsApp, je recommande.”  
     <b>— Fatima, Maroc 🇲🇦</b>
   </div>
-
+<div id="liveReviews" class="reviews-grid"></div>
 </div>
 </section>
 
@@ -3626,16 +3626,32 @@ document.addEventListener("DOMContentLoaded", updateLangFlag);
 });
 
   function sendReview(){
-  const name = document.getElementById("reviewName").value.trim();
+
+  const name  = document.getElementById("reviewName").value.trim();
   const stars = document.getElementById("reviewStars").value;
-  const msg = document.getElementById("reviewMessage").value.trim();
+  const msg   = document.getElementById("reviewMessage").value.trim();
 
   if(!name || !stars || !msg){
     alert("Merci de remplir tous les champs ⭐");
     return;
   }
 
-  const text = `⭐ AVIS CLIENT MASTERTRIPTRANSFERS ⭐
+  // ⭐⭐⭐⭐⭐ étoiles visuelles
+  let starsTxt = "⭐".repeat(parseInt(stars));
+
+  // Affichage LIVE sur le site
+  const box = document.createElement("div");
+  box.className = "review-card";
+  box.innerHTML = `
+    ${starsTxt}<br>
+    “${msg}”  
+    <b>— ${name}</b>
+  `;
+
+  document.getElementById("liveReviews").prepend(box);
+
+  // Message WhatsApp admin
+  const text = `⭐ NOUVEL AVIS CLIENT ⭐
 
 Nom : ${name}
 Note : ${stars}/5
@@ -3644,6 +3660,9 @@ Avis :
 ${msg}`;
 
   window.open("https://wa.me/212691059759?text=" + encodeURIComponent(text), "_blank");
+
+  // Reset
+  document.getElementById("reviewForm").reset();
   }
 
 </script>
