@@ -730,17 +730,20 @@ button[type="submit"]{
 
 .review-row{
   display:flex;
-  width:100%;
+  width:480px;        /* largeur identique au champ Nom */
+  margin:0 auto;
   gap:10px;
 }
 
+/* Indicatif petit */
 .review-row input{
-  flex:0 0 18%;     /* petit indicatif */
+  width:90px;
   text-align:center;
 }
 
+/* Note grand */
 .review-row textarea{
-  flex:1;           /* prend tout le reste */
+  width:380px;       /* 90 + 380 + 10px gap = 480px */
   resize:vertical;
 }
     
