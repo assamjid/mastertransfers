@@ -3448,7 +3448,7 @@ document.querySelectorAll(".exc-slider.auto.fast").forEach(slider=>{
   setInterval(()=>{
     i++;
     if(i >= slider.children.length) i = 0;
-    slider.scrollTo({ left: slider.clientWidth * i, behavior:"smooth" });
+    slider.scrollTo(slider.clientWidth * i, 0);
   }, 5000);   // 5 secondes
 });
 
@@ -3458,7 +3458,7 @@ document.querySelectorAll(".exc-slider.auto.slow").forEach(slider=>{
   setInterval(()=>{
     i++;
     if(i >= slider.children.length) i = 0;
-    slider.scrollTo({ left: slider.clientWidth * i, behavior:"smooth" });
+    slider.scrollTo(slider.clientWidth * i, 0);
   }, 8000);   // 8 secondes
 });
 
