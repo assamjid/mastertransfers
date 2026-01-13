@@ -728,21 +728,21 @@ button[type="submit"]{
   letter-spacing:0.8px;
   }
 
-  .review-row{
+.review-row{
   display:flex;
+  width:100%;
   gap:10px;
 }
 
 .review-row input{
-  width:22%;
+  flex:0 0 18%;     /* petit indicatif */
   text-align:center;
 }
 
 .review-row textarea{
-  width:78%;
+  flex:1;           /* prend tout le reste */
   resize:vertical;
 }
-
     
 </style>
   
