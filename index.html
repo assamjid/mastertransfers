@@ -3687,37 +3687,47 @@ function updateLangFlag(){
   
   function sendReview(){
 
-  const name  = document.getElementById("reviewName").value.trim();
-  const stars = document.getElementById("reviewStars").value;
-  const msg   = document.getElementById("reviewMessage").value.trim();
+  const name    = document.getElementById("reviewName").value.trim();
+  const stars   = document.getElementById("reviewStars").value;
+  const msg     = document.getElementById("reviewMessage").value.trim();
+  const country = document.getElementById("reviewCountry").value;
 
-  if(!name || !stars || !msg){
+  if(!name || !stars || !msg || !country){
     alert("Merci de remplir tous les champs ⭐");
     return;
   }
 
-  // ⭐⭐⭐⭐⭐ étoiles visuelles
-  let starsTxt = "⭐".repeat(parseInt(stars));
+  const flagCode = country
+    .replace("🇲🇦","ma")
+    .replace("🇫🇷","fr")
+    .replace("🇬🇧","gb")
+    .replace("🇩🇪","de")
+    .replace("🇪🇸","es")
+    .replace("🇺🇸","us")
+    .replace("🇮🇹","it")
+    .replace("🇧🇪","be")
+    .replace("🇳🇱","nl")
+    .replace("🇨🇭","ch");
 
-  // Affichage LIVE sur le site
+  const starsTxt = "⭐".repeat(parseInt(stars));
+
   const box = document.createElement("div");
-box.className = "review-card";
+  box.className = "review-card";
 
-const flagCode = country ? country.toLowerCase() : "ma";
-
-box.innerHTML = `
-  <div class="review-stars">${starsTxt}</div>
-  <div class="review-msg">“${msg}”</div>
-  <div class="review-name">
-    <img src="https://flagcdn.com/w20/${flagCode}.png" class="review-flag">
-    <span>${name}</span>
-  </div>
-`;
+  box.innerHTML = `
+    <div class="review-stars">${starsTxt}</div>
+    <div class="review-msg">“${msg}”</div>
+    <div class="review-name">
+      <img src="https://flagcdn.com/w20/${flagCode}.png" class="review-flag">
+      <b>${name}</b>
+    </div>
+  `;
 
   document.getElementById("liveReviews").prepend(box);
-    saveReview(name, parseInt(stars), msg);
 
-  // Message WhatsApp admin
+  saveReview(name, parseInt(stars), msg, flagCode);
+
+  // WhatsApp admin
   const text = `⭐ NOUVEL AVIS CLIENT ⭐
 
 Nom : ${name}
@@ -3728,31 +3738,33 @@ ${msg}`;
 
   window.open("https://wa.me/212691059759?text=" + encodeURIComponent(text), "_blank");
 
-  // Reset
   document.getElementById("reviewForm").reset();
-  }
+}
 
   
-function saveReview(name, stars, msg){
+function saveReview(name, stars, msg, country){
   const all = JSON.parse(localStorage.getItem("reviews") || "[]");
-  all.unshift({name, stars, msg});
+  all.unshift({name, stars, msg, country});
   localStorage.setItem("reviews", JSON.stringify(all));
 }
 
 function loadReviews(){
   const all = JSON.parse(localStorage.getItem("reviews") || "[]");
+
   all.forEach(r=>{
     const box = document.createElement("div");
     box.className = "review-card";
 
     box.innerHTML = `
-      <div class="review-stars">${"⭐".repeat(r.stars)}</div>
-      <div class="review-msg">“${r.msg}”</div>
-      <div class="review-name">
-        <img src="https://flagcdn.com/w20/${r.country.toLowerCase()}.png" class="review-flag">
-        <b>${r.name}</b>
-      </div>
-    `;
+  <div class="review-stars">${"⭐".repeat(r.stars)}</div>
+  <div class="review-msg">“${r.msg}”</div>
+  <div class="review-name">
+    <img loading="lazy"
+         src="https://flagcdn.com/w20/${r.country || "ma"}.png"
+         class="review-flag">
+    <span>${r.name}</span>
+  </div>
+`;
 
     document.getElementById("liveReviews").appendChild(box);
   });
