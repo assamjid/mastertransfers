@@ -3748,20 +3748,22 @@ function updateLangFlag(){
 
   
   function sendReview(){
-  const name = document.getElementById("reviewName").value.trim();
-  const msg  = document.getElementById("reviewMsg").value.trim();
+  const name  = document.getElementById("reviewName").value.trim();
+  const msg   = document.getElementById("reviewMessage").value.trim();
   const stars = document.getElementById("reviewStars").value;
   const countryCode = document.getElementById("reviewCountry").value;
 
-  if(!name || !msg) return alert("Veuillez remplir tous les champs.");
+  if(!name || !msg || !stars) return alert("Veuillez remplir tous les champs.");
 
   let all = JSON.parse(localStorage.getItem("reviews")) || [];
   all.unshift({name, msg, stars, country:countryCode});
   localStorage.setItem("reviews", JSON.stringify(all));
 
   loadReviews();
-  document.getElementById("reviewName").value="";
-  document.getElementById("reviewMsg").value="";
+
+  document.getElementById("reviewName").value = "";
+  document.getElementById("reviewMessage").value = "";
+  document.getElementById("reviewStars").value = "";
   }
   
   
