@@ -1,4 +1,4 @@
-<script>
+
   
 const LANG = {
 
@@ -1214,4 +1214,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
   }
   
 
-</script>
+
