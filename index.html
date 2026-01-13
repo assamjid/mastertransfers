@@ -728,32 +728,54 @@ button[type="submit"]{
   letter-spacing:0.8px;
   }
 
+  /* Bloc ligne pays + note */
 .review-row{
   display:flex;
-  width:480px;        /* largeur identique au champ Nom */
+  width:320px;      /* même largeur que les autres champs */
   margin:0 auto;
   gap:10px;
 }
 
-/* Indicatif petit */
-.review-row input{
-  width:50px;
+/* Indicatif / Pays */
+.review-country{
+  width:90px;       /* petit champ */
+  height:60px;
+  border-radius:12px;
+  border:2px solid #dde3ea;
+  background:#f9fbfc;
   text-align:center;
+  font-size:16px;
+  font-weight:600;
 }
 
-/* Note grand */
-.review-row textarea{
-  width:430px;       /* 90 + 380 + 10px gap = 480px */
-  resize:vertical;
+/* Note étoiles */
+.review-stars{
+  width:220px;      /* 90 + 220 + 10 = 320px ✔ */
+  height:60px;
+  border-radius:12px;
+  border:2px solid #dde3ea;
+  background:#f9fbfc;
+  font-size:16px;
+  font-weight:600;
 }
-  
-  /* Champ message / note */
-.review-row textarea,
-.reviews-form textarea{
-  min-height:200px;     /* hauteur visible */
-  line-height:1.6;
+
+/* Nom */
+#reviewName,
+#reviewMessage{
+  width:320px;
+  border-radius:12px;
+  border:2px solid #dde3ea;
+  background:#f9fbfc;
+  font-size:16px;
   padding:14px;
 }
+
+/* Message plus grand */
+#reviewMessage{
+  min-height:140px;
+  line-height:1.7;
+}
+
     
 </style>
   
