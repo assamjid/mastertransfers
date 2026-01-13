@@ -1,4 +1,4 @@
-<script>
+
 
 const DEFAULT_REVIEWS = [
  {name:"Sarah", stars:5, msg:"Chauffeur très ponctuel, voiture propre, service parfait.", country:"fr"},
@@ -1221,5 +1221,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
   }
   
 
-</script>
+
 
