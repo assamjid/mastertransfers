@@ -3155,82 +3155,88 @@ function updateCircuitPlaces() {
 }
 
 
-function updateExcursionTimes() {
+function updateExcursionTimes(){
 
-  /* =====================================
-     1️⃣ PAS EXCURSIONS → HEURE LIBRE
-  ===================================== */ 
-  if (service.value !== "excursion") {
-    setHeureMode("free");
-    return;
-  }
+  fixedTime.innerHTML = "";
+  fixedTime.required = false;
 
-  /* =====================================
-     2️⃣ EXCURSIONS MAIS AUCUN CIRCUIT CHOISI
-        → HEURE PAR DÉFAUT VISIBLE
-  ===================================== */
-  if (!circuit.value) {
-    setHeureMode("free", "08:00");
-    return;
-  }
+  // mode par défaut
+  setHeureMode("hidden");
 
-  /* =====================================
-     3️⃣ RESET DES HORAIRES FIXES
-  ===================================== */
-  
-fixedTime.innerHTML = `
-<option value=""
-  data-fr="Choisir l’horaire"
-  data-en="Select time">
-  ${LANG[lang].fixedtime}
-</option>`;
+  /* ===== CHAMEAU ===== */
+  if (circuit.value === "Chameau") {
 
-  /* =====================================
-     4️⃣ CHAMEAU & QUAD → HORAIRES FIXES
-  ===================================== */
-  if (
-    circuit.value === "Chameau" ||
-    circuit.value === "Safari Quad / Buggy"
-  ) {
-
-    setHeureMode("fixed");
-
-    /* =====================================
-       5️⃣ HORAIRES CHAMEAU
-    ===================================== */
-    if (circuit.value === "Chameau") {
-
-      if (camelType.value === "Promenade seule") {
-        ["10:00", "15:00", "17:00"].forEach(h =>
-          fixedTime.add(new Option(h, h))
-        );
-      }
-
-      if (camelType.value === "Promenade + dîner") {
-        fixedTime.add(new Option("17:00", "17:00"));
-      }
+    // tant que le type n’est pas choisi, on ne montre rien
+    if (!camelType.value) {
+      setHeureMode("hidden");
+      return;
     }
 
-    /* =====================================
-       6️⃣ HORAIRES QUAD / BUGGY
-    ===================================== */
-    if (circuit.value === "Safari Quad / Buggy") {
-      ["09:00", "12:00", "14:00", "17:30"].forEach(h =>
+    setHeureMode("fixed");
+    fixedTime.required = true;
+
+    if (camelType.value === "Promenade seule") {
+      ["10:00", "15:00", "17:00"].forEach(h =>
         fixedTime.add(new Option(h, h))
       );
     }
 
+    if (camelType.value === "Promenade + dîner") {
+      fixedTime.add(new Option("17:00", "17:00"));
+    }
+
     return;
   }
 
-  /* =====================================
-     7️⃣ AUTRES EXCURSIONS → HEURE LIBRE
-  ===================================== */
-  setHeureMode("free");
+  /* ===== QUAD / BUGGY ===== */
+  if (circuit.value === "Safari Quad / Buggy") {
 
-  translateTexts(lang);
-  translateSelects(lang);
+    // tant que le type n’est pas choisi, on ne montre rien
+    if (!quadType.value) {
+      setHeureMode("hidden");
+      return;
+    }
+
+    setHeureMode("fixed");
+    fixedTime.required = true;
+
+    ["09:00", "12:00", "14:00", "17:30"].forEach(h =>
+      fixedTime.add(new Option(h, h))
+    );
+
+    return;
   }
+
+  /* ===== AUTRES EXCURSIONS ===== */
+
+  setHeureMode("normal");
+
+  if (circuit.value === "Excursion Paradise Valley") {
+    ["09:00"].forEach(h => fixedTime.add(new Option(h,h)));
+  }
+
+  if (circuit.value === "Tour de la ville de Agadir") {
+    ["09:30", "14:30"].forEach(h => fixedTime.add(new Option(h,h)));
+  }
+
+  if (circuit.value === "Souk El Had – Circuit Shopping") {
+    ["09:30", "14:30"].forEach(h => fixedTime.add(new Option(h,h)));
+  }
+
+  if (circuit.value === "Visite du Crocoparc") {
+    ["09:30", "14:30"].forEach(h => fixedTime.add(new Option(h,h)));
+  }
+
+  if (circuit.value === "Téléphérique et visite de la Kasbah") {
+    ["10:00", "16:00"].forEach(h => fixedTime.add(new Option(h,h)));
+  }
+
+  if (circuit.value === "Dunes de Timlaline – Expérience Désert") {
+    ["15:00"].forEach(h => fixedTime.add(new Option(h,h)));
+  }
+
+  fixedTime.required = true;
+}
 
 
 
