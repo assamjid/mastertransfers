@@ -728,7 +728,7 @@ button[type="submit"]{
   letter-spacing:0.8px;
   }
 
-/* Ligne pays + étoiles */
+/* ===== FORMULAIRE REVIEWS ===== */
 .review-row{
   display:flex;
   width:320px;
@@ -736,7 +736,6 @@ button[type="submit"]{
   gap:10px;
 }
 
-/* Pays / indicatif */
 .review-country{
   width:90px;
   height:60px;
@@ -748,7 +747,6 @@ button[type="submit"]{
   font-weight:600;
 }
 
-/* Select étoiles */
 .review-stars-select{
   width:220px;
   height:60px;
@@ -759,7 +757,6 @@ button[type="submit"]{
   font-weight:600;
 }
 
-/* Champs nom & message */
 #reviewName,
 #reviewMessage{
   width:320px;
@@ -775,17 +772,30 @@ button[type="submit"]{
   line-height:1.7;
 }
 
-/* Carte avis */
-.review-msg{
-  font-style:italic;
-  margin:10px 0;
-  line-height:1.6;
+/* ===== CARTES AVIS ===== */
+.review-card{
+  background:#ffffff;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,0.18);
+  font-size:16px;
+  line-height:1.7;
   color:#001f3f;
+  width:100%;
+  box-sizing:border-box;
+  overflow-wrap:anywhere;
 }
 
 .review-stars{
   color:#f1c40f;
   font-size:18px;
+}
+
+.review-msg{
+  font-style:italic;
+  margin:10px 0;
+  line-height:1.6;
+  color:#001f3f;
 }
 
 .review-name{
@@ -803,19 +813,13 @@ button[type="submit"]{
   border-radius:3px;
 }
 
-/* Grille avis */
+/* ===== GRILLE AVIS ===== */
 #liveReviews{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
   gap:22px;
   max-width:900px;
   margin:0 auto;
-}
-
-.review-card{
-  width:100%;
-  box-sizing:border-box;
-  overflow-wrap:break-word;
 }
 
   /* ===== ANIMATION VIBRATION PREMIUM MENU ===== */
@@ -922,8 +926,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐AAA 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
