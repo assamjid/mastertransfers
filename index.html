@@ -926,8 +926,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐CCC 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐CCC 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐TTT 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐TTT 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
@@ -2588,32 +2588,6 @@ Avis de nos clients
   
 <div id="liveReviews">
 
-  <div class="review-card">
-    <div class="review-stars">⭐⭐⭐⭐⭐</div>
-    <div class="review-msg">“Chauffeur très ponctuel, voiture propre, service parfait.”</div>
-    <div class="review-name">
-      <img src="https://flagcdn.com/w20/fr.png" class="review-flag">
-      <span>Sarah</span>
-    </div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-stars">⭐⭐⭐⭐⭐</div>
-    <div class="review-msg">“Excursion Paradise Valley incroyable. Organisation top !”</div>
-    <div class="review-name">
-      <img src="https://flagcdn.com/w20/gb.png" class="review-flag">
-      <span>John</span>
-    </div>
-  </div>
-
-  <div class="review-card">
-    <div class="review-stars">⭐⭐⭐⭐⭐</div>
-    <div class="review-msg">“Très bonne communication WhatsApp, je recommande.”</div>
-    <div class="review-name">
-      <img src="https://flagcdn.com/w20/ma.png" class="review-flag">
-      <span>Fatima</span>
-    </div>
-  </div>
 
 </div>
 </section>
@@ -2677,6 +2651,13 @@ Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expéri
   </section>
 
 <script>
+
+const DEFAULT_REVIEWS = [
+ {name:"Sarah", stars:5, msg:"Chauffeur très ponctuel, voiture propre, service parfait.", country:"fr"},
+ {name:"John", stars:5, msg:"Excursion Paradise Valley incroyable. Organisation top !", country:"gb"},
+ {name:"Fatima", stars:5, msg:"Très bonne communication WhatsApp, je recommande.", country:"ma"}
+];
+
   
 const LANG = {
 
@@ -3767,46 +3748,22 @@ function updateLangFlag(){
 
   
   function sendReview(){
-
-  const name  = document.getElementById("reviewName").value.trim();
+  const name = document.getElementById("reviewName").value.trim();
+  const msg  = document.getElementById("reviewMsg").value.trim();
   const stars = document.getElementById("reviewStars").value;
-  const msg   = document.getElementById("reviewMessage").value.trim();
-  const countryEmoji = document.getElementById("reviewCountry").value;
+  const countryCode = document.getElementById("reviewCountry").value;
 
-  if(!name || !stars || !msg){
-    alert("Merci de remplir tous les champs ⭐");
-    return;
+  if(!name || !msg) return alert("Veuillez remplir tous les champs.");
+
+  let all = JSON.parse(localStorage.getItem("reviews")) || [];
+  all.unshift({name, msg, stars, country:countryCode});
+  localStorage.setItem("reviews", JSON.stringify(all));
+
+  loadReviews();
+  document.getElementById("reviewName").value="";
+  document.getElementById("reviewMsg").value="";
   }
-
-  const countryCode = countryEmoji.split(" ")[0]
-    .replace("🇫🇷","fr").replace("🇬🇧","gb").replace("🇲🇦","ma")
-    .replace("🇺🇸","us").replace("🇮🇹","it").replace("🇧🇪","be")
-    .replace("🇳🇱","nl").replace("🇨🇭","ch").replace("🇩🇪","de").replace("🇪🇸","es");
-
-  const box = document.createElement("div");
-  box.className = "review-card";
-  box.innerHTML = `
-    <div class="review-stars">${"⭐".repeat(stars)}</div>
-    <div class="review-msg">“${msg}”</div>
-    <div class="review-name">
-      <img loading="lazy" src="https://flagcdn.com/w20/${countryCode}.png" class="review-flag">
-      <span>${name}</span>
-    </div>
-  `;
-
-  document.getElementById("liveReviews").prepend(box);
-  saveReview(name, parseInt(stars), msg, countryCode);
-
-  window.open("https://wa.me/212691059759?text=" + encodeURIComponent(
-`⭐ NOUVEL AVIS CLIENT ⭐
-Nom : ${name}
-Note : ${stars}/5
-
-Avis :
-${msg}`), "_blank");
-
-  document.getElementById("reviewForm").reset();
-  }
+  
   
 function saveReview(name, stars, msg, country){
   const all = JSON.parse(localStorage.getItem("reviews") || "[]");
@@ -3815,29 +3772,56 @@ function saveReview(name, stars, msg, country){
 }
 
 function loadReviews(){
-  const all = JSON.parse(localStorage.getItem("reviews") || "[]");
+  let all = JSON.parse(localStorage.getItem("reviews"));
 
-  all.forEach(r=>{
+  if(!all || all.length === 0){
+    localStorage.setItem("reviews", JSON.stringify(DEFAULT_REVIEWS));
+    all = DEFAULT_REVIEWS;
+  }
+
+  const wrap = document.getElementById("liveReviews");
+  wrap.innerHTML="";
+
+  all.forEach((r,i)=>{
     const box = document.createElement("div");
-    box.className = "review-card";
-    box.innerHTML = `
-      <div class="review-stars">${"⭐".repeat(r.stars)}</div>
-      <div class="review-msg">“${r.msg}”</div>
-      <div class="review-name">
-        <img loading="lazy" src="https://flagcdn.com/w20/${r.country || "ma"}.png" class="review-flag">
-        <span>${r.name}</span>
-      </div>
-    `;
-    document.getElementById("liveReviews").appendChild(box);
+    box.className="review-card";
+
+    const starsDiv = document.createElement("div");
+    starsDiv.className="review-stars";
+    starsDiv.textContent="⭐".repeat(r.stars);
+
+    const msgDiv = document.createElement("div");
+    msgDiv.className="review-msg";
+    msgDiv.textContent="“"+r.msg+"”";
+
+    const nameDiv = document.createElement("div");
+    nameDiv.className="review-name";
+    nameDiv.innerHTML = `<img loading="lazy" src="https://flagcdn.com/w20/${r.country}.png" class="review-flag"><span>${r.name}</span>`;
+
+    box.appendChild(starsDiv);
+    box.appendChild(msgDiv);
+    box.appendChild(nameDiv);
+
+    box.addEventListener("contextmenu", e=>{
+      e.preventDefault();
+      if(confirm("Supprimer cet avis ?")){
+        let all = JSON.parse(localStorage.getItem("reviews"));
+        all.splice(i,1);
+        localStorage.setItem("reviews", JSON.stringify(all));
+        box.remove();
+      }
+    });
+
+    wrap.appendChild(box);
   });
 }
-
 
 document.addEventListener("DOMContentLoaded", ()=>{
   setLang(lang);
   updateLangFlag();
-  loadReviews();
+  loadReviews();   // système reviews sécurisé
 });
+
 
   setInterval(()=>{
   document.querySelectorAll("#mainHeader nav a").forEach(btn=>{
