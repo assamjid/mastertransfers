@@ -829,6 +829,29 @@ button[type="submit"]{
   width:100%;
   box-sizing:border-box;
 }
+
+  #liveReviews{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr)); /* empêche débordement */
+  gap:22px;
+  align-items:start;
+}
+
+.review-card{
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+  white-space:normal;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  #liveReviews{
+    grid-template-columns:1fr;
+  }
+}
     
 </style>
   
@@ -891,8 +914,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐AAA 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
