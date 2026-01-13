@@ -2779,7 +2779,7 @@ const heureField = document.getElementById("heureField");
    DATE & TÉLÉPHONE
 ===================================================== */
 const today = new Date().toISOString().split("T")[0];
-date.value = today;
+dateInput.value = today;
 date.min = today;
 heure.value = "07:00";
 
@@ -3300,7 +3300,7 @@ function escapeHTML(str) {
   if(arrivee.value) msg+=`🏁 *Destination* : ${arrivee.value}\n`;
   if(placesTxt!=="-") msg+=`👥 *Places* : ${placesTxt}\n`;
   if(flightNumber.value) msg+=`✈️ *Vol* : ${flightNumber.value}\n`;
-  if(date.value) msg+=`📅 *Date* : ${date.value}\n`;
+  if(dateInput.value) msg+=`📅 *Date* : ${dateInput.value}\n`;
   if(timeValue) msg+=`⏰ *Heure* : ${timeValue}\n`;
   if(message.value) msg+=`\n📝 *Message* : ${message.value}\n`;
   if(price) msg+=`\n💰 *Prix* : ${price}\n`;
@@ -3318,7 +3318,7 @@ function escapeHTML(str) {
   if(arrivee.value) recap+=`<p><b>🏁 Destination :</b> ${arrivee.value}</p>`;
   if(placesTxt!=="-") recap+=`<p><b>👥 Places :</b> ${placesTxt}</p>`;
   if(flightNumber.value) recap+=`<p><b>✈️ Vol :</b> ${flightNumber.value}</p>`;
-  if(date.value) recap+=`<p><b>📅 Date :</b> ${date.value}</p>`;
+  if(dateInput.value) recap+=`<p><b>📅 Date :</b> ${dateInput.value}</p>`;
   if(timeValue) recap+=`<p><b>⏰ Heure :</b> ${timeValue}</p>`;
   if(message.value) recap+=`<p><b>📝 Message :</b> ${message.value}</p>`;
   if(price) recap+=`<p><b>💰 Prix :</b> ${price}</p>`;
@@ -3393,7 +3393,7 @@ if (btnCancel && btnConfirm) {
   });
 
   // Remet date/heure par défaut
-  date.value = today;
+  dateInput.value = today;
   heure.value = "07:00";
 
   // Nettoie le sous-titre
@@ -3403,7 +3403,7 @@ if (btnCancel && btnConfirm) {
 service.value = "";
 service.dispatchEvent(new Event("change"));
     // Reset DATE
-date.value = today;
+dateInput.value = today;
 date.dispatchEvent(new Event("change"));
 
 // Reset HEURE
