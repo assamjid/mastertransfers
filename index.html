@@ -775,19 +775,7 @@ button[type="submit"]{
   min-height:140px;
   line-height:1.7;
 }
-  .review-name{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-top:6px;
-}
-
-.review-flag{
-  width:18px;
-  height:auto;
-  border-radius:3px;
-}
-
+  
     
 </style>
   
@@ -3734,23 +3722,15 @@ function saveReview(name, stars, msg){
 }
 
 function loadReviews(){
-  const all = JSON.parse(localStorage.getItem("reviews") || "[]");
-  all.forEach(r=>{
-    const box = document.createElement("div");
-    box.className = "review-card";
-
-    box.innerHTML = `
-      <div class="review-stars">${"⭐".repeat(r.stars)}</div>
-      <div class="review-msg">“${r.msg}”</div>
-      <div class="review-name">
-        <img src="https://flagcdn.com/w20/${r.country.toLowerCase()}.png" class="review-flag">
-        <b>${r.name}</b>
-      </div>
-    `;
-
-    document.getElementById("liveReviews").appendChild(box);
-  });
+const all = JSON.parse(localStorage.getItem("reviews") || "[]");
+all.forEach(r=>{
+const box = document.createElement("div");
+box.className = "review-card";
+box.innerHTML = ${"⭐".repeat(r.stars)}<br>“${r.msg}”<b>— ${r.name}</b>;
+document.getElementById("liveReviews").appendChild(box);
+});
 }
+
 
 document.addEventListener("DOMContentLoaded", ()=>{
   setLang(lang);
