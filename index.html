@@ -775,6 +775,18 @@ button[type="submit"]{
   min-height:140px;
   line-height:1.7;
 }
+  .review-name{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:6px;
+}
+
+.review-flag{
+  width:18px;
+  height:auto;
+  border-radius:3px;
+}
 
     
 </style>
@@ -838,8 +850,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
@@ -3726,7 +3738,16 @@ function loadReviews(){
   all.forEach(r=>{
     const box = document.createElement("div");
     box.className = "review-card";
-    box.innerHTML = `${"⭐".repeat(r.stars)}<br>“${r.msg}”<b>— ${r.name}</b>`;
+
+    box.innerHTML = `
+      <div class="review-stars">${"⭐".repeat(r.stars)}</div>
+      <div class="review-msg">“${r.msg}”</div>
+      <div class="review-name">
+        <img src="https://flagcdn.com/w20/${r.country.toLowerCase()}.png" class="review-flag">
+        <b>${r.name}</b>
+      </div>
+    `;
+
     document.getElementById("liveReviews").appendChild(box);
   });
 }
