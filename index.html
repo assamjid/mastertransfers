@@ -3468,7 +3468,7 @@ function fixBookingScroll(){
 
   const y = section.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight + 5;
 
-  window.scrollTo({ top: y, behavior:"smooth" });
+  window.scrollTo(0, y);
 }
 
 
@@ -3514,7 +3514,7 @@ function goExcursions(){
   const exc = document.getElementById("excursions");
   const y = exc.offsetTop - header.offsetHeight - 15;
 
-  window.scrollTo({ top: y, behavior: "smooth" });
+  window.scrollTo(0, y);
 }
   
 
