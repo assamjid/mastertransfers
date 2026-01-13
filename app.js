@@ -1,11 +1,4 @@
-
-
-const DEFAULT_REVIEWS = [
- {name:"Sarah", stars:5, msg:"Chauffeur très ponctuel, voiture propre, service parfait.", country:"fr"},
- {name:"John", stars:5, msg:"Excursion Paradise Valley incroyable. Organisation top !", country:"gb"},
- {name:"Fatima", stars:5, msg:"Très bonne communication WhatsApp, je recommande.", country:"ma"}
-];
-
+<script>
   
 const LANG = {
 
@@ -104,7 +97,7 @@ const tel = document.getElementById("tel");
 const email = document.getElementById("email");
 const countryCode = document.getElementById("countryCode");
 
-const dateInput = document.getElementById("date");
+const date = document.getElementById("date");
 const heure = document.getElementById("heure");
 const message = document.getElementById("message");
 
@@ -127,8 +120,8 @@ const heureField = document.getElementById("heureField");
    DATE & TÉLÉPHONE
 ===================================================== */
 const today = new Date().toISOString().split("T")[0];
-dateInput.value = today;
-dateInput.min = today;
+date.value = today;
+date.min = today;
 heure.value = "07:00";
 
 tel.addEventListener("input", () => {
@@ -369,13 +362,11 @@ places.addEventListener("change", calculPrixIntervilles);
 ===================================================== */
 const circuitPrices = {
   "Excursion Paradise Valley": { base: 70, extra: 5 },
-  "Tour de la ville de Agadir": { base: 60, extra: 5 },
+  "Tour de la ville d’Agadir": { base: 60, extra: 5 },
   "Souk El Had – Circuit Shopping": { base: 40, extra: 5 },
   "Visite du Crocoparc": { base: 60, extra: 5 },
   "Téléphérique et visite de la Kasbah": { base: 30, extra: 4 },
-  "Dunes de Timlaline – Expérience Désert": { base: 70, extra: 5 },
-  "Safari Quad / Buggy": { base: 100, extra: 10 },   // adapte si besoin
-  "Chameau": { base: 40, extra: 5 }   
+  "Dunes de Timlaline – Expérience Désert": { base: 70, extra: 5 }
 };
 
 /* =====================================================
@@ -492,88 +483,82 @@ function updateCircuitPlaces() {
 }
 
 
-function updateExcursionTimes(){
+function updateExcursionTimes() {
 
-  fixedTime.innerHTML = "";
-  fixedTime.required = false;
+  /* =====================================
+     1️⃣ PAS EXCURSIONS → HEURE LIBRE
+  ===================================== */ 
+  if (service.value !== "excursion") {
+    setHeureMode("free");
+    return;
+  }
 
-  // mode par défaut
-  setHeureMode("hidden");
+  /* =====================================
+     2️⃣ EXCURSIONS MAIS AUCUN CIRCUIT CHOISI
+        → HEURE PAR DÉFAUT VISIBLE
+  ===================================== */
+  if (!circuit.value) {
+    setHeureMode("free", "08:00");
+    return;
+  }
 
-  /* ===== CHAMEAU ===== */
-  if (circuit.value === "Chameau") {
+  /* =====================================
+     3️⃣ RESET DES HORAIRES FIXES
+  ===================================== */
+  
+fixedTime.innerHTML = `
+<option value=""
+  data-fr="Choisir l’horaire"
+  data-en="Select time">
+  ${LANG[lang].fixedtime}
+</option>`;
 
-    // tant que le type n’est pas choisi, on ne montre rien
-    if (!camelType.value) {
-      setHeureMode("hidden");
-      return;
-    }
+  /* =====================================
+     4️⃣ CHAMEAU & QUAD → HORAIRES FIXES
+  ===================================== */
+  if (
+    circuit.value === "Chameau" ||
+    circuit.value === "Safari Quad / Buggy"
+  ) {
 
     setHeureMode("fixed");
-    fixedTime.required = true;
 
-    if (camelType.value === "Promenade seule") {
-      ["10:00", "15:00", "17:00"].forEach(h =>
+    /* =====================================
+       5️⃣ HORAIRES CHAMEAU
+    ===================================== */
+    if (circuit.value === "Chameau") {
+
+      if (camelType.value === "Promenade seule") {
+        ["10:00", "15:00", "17:00"].forEach(h =>
+          fixedTime.add(new Option(h, h))
+        );
+      }
+
+      if (camelType.value === "Promenade + dîner") {
+        fixedTime.add(new Option("17:00", "17:00"));
+      }
+    }
+
+    /* =====================================
+       6️⃣ HORAIRES QUAD / BUGGY
+    ===================================== */
+    if (circuit.value === "Safari Quad / Buggy") {
+      ["09:00", "12:00", "14:00", "17:30"].forEach(h =>
         fixedTime.add(new Option(h, h))
       );
     }
 
-    if (camelType.value === "Promenade + dîner") {
-      fixedTime.add(new Option("17:00", "17:00"));
-    }
-
     return;
   }
 
-  /* ===== QUAD / BUGGY ===== */
-  if (circuit.value === "Safari Quad / Buggy") {
+  /* =====================================
+     7️⃣ AUTRES EXCURSIONS → HEURE LIBRE
+  ===================================== */
+  setHeureMode("free");
 
-    // tant que le type n’est pas choisi, on ne montre rien
-    if (!quadType.value) {
-      setHeureMode("hidden");
-      return;
-    }
-
-    setHeureMode("fixed");
-    fixedTime.required = true;
-
-    ["09:00", "12:00", "14:00", "17:30"].forEach(h =>
-      fixedTime.add(new Option(h, h))
-    );
-
-    return;
+  translateTexts(lang);
+  translateSelects(lang);
   }
-
-  /* ===== AUTRES EXCURSIONS ===== */
-
-  setHeureMode("normal");
-
-  if (circuit.value === "Excursion Paradise Valley") {
-    ["09:00"].forEach(h => fixedTime.add(new Option(h,h)));
-  }
-
-  if (circuit.value === "Tour de la ville de Agadir") {
-    ["09:30", "14:30"].forEach(h => fixedTime.add(new Option(h,h)));
-  }
-
-  if (circuit.value === "Souk El Had – Circuit Shopping") {
-    ["09:30", "14:30"].forEach(h => fixedTime.add(new Option(h,h)));
-  }
-
-  if (circuit.value === "Visite du Crocoparc") {
-    ["09:30", "14:30"].forEach(h => fixedTime.add(new Option(h,h)));
-  }
-
-  if (circuit.value === "Téléphérique et visite de la Kasbah") {
-    ["10:00", "16:00"].forEach(h => fixedTime.add(new Option(h,h)));
-  }
-
-  if (circuit.value === "Dunes de Timlaline – Expérience Désert") {
-    ["15:00"].forEach(h => fixedTime.add(new Option(h,h)));
-  }
-
-  fixedTime.required = true;
-}
 
 
 
@@ -608,6 +593,7 @@ circuit.addEventListener("change", () => {
 quadType.addEventListener("change", calculPrixCircuit);
 circuitPlaces.addEventListener("change", calculPrixCircuit);
 camelType.addEventListener("change", calculPrixCircuit);
+circuit.addEventListener("change", updateExcursionTimes);
 camelType.addEventListener("change", updateExcursionTimes);
 quadType.addEventListener("change", updateExcursionTimes);
 
@@ -655,7 +641,7 @@ function escapeHTML(str) {
   if(arrivee.value) msg+=`🏁 *Destination* : ${arrivee.value}\n`;
   if(placesTxt!=="-") msg+=`👥 *Places* : ${placesTxt}\n`;
   if(flightNumber.value) msg+=`✈️ *Vol* : ${flightNumber.value}\n`;
-  if(dateInput.value) msg+=`📅 *Date* : ${dateInput.value}\n`;
+  if(date.value) msg+=`📅 *Date* : ${date.value}\n`;
   if(timeValue) msg+=`⏰ *Heure* : ${timeValue}\n`;
   if(message.value) msg+=`\n📝 *Message* : ${message.value}\n`;
   if(price) msg+=`\n💰 *Prix* : ${price}\n`;
@@ -673,7 +659,7 @@ function escapeHTML(str) {
   if(arrivee.value) recap+=`<p><b>🏁 Destination :</b> ${arrivee.value}</p>`;
   if(placesTxt!=="-") recap+=`<p><b>👥 Places :</b> ${placesTxt}</p>`;
   if(flightNumber.value) recap+=`<p><b>✈️ Vol :</b> ${flightNumber.value}</p>`;
-  if(dateInput.value) recap+=`<p><b>📅 Date :</b> ${dateInput.value}</p>`;
+  if(date.value) recap+=`<p><b>📅 Date :</b> ${date.value}</p>`;
   if(timeValue) recap+=`<p><b>⏰ Heure :</b> ${timeValue}</p>`;
   if(message.value) recap+=`<p><b>📝 Message :</b> ${message.value}</p>`;
   if(price) recap+=`<p><b>💰 Prix :</b> ${price}</p>`;
@@ -748,7 +734,7 @@ if (btnCancel && btnConfirm) {
   });
 
   // Remet date/heure par défaut
-  dateInput.value = today;
+  date.value = today;
   heure.value = "07:00";
 
   // Nettoie le sous-titre
@@ -758,8 +744,8 @@ if (btnCancel && btnConfirm) {
 service.value = "";
 service.dispatchEvent(new Event("change"));
     // Reset DATE
-dateInput.value = today;
-dateInput.dispatchEvent(new Event("change"));
+date.value = today;
+date.dispatchEvent(new Event("change"));
 
 // Reset HEURE
 heure.value = "07:00";
@@ -803,7 +789,7 @@ document.querySelectorAll(".exc-slider.auto.fast").forEach(slider=>{
   setInterval(()=>{
     i++;
     if(i >= slider.children.length) i = 0;
-    slider.scrollTo(slider.clientWidth * i, 0);
+    slider.scrollTo({ left: slider.clientWidth * i, behavior:"smooth" });
   }, 5000);   // 5 secondes
 });
 
@@ -813,7 +799,7 @@ document.querySelectorAll(".exc-slider.auto.slow").forEach(slider=>{
   setInterval(()=>{
     i++;
     if(i >= slider.children.length) i = 0;
-    slider.scrollTo(slider.clientWidth * i, 0);
+    slider.scrollTo({ left: slider.clientWidth * i, behavior:"smooth" });
   }, 8000);   // 8 secondes
 });
 
@@ -823,7 +809,7 @@ function fixBookingScroll(){
 
   const y = section.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight + 5;
 
-  window.scrollTo(0, y);
+  window.scrollTo({ top: y, behavior:"smooth" });
 }
 
 
@@ -869,7 +855,7 @@ function goExcursions(){
   const exc = document.getElementById("excursions");
   const y = exc.offsetTop - header.offsetHeight - 15;
 
-  window.scrollTo(0, y);
+  window.scrollTo({ top: y, behavior: "smooth" });
 }
   
 
@@ -928,21 +914,23 @@ function openInterville(trajetValue) {
 
  function scrollToExcursionDetail(name){
   const details = document.querySelectorAll("#excursionDetails .exc-detail");
-  details.forEach(d=>{
+
+  for(const d of details){
     const h = d.querySelector("h3");
-    if(h && h.textContent.trim() === name){
+    if(h && h.textContent.toLowerCase().includes(name.toLowerCase().split(" ")[0])){
       const header = document.getElementById("mainHeader");
       const y = d.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
-      window.scrollTo(0, y);
+      window.scrollTo({top:y,behavior:"smooth"});
+      break;
     }
-  });
-}
+  }
+ } 
 
   function goInterville(){
   const header = document.getElementById("mainHeader");
   const sec = document.getElementById("popularDestinations");
   const y = sec.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
-  window.scrollTo(0, y);
+  window.scrollTo({top:y,behavior:"smooth"});
   }
 
   function payByCard(){
@@ -1101,24 +1089,46 @@ function updateLangFlag(){
 
   
   function sendReview(){
+
   const name  = document.getElementById("reviewName").value.trim();
-  const msg   = document.getElementById("reviewMessage").value.trim();
   const stars = document.getElementById("reviewStars").value;
-  const countryCode = document.getElementById("reviewCountry").value;
+  const msg   = document.getElementById("reviewMessage").value.trim();
+  const countryEmoji = document.getElementById("reviewCountry").value;
 
-  if(!name || !msg || !stars) return alert("Veuillez remplir tous les champs.");
-
-  let all = JSON.parse(localStorage.getItem("reviews")) || [];
-  all.unshift({name, msg, stars, country:countryCode});
-  localStorage.setItem("reviews", JSON.stringify(all));
-
-  loadReviews();
-
-  document.getElementById("reviewName").value = "";
-  document.getElementById("reviewMessage").value = "";
-  document.getElementById("reviewStars").value = "";
+  if(!name || !stars || !msg){
+    alert("Merci de remplir tous les champs ⭐");
+    return;
   }
-  
+
+  const countryCode = countryEmoji.split(" ")[0]
+    .replace("🇫🇷","fr").replace("🇬🇧","gb").replace("🇲🇦","ma")
+    .replace("🇺🇸","us").replace("🇮🇹","it").replace("🇧🇪","be")
+    .replace("🇳🇱","nl").replace("🇨🇭","ch").replace("🇩🇪","de").replace("🇪🇸","es");
+
+  const box = document.createElement("div");
+  box.className = "review-card";
+  box.innerHTML = `
+    <div class="review-stars">${"⭐".repeat(stars)}</div>
+    <div class="review-msg">“${msg}”</div>
+    <div class="review-name">
+      <img loading="lazy" src="https://flagcdn.com/w20/${countryCode}.png" class="review-flag">
+      <span>${name}</span>
+    </div>
+  `;
+
+  document.getElementById("liveReviews").prepend(box);
+  saveReview(name, parseInt(stars), msg, countryCode);
+
+  window.open("https://wa.me/212691059759?text=" + encodeURIComponent(
+`⭐ NOUVEL AVIS CLIENT ⭐
+Nom : ${name}
+Note : ${stars}/5
+
+Avis :
+${msg}`), "_blank");
+
+  document.getElementById("reviewForm").reset();
+  }
   
 function saveReview(name, stars, msg, country){
   const all = JSON.parse(localStorage.getItem("reviews") || "[]");
@@ -1126,64 +1136,45 @@ function saveReview(name, stars, msg, country){
   localStorage.setItem("reviews", JSON.stringify(all));
 }
 
-function loadReviews(){
-  let all = JSON.parse(localStorage.getItem("reviews"));
-
-  if(!all || all.length === 0){
-    localStorage.setItem("reviews", JSON.stringify(DEFAULT_REVIEWS));
-    all = DEFAULT_REVIEWS;
+  if(!localStorage.getItem("reviews")){
+  localStorage.setItem("reviews", JSON.stringify([
+    {name:"Sarah", stars:5, msg:"Chauffeur très ponctuel, voiture propre, service parfait.", country:"fr"},
+    {name:"John", stars:5, msg:"Excursion Paradise Valley incroyable. Organisation top !", country:"gb"},
+    {name:"Fatima", stars:5, msg:"Très bonne communication WhatsApp, je recommande.", country:"ma"}
+  ]));
   }
 
-  const wrap = document.getElementById("liveReviews");
-  wrap.innerHTML="";
+function loadReviews(){
+  const all = JSON.parse(localStorage.getItem("reviews") || "[]");
 
-  all.forEach((r,i)=>{
+  all.forEach(r=>{
     const box = document.createElement("div");
-    box.className="review-card";
-
-    const starsDiv = document.createElement("div");
-    starsDiv.className="review-stars";
-    starsDiv.textContent="⭐".repeat(r.stars);
-
-    const msgDiv = document.createElement("div");
-    msgDiv.className="review-msg";
-    msgDiv.textContent="“"+r.msg+"”";
-
-    const nameDiv = document.createElement("div");
-    nameDiv.className="review-name";
-    nameDiv.innerHTML = `<span>${r.name}</span>`;
-
-    box.appendChild(starsDiv);
-    box.appendChild(msgDiv);
-    box.appendChild(nameDiv);
-
-    box.addEventListener("contextmenu", e=>{
-      e.preventDefault();
-      if(confirm("Supprimer cet avis ?")){
-        let all = JSON.parse(localStorage.getItem("reviews"));
-        all.splice(i,1);
-        localStorage.setItem("reviews", JSON.stringify(all));
-        box.remove();
-      }
-    });
-
-    wrap.appendChild(box);
+    box.className = "review-card";
+    box.innerHTML = `
+      <div class="review-stars">${"⭐".repeat(r.stars)}</div>
+      <div class="review-msg">“${r.msg}”</div>
+      <div class="review-name">
+        <img loading="lazy" src="https://flagcdn.com/w20/${r.country || "ma"}.png" class="review-flag">
+        <span>${r.name}</span>
+      </div>
+    `;
+    document.getElementById("liveReviews").appendChild(box);
   });
 }
+
 
 document.addEventListener("DOMContentLoaded", ()=>{
   setLang(lang);
   updateLangFlag();
-  loadReviews();   // système reviews sécurisé
+  loadReviews();
 });
-
 
   setInterval(()=>{
   document.querySelectorAll("#mainHeader nav a").forEach(btn=>{
     btn.classList.add("menu-shake");
     setTimeout(()=>btn.classList.remove("menu-shake"),600);
   });
-},4000);
+},3000);
 
   function enableAdminDelete(){
 
@@ -1220,7 +1211,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     card.style.position = "relative";
     card.appendChild(btn);
   });
-}
+  }
+  
 
-
-
+</script>
