@@ -3579,7 +3579,7 @@ function openInterville(trajetValue) {
     if(h && h.textContent.toLowerCase().includes(name.toLowerCase().split(" ")[0])){
       const header = document.getElementById("mainHeader");
       const y = d.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
-      window.scrollTo({top:y,behavior:"smooth"});
+      window.scrollTo(0, y);
       break;
     }
   }
