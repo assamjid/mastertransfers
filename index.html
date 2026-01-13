@@ -3021,7 +3021,7 @@ places.addEventListener("change", calculPrixIntervilles);
 ===================================================== */
 const circuitPrices = {
   "Excursion Paradise Valley": { base: 70, extra: 5 },
-  "Tour de la ville d'Agadir": { base: 60, extra: 5 },
+  "Tour de la ville de Agadir": { base: 60, extra: 5 },
   "Souk El Had – Circuit Shopping": { base: 40, extra: 5 },
   "Visite du Crocoparc": { base: 60, extra: 5 },
   "Téléphérique et visite de la Kasbah": { base: 30, extra: 4 },
@@ -3573,17 +3573,15 @@ function openInterville(trajetValue) {
 
  function scrollToExcursionDetail(name){
   const details = document.querySelectorAll("#excursionDetails .exc-detail");
-
-  for(const d of details){
+  details.forEach(d=>{
     const h = d.querySelector("h3");
-    if(h && h.textContent.toLowerCase().includes(name.toLowerCase().split(" ")[0])){
+    if(h && h.textContent.trim() === name){
       const header = document.getElementById("mainHeader");
       const y = d.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
       window.scrollTo(0, y);
-      break;
     }
-  }
- } 
+  });
+}
 
   function goInterville(){
   const header = document.getElementById("mainHeader");
