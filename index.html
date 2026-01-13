@@ -926,8 +926,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐AAA 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
@@ -1712,6 +1712,8 @@ Ils nous font confiance
   </div>
 
 </div>
+<button onclick="enableAdminDelete()" style="opacity:0;position:fixed;bottom:5px;right:5px;width:40px;height:40px;">.</button>
+  
 </section>
   
   
@@ -3842,7 +3844,34 @@ document.addEventListener("DOMContentLoaded", ()=>{
     btn.classList.add("menu-shake");
     setTimeout(()=>btn.classList.remove("menu-shake"),600);
   });
-},3000);
+},4000);
+
+  function enableAdminDelete(){
+  const password = "1234"; // 🔒 change ce code secret
+
+  const p = prompt("Code admin ?");
+  if(p !== password) return;
+
+  document.querySelectorAll(".review-card").forEach((card, i)=>{
+    const btn = document.createElement("span");
+    btn.innerHTML = "🗑️";
+    btn.style.cssText = `
+      position:absolute;
+      top:8px;
+      right:10px;
+      cursor:pointer;
+      font-size:18px;
+    `;
+    btn.onclick = ()=>{
+      let all = JSON.parse(localStorage.getItem("reviews") || "[]");
+      all.splice(i,1);
+      localStorage.setItem("reviews", JSON.stringify(all));
+      location.reload();
+    };
+    card.style.position = "relative";
+    card.appendChild(btn);
+  });
+}
   
 
 </script>
