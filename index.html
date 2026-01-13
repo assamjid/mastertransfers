@@ -3589,7 +3589,7 @@ function openInterville(trajetValue) {
   const header = document.getElementById("mainHeader");
   const sec = document.getElementById("popularDestinations");
   const y = sec.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 15;
-  window.scrollTo({top:y,behavior:"smooth"});
+  window.scrollTo(0, y);
   }
 
   function payByCard(){
