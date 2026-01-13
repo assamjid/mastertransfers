@@ -728,17 +728,17 @@ button[type="submit"]{
   letter-spacing:0.8px;
   }
 
-  /* Bloc ligne pays + note */
+/* Ligne pays + étoiles */
 .review-row{
   display:flex;
-  width:320px;      /* même largeur que les autres champs */
+  width:320px;
   margin:0 auto;
   gap:10px;
 }
 
-/* Indicatif / Pays */
+/* Pays / indicatif */
 .review-country{
-  width:90px;       /* petit champ */
+  width:90px;
   height:60px;
   border-radius:12px;
   border:2px solid #dde3ea;
@@ -748,9 +748,9 @@ button[type="submit"]{
   font-weight:600;
 }
 
-/* Note étoiles */
-.review-stars{
-  width:220px;      /* 90 + 220 + 10 = 320px ✔ */
+/* Select étoiles */
+.review-stars-select{
+  width:220px;
   height:60px;
   border-radius:12px;
   border:2px solid #dde3ea;
@@ -759,7 +759,7 @@ button[type="submit"]{
   font-weight:600;
 }
 
-/* Nom */
+/* Champs nom & message */
 #reviewName,
 #reviewMessage{
   width:320px;
@@ -770,26 +770,13 @@ button[type="submit"]{
   padding:14px;
 }
 
-/* Message plus grand */
 #reviewMessage{
   min-height:140px;
   line-height:1.7;
 }
 
-  .review-name{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-top:6px;
-}
-
-.review-flag{
-  width:18px;
-  height:auto;
-  border-radius:3px;
-}
-
-  .review-msg{
+/* Carte avis */
+.review-msg{
   font-style:italic;
   margin:10px 0;
   line-height:1.6;
@@ -810,47 +797,25 @@ button[type="submit"]{
   color:#f39c12;
 }
 
-  #liveReviews{
+.review-flag{
+  width:18px;
+  height:auto;
+  border-radius:3px;
+}
+
+/* Grille avis */
+#liveReviews{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
   gap:22px;
-  align-items:start;
-}
-
-/* Mobile */
-@media(max-width:768px){
-  #liveReviews{
-    grid-template-columns:1fr;
-  }
-}
-
-/* Toutes les cartes même taille */
-.review-card{
-  width:100%;
-  box-sizing:border-box;
-}
-
-  #liveReviews{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr)); /* empêche débordement */
-  gap:22px;
-  align-items:start;
+  max-width:900px;
+  margin:0 auto;
 }
 
 .review-card{
   width:100%;
-  max-width:100%;
   box-sizing:border-box;
   overflow-wrap:break-word;
-  word-wrap:break-word;
-  white-space:normal;
-}
-
-/* Mobile */
-@media(max-width:768px){
-  #liveReviews{
-    grid-template-columns:1fr;
-  }
 }
     
 </style>
@@ -914,8 +879,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐AAA 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐AAA 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
