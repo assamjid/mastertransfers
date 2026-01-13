@@ -3847,12 +3847,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 },4000);
 
   function enableAdminDelete(){
-  const password = "1234"; // 🔒 change ce code secret
+  const password = "1234"; // change ton code secret ici
 
   const p = prompt("Code admin ?");
   if(p !== password) return;
 
-  document.querySelectorAll(".review-card").forEach((card, i)=>{
+  const cards = document.querySelectorAll("#liveReviews .review-card");
+
+  cards.forEach((card, i)=>{
     const btn = document.createElement("span");
     btn.innerHTML = "🗑️";
     btn.style.cssText = `
@@ -3860,18 +3862,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
       top:8px;
       right:10px;
       cursor:pointer;
-      font-size:18px;
+      font-size:20px;
+      z-index:10;
     `;
+
     btn.onclick = ()=>{
       let all = JSON.parse(localStorage.getItem("reviews") || "[]");
       all.splice(i,1);
       localStorage.setItem("reviews", JSON.stringify(all));
       location.reload();
     };
+
     card.style.position = "relative";
     card.appendChild(btn);
   });
-}
+  }
   
 
 </script>
