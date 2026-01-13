@@ -788,6 +788,27 @@ button[type="submit"]{
   height:auto;
   border-radius:3px;
 }
+
+  .review-msg{
+  font-style:italic;
+  margin:10px 0;
+  line-height:1.6;
+  color:#001f3f;
+}
+
+.review-stars{
+  color:#f1c40f;
+  font-size:18px;
+}
+
+.review-name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  font-weight:700;
+  color:#f39c12;
+}
     
 </style>
   
@@ -3687,60 +3708,45 @@ function updateLangFlag(){
   
   function sendReview(){
 
-  const name    = document.getElementById("reviewName").value.trim();
-  const stars   = document.getElementById("reviewStars").value;
-  const msg     = document.getElementById("reviewMessage").value.trim();
-  const country = document.getElementById("reviewCountry").value;
+  const name  = document.getElementById("reviewName").value.trim();
+  const stars = document.getElementById("reviewStars").value;
+  const msg   = document.getElementById("reviewMessage").value.trim();
+  const countryEmoji = document.getElementById("reviewCountry").value;
 
-  if(!name || !stars || !msg || !country){
+  if(!name || !stars || !msg){
     alert("Merci de remplir tous les champs ⭐");
     return;
   }
 
-  const flagCode = country
-    .replace("🇲🇦","ma")
-    .replace("🇫🇷","fr")
-    .replace("🇬🇧","gb")
-    .replace("🇩🇪","de")
-    .replace("🇪🇸","es")
-    .replace("🇺🇸","us")
-    .replace("🇮🇹","it")
-    .replace("🇧🇪","be")
-    .replace("🇳🇱","nl")
-    .replace("🇨🇭","ch");
-
-  const starsTxt = "⭐".repeat(parseInt(stars));
+  const countryCode = countryEmoji.split(" ")[0]
+    .replace("🇫🇷","fr").replace("🇬🇧","gb").replace("🇲🇦","ma")
+    .replace("🇺🇸","us").replace("🇮🇹","it").replace("🇧🇪","be")
+    .replace("🇳🇱","nl").replace("🇨🇭","ch").replace("🇩🇪","de").replace("🇪🇸","es");
 
   const box = document.createElement("div");
   box.className = "review-card";
-
   box.innerHTML = `
-    <div class="review-stars">${starsTxt}</div>
+    <div class="review-stars">${"⭐".repeat(stars)}</div>
     <div class="review-msg">“${msg}”</div>
     <div class="review-name">
-      <img src="https://flagcdn.com/w20/${flagCode}.png" class="review-flag">
-      <b>${name}</b>
+      <img loading="lazy" src="https://flagcdn.com/w20/${countryCode}.png" class="review-flag">
+      <span>${name}</span>
     </div>
   `;
 
   document.getElementById("liveReviews").prepend(box);
+  saveReview(name, parseInt(stars), msg, countryCode);
 
-  saveReview(name, parseInt(stars), msg, flagCode);
-
-  // WhatsApp admin
-  const text = `⭐ NOUVEL AVIS CLIENT ⭐
-
+  window.open("https://wa.me/212691059759?text=" + encodeURIComponent(
+`⭐ NOUVEL AVIS CLIENT ⭐
 Nom : ${name}
 Note : ${stars}/5
 
 Avis :
-${msg}`;
-
-  window.open("https://wa.me/212691059759?text=" + encodeURIComponent(text), "_blank");
+${msg}`), "_blank");
 
   document.getElementById("reviewForm").reset();
-}
-
+  }
   
 function saveReview(name, stars, msg, country){
   const all = JSON.parse(localStorage.getItem("reviews") || "[]");
@@ -3754,18 +3760,14 @@ function loadReviews(){
   all.forEach(r=>{
     const box = document.createElement("div");
     box.className = "review-card";
-
     box.innerHTML = `
-  <div class="review-stars">${"⭐".repeat(r.stars)}</div>
-  <div class="review-msg">“${r.msg}”</div>
-  <div class="review-name">
-    <img loading="lazy"
-         src="https://flagcdn.com/w20/${r.country || "ma"}.png"
-         class="review-flag">
-    <span>${r.name}</span>
-  </div>
-`;
-
+      <div class="review-stars">${"⭐".repeat(r.stars)}</div>
+      <div class="review-msg">“${r.msg}”</div>
+      <div class="review-name">
+        <img loading="lazy" src="https://flagcdn.com/w20/${r.country || "ma"}.png" class="review-flag">
+        <span>${r.name}</span>
+      </div>
+    `;
     document.getElementById("liveReviews").appendChild(box);
   });
 }
