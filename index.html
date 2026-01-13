@@ -926,8 +926,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐ZZZ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐EZZ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
@@ -3847,14 +3847,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
 },4000);
 
   function enableAdminDelete(){
-  const password = "1234"; // change ton code secret ici
+  function enableAdminDelete(){
 
+  const password = "1590"; // change ce code
   const p = prompt("Code admin ?");
   if(p !== password) return;
 
-  const cards = document.querySelectorAll("#liveReviews .review-card");
+  let all = JSON.parse(localStorage.getItem("reviews") || "[]");
 
-  cards.forEach((card, i)=>{
+  const container = document.getElementById("liveReviews");
+  const cards = container.querySelectorAll(".review-card");
+
+  cards.forEach((card)=>{
     const btn = document.createElement("span");
     btn.innerHTML = "🗑️";
     btn.style.cssText = `
@@ -3867,8 +3871,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     `;
 
     btn.onclick = ()=>{
-      let all = JSON.parse(localStorage.getItem("reviews") || "[]");
-      all.splice(i,1);
+      const msg = card.querySelector(".review-msg").innerText;
+      all = all.filter(r => r.msg !== msg);   // supprime par texte (safe)
       localStorage.setItem("reviews", JSON.stringify(all));
       location.reload();
     };
