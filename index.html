@@ -2780,7 +2780,7 @@ const heureField = document.getElementById("heureField");
 ===================================================== */
 const today = new Date().toISOString().split("T")[0];
 dateInput.value = today;
-date.min = today;
+dateInput.min = today;
 heure.value = "07:00";
 
 tel.addEventListener("input", () => {
