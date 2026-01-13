@@ -1187,13 +1187,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   function enableAdminDelete(){
 
-  const password = "1590"; // change ce code
+  const container = document.getElementById("liveReviews");
+  if (!container) return alert("Reviews not ready yet");
+
+  const password = "1590";
   const p = prompt("Code admin ?");
   if(p !== password) return;
 
   let all = JSON.parse(localStorage.getItem("reviews") || "[]");
 
-  const container = document.getElementById("liveReviews");
   const cards = container.querySelectorAll(".review-card");
 
   cards.forEach((card)=>{
@@ -1209,17 +1211,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
     `;
 
     btn.onclick = ()=>{
-     const msg = card.querySelector(".review-msg").innerText;
-     all = all.filter(r => r.msg !== msg);
-     localStorage.setItem("reviews", JSON.stringify(all));
-     card.remove();        // ✅ suppression instantanée, plus de retour fantôme
-};
+      const msg = card.querySelector(".review-msg").innerText;
+      all = all.filter(r => r.msg !== msg);
+      localStorage.setItem("reviews", JSON.stringify(all));
+      card.remove();
+    };
 
     card.style.position = "relative";
     card.appendChild(btn);
   });
-  }
-  
+}
 
 
 
