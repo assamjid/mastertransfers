@@ -737,7 +737,7 @@ button[type="submit"]{
 
 /* Indicatif petit */
 .review-row input{
-  width:90px;
+  width:50px;
   text-align:center;
 }
 
@@ -745,6 +745,13 @@ button[type="submit"]{
 .review-row textarea{
   width:380px;       /* 90 + 380 + 10px gap = 480px */
   resize:vertical;
+}
+  /* Champ message / note */
+.review-row textarea,
+.reviews-form textarea{
+  min-height:120px;     /* hauteur visible */
+  line-height:1.6;
+  padding:14px;
 }
     
 </style>
