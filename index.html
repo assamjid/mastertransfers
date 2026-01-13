@@ -788,7 +788,6 @@ button[type="submit"]{
   height:auto;
   border-radius:3px;
 }
-  
     
 </style>
   
@@ -851,8 +850,8 @@ window.scrollTo({top:s.offsetTop-h.offsetHeight-10,behavior:'smooth'});
 
 
   <div class="trust-top"
-    data-fr="⭐⭐⭐rrr 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
-    data-en="⭐⭐⭐rrr 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
+    data-fr="⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7"
+    data-en="⭐⭐⭐ 4.9/5 – 120+ verified reviews • Certified drivers • Pay on arrival • WhatsApp 7/7">
     ⭐⭐⭐⭐⭐ 4.9/5 – 120+ avis vérifiés • Chauffeurs certifiés • Paiement sur place • WhatsApp 7j/7
 </div>
   
@@ -3702,12 +3701,18 @@ function updateLangFlag(){
 
   // Affichage LIVE sur le site
   const box = document.createElement("div");
-  box.className = "review-card";
-  box.innerHTML = `
-    ${starsTxt}<br>
-    “${msg}”  
-    <b>— ${name}</b>
-  `;
+box.className = "review-card";
+
+const flagCode = country ? country.toLowerCase() : "ma";
+
+box.innerHTML = `
+  <div class="review-stars">${starsTxt}</div>
+  <div class="review-msg">“${msg}”</div>
+  <div class="review-name">
+    <img src="https://flagcdn.com/w20/${flagCode}.png" class="review-flag">
+    <span>${name}</span>
+  </div>
+`;
 
   document.getElementById("liveReviews").prepend(box);
     saveReview(name, parseInt(stars), msg);
