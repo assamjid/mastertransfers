@@ -2467,17 +2467,33 @@ Votre avis est précieux. Aidez d’autres voyageurs en partageant votre expéri
     <label data-fr="Votre nom" data-en="Your name">Votre nom</label>
   </div>
 
-  <div class="floating-field">
-    <select id="reviewStars" required>
-      <option value="">★★★★★ Note</option>
-      <option value="5">★★★★★ Excellent</option>
-      <option value="4">★★★★ Très bien</option>
-      <option value="3">★★★ Bien</option>
-      <option value="2">★★ Moyen</option>
-      <option value="1">★ Mauvais</option>
-    </select>
-    <label data-fr="Note" data-en="Rating">Note</label>
-  </div>
+<div class="review-row">
+
+  <!-- INDICATIF PAYS -->
+  <select id="reviewCountry" class="review-country">
+    <option value="🇲🇦 Maroc">🇲🇦 </option>
+    <option value="🇫🇷 France">🇫🇷 </option>
+    <option value="🇬🇧 UK">🇬🇧 </option>
+    <option value="🇩🇪 Germany">🇩🇪 </option>
+    <option value="🇪🇸 Spain">🇪🇸 </option>
+    <option value="🇺🇸 USA">🇺🇸 </option>
+    <option value="🇮🇹 Italy">🇮🇹 </option>
+    <option value="🇧🇪 Belgium">🇧🇪 </option>
+    <option value="🇳🇱 Netherlands">🇳🇱 </option>
+    <option value="🇨🇭 Switzerland">🇨🇭 </option>
+  </select>
+
+  <!-- NOTE -->
+  <select id="reviewStars" class="review-stars">
+    <option value="">⭐ Note</option>
+    <option value="5">★★★★★ 5</option>
+    <option value="4">★★★★ 4</option>
+    <option value="3">★★★ 3</option>
+    <option value="2">★★ 2</option>
+    <option value="1">★ 1</option>
+  </select>
+
+</div>
 
   <div class="floating-field">
     <textarea id="reviewMessage" rows="4" required></textarea>
