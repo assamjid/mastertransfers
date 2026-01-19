@@ -882,8 +882,6 @@ Nos services
 <input type="hidden" id="emailMessage" name="final_message">
 <input type="hidden" name="_template" value="table">
 <input type="submit" id="realSubmit" hidden>
-<input type="hidden" name="stripe_amount" id="stripe_amount">
-
 
   <!-- ================= HEADER ================= -->
   
@@ -1910,18 +1908,14 @@ puis vous reconduiront au même point après votre excursion, pour un confort et
               data-en="📲 Confirm & WhatsApp">
         📲 Confirmer & WhatsApp
       </button>
-
-         <!-- 💳 BOUTON STRIPE FINAL -->
-        <button
-        type="button"
-        id="payNowAfterConfirm"
-        class="btn-stripe"
-        style="display:none;"
-        onclick="payNowAfterConfirm(this)">
-         💳 Payer par carte
-        </button>
-      
     </div>
+
+    <!-- BOUTON STRIPE MANUEL -->
+    <button id="payNowAfterConfirm"
+            class="floating-btn"
+            style="display:none;margin-top:18px;width:100%">
+      💳 PAYER MAINTENANT
+    </button>
 
   </div>
 </div>
@@ -2072,16 +2066,6 @@ Besoin d’aide ?
 
   </div>
 </footer>
-  
   <script src="script.js" defer></script>
-
-  
-  <a class="cta-fixed"
-   href="#booking"
-   data-fr="📲 Réserver Ici"
-   data-en="📲 Book Now">
-📲 Réserver maintenant
-  </a>
-  
 </body>
 </html>
